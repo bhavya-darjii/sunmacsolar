@@ -357,8 +357,8 @@ export default function Savings() {
           <div className="container-final">
             <Reveal>
               <div className="overline text-[#D97706]">Australian solar rebates guide</div>
-              <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl mt-4 font-medium tracking-tight max-w-3xl">
-                Every rebate you should know about — in plain English.
+              <h2 className="display-lead mt-4 max-w-3xl">
+                <span className="font-semibold">Every rebate you should know about — in plain English.</span>
               </h2>
               <p className="mt-5 text-[#57534E] max-w-2xl">
                 You can stack federal rebates on top of state programs. Below is a quick guide to the main ones. Rules and amounts change frequently — we&apos;ll confirm your exact eligibility during a free consultation.
@@ -421,11 +421,11 @@ export default function Savings() {
         <section id="pdrs" className="section-pad" data-testid="pdrs-section">
           <div className="container-final">
             <Reveal>
-              <div className="inline-flex items-center gap-2 text-[#166534] text-xs tracking-[0.2em] uppercase font-bold">
-                <Leaf className="w-4 h-4" /> NSW Net Zero · Commercial HVAC
+              <div className="overline inline-flex items-center gap-2 text-[#166534]">
+                <Leaf className="h-4 w-4" /> NSW Net Zero · Commercial HVAC
               </div>
-              <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl mt-4 font-medium tracking-tight max-w-3xl">
-                PDRS incentives for upgrading your HVAC.
+              <h2 className="display-lead mt-4 max-w-3xl">
+                <span className="font-semibold">PDRS incentives for upgrading your HVAC.</span>
               </h2>
               <p className="mt-5 text-[#57534E] max-w-2xl">
                 The NSW <strong>Peak Demand Reduction Scheme (PDRS)</strong> — part of the state&apos;s Net Zero plan — pays businesses to install high-efficiency air conditioning. Each 0.1&nbsp;kW of peak demand you cut earns a Peak Reduction Certificate (PRC), which we convert into an upfront discount on your HVAC install.
@@ -468,8 +468,10 @@ export default function Savings() {
             <div className="rounded-[var(--radius-card)] bg-[#D97706] text-[#FDFBF7] p-10 md:p-16 flex flex-wrap items-center justify-between gap-6">
               <div>
                 <div className="overline text-[#1C1917]/70">Ready to save?</div>
-                <h2 className="font-display text-3xl sm:text-4xl mt-3 font-medium tracking-tight max-w-xl">
-                  We&apos;ll do a free site check and confirm every rebate you can claim.
+                <h2 className="display-lead mt-3 max-w-xl text-[#FDFBF7]">
+                  <span className="font-semibold">
+                    We&apos;ll do a free site check and confirm every rebate you can claim.
+                  </span>
                 </h2>
               </div>
               <Link

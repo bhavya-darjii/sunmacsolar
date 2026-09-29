@@ -68,7 +68,19 @@
   }
 
   .overline {
-    @apply text-[11px] font-bold tracking-[0.2em] text-[#d97706] uppercase;
+    font-family: "Outfit", sans-serif;
+    letter-spacing: 0.2em;
+    text-decoration-line: overline;
+    text-decoration-color: currentColor;
+    text-decoration-thickness: 1px;
+    @apply text-[11px] font-semibold text-[#d97706] uppercase;
+  }
+
+  /* Home-style section headlines (DiscoverySection, page intros, gallery leads) */
+  .display-lead {
+    font-family: "Outfit", sans-serif;
+    letter-spacing: -0.02em;
+    @apply text-[clamp(1.5rem,3.5vw,2.25rem)] font-light leading-snug text-[#1c1917];
   }
 
   .input-final {

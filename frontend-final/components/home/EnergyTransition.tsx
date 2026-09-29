@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import Reveal from "@/components/Reveal";
 
 const BANNER_IMAGE =
@@ -21,10 +22,18 @@ export default function EnergyTransition() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#1c1917]/55 via-[#1c1917]/15 to-transparent" />
 
-            <p className="absolute inset-x-6 bottom-[18%] max-w-2xl text-center font-display text-lg font-medium leading-snug text-white md:inset-x-auto md:left-1/2 md:-translate-x-1/2 md:text-2xl md:leading-snug">
-              Talk to an engineer, not a salesperson — realistic designs and quotes within 48
-              hours.
-            </p>
+            <div className="absolute inset-x-0 bottom-0 z-10 flex flex-col items-center gap-4 px-5 pb-8 md:px-8 md:pb-10">
+              <p className="max-w-2xl text-center font-display text-lg font-medium leading-snug text-white md:text-2xl md:leading-snug">
+                Talk to an engineer, not a salesperson — realistic designs and quotes within 48
+                hours.
+              </p>
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center rounded-full bg-[#1c1917] px-5 py-2.5 text-sm font-medium text-[#fdfbf7] transition-colors hover:bg-[#d97706] hover:text-[#fdfbf7]"
+              >
+                Request a free quote
+              </Link>
+            </div>
           </div>
 
           <div className="segment-bar flex h-1.5 gap-1 bg-[#1c1917]/10">

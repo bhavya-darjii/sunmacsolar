@@ -11,7 +11,7 @@ export default function DiscoverySection() {
             <Sun className="h-6 w-6 text-[#78716c]" strokeWidth={1.5} />
             <p className="text-xs font-medium text-[#78716c]">Meet {MASCOT.name}</p>
           </div>
-          <h2 className="font-display text-[clamp(1.5rem,3.5vw,2.25rem)] font-light leading-snug text-[#1c1917]">
+          <h2 className="display-lead">
             {MASCOT.name} — our off-grid mate.{" "}
             <span className="font-semibold">
               Rugged, friendly solar guidance from Camellia rooftops to outback stations.

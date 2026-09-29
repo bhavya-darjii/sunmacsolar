@@ -203,7 +203,13 @@ export default function NavPillMenu({
   return (
     <nav
       ref={navRef}
-      className={cn("relative items-center gap-0.5", className)}
+      className={cn(
+        "relative flex items-center gap-0.5 rounded-full px-2 py-2",
+        isHome
+          ? "glass-surface nav-pill-shadow"
+          : "border border-[#e7e5e4] bg-white/70",
+        className
+      )}
       aria-label="Primary"
       onMouseLeave={onNavLeave}
     >
@@ -240,7 +246,7 @@ export default function NavPillMenu({
             data-testid={`nav-${item.label.toLowerCase().replace(/\s/g, "-")}`}
             onMouseEnter={onItemEnter(item.href)}
             className={cn(
-              "relative z-10 rounded-full px-2.5 py-1.5 text-[13px] font-semibold whitespace-nowrap transition-colors duration-100 ease-out lg:px-3 lg:text-sm",
+              "nav-pill-link relative z-10 rounded-full px-2.5 py-1.5 text-[13px] whitespace-nowrap transition-colors duration-100 ease-out lg:px-3 lg:text-sm",
               linkTextClass(underBlob)
             )}
           >

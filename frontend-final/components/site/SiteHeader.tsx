@@ -107,7 +107,7 @@ export default function SiteHeader() {
         <NavPillMenu
           pathname={pathname}
           variant="site"
-          className="hidden rounded-full border border-[#e7e5e4] bg-white/70 px-1.5 py-1 lg:flex"
+          className="hidden lg:flex"
         />
 
         <div className="flex items-center gap-2">

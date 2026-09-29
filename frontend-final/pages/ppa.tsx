@@ -94,8 +94,8 @@ export default function PpaPage() {
           <div className="container-final">
             <Reveal>
               <p className="overline">Why landowners choose us</p>
-              <h2 className="mt-4 max-w-3xl font-display text-3xl font-medium tracking-tight sm:text-4xl lg:text-5xl">
-                No capital, no operations, no risk.
+              <h2 className="display-lead mt-4 max-w-3xl">
+                <span className="font-semibold">No capital, no operations, no risk.</span>
               </h2>
             </Reveal>
             <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
@@ -121,8 +121,8 @@ export default function PpaPage() {
           <div className="grid items-start gap-12 md:grid-cols-12">
             <Reveal className="space-y-6 md:col-span-5">
               <p className="overline">Ideal sites</p>
-              <h3 className="font-display text-3xl font-medium tracking-tight">
-                Does your land qualify?
+              <h3 className="display-lead mt-4">
+                <span className="font-semibold">Does your land qualify?</span>
               </h3>
               <ul className="space-y-3 text-[#57534e]">
                 {[
@@ -146,7 +146,7 @@ export default function PpaPage() {
                 data-testid="ppa-form"
               >
                 <p className="overline">Free site evaluation</p>
-                <h3 className="mt-1 font-display text-2xl font-medium tracking-tight">
+                <h3 className="mt-3 font-display text-2xl font-medium tracking-tight">
                   Tell us about your land
                 </h3>
 

@@ -1,5 +1,5 @@
 import Reveal from "@/components/Reveal";
-import { ShieldCheck, Droplets, Sun } from "lucide-react";
+import { Headphones, ShieldCheck, Sun } from "lucide-react";
 
 function SoilChart() {
   return (
@@ -29,6 +29,24 @@ function SolarIllustration() {
         style={{ transform: "perspective(400px) rotateX(12deg) rotateY(-8deg)" }}
       />
       <Sun className="absolute -right-1 top-0 h-8 w-8 text-[#d97706]" strokeWidth={1.5} />
+    </div>
+  );
+}
+
+function ResponseIllustration() {
+  return (
+    <div className="relative mx-auto mt-2 h-28 w-36">
+      <div className="absolute inset-x-3 bottom-2 flex items-end justify-between gap-1.5">
+        <div className="h-10 w-2 rounded-full bg-[#d6d3d1]" />
+        <div className="h-16 w-2 rounded-full bg-[#d97706]/45" />
+        <div className="h-12 w-2 rounded-full bg-[#1c1917]/20" />
+        <div className="h-7 w-2 rounded-full bg-[#d6d3d1]" />
+      </div>
+      <div className="absolute inset-x-5 top-6 rounded-xl border border-[#e7e5e4] bg-[#fdfbf7] px-3 py-2 shadow-sm">
+        <div className="h-1.5 w-12 rounded-full bg-[#e7e5e4]" />
+        <div className="mt-1.5 h-1.5 w-16 rounded-full bg-[#d97706]/35" />
+      </div>
+      <Headphones className="absolute -right-0.5 top-0 h-8 w-8 text-[#d97706]" strokeWidth={1.5} />
     </div>
   );
 }
@@ -78,16 +96,16 @@ export default function MetricsBento() {
           <article
             className="card-lift flex min-h-[280px] flex-col justify-between rounded-[var(--radius-card)] bg-[#e7e5e4]/60 p-6 md:min-h-[320px] md:p-8"
           >
-            <div className="flex items-center gap-2 text-[#1c1917]">
-              <Droplets className="h-5 w-5 text-[#d97706]" strokeWidth={1.75} />
-              <p className="text-sm font-medium">Support response</p>
-            </div>
-            <p className="text-sm font-medium text-[#57534e]">
-              In-house team — no outsourced installers
+            <p className="text-[11px] font-bold tracking-[0.14em] text-[#57534e] uppercase">
+              Support response
             </p>
+            <ResponseIllustration />
             <div>
-              <p className="font-display text-4xl font-semibold tracking-tight text-[#1c1917] md:text-5xl">
+              <p className="font-display text-3xl font-semibold tracking-tight text-[#1c1917] md:text-4xl">
                 48 hr
+              </p>
+              <p className="mt-1 text-xs text-[#57534e]">
+                In-house team — no outsourced installers
               </p>
             </div>
           </article>

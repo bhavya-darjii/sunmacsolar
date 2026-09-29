@@ -47,9 +47,9 @@ export default function MissionSection() {
         </Reveal>
 
         <Reveal delay={0.1}>
-          <h2 className="font-display text-[clamp(1.75rem,4vw,2.75rem)] font-light leading-[1.15] text-[#1c1917]">
+          <h2 className="display-lead">
             A specialist solar partner — from a single rooftop to a 5MW farm,{" "}
-            <span className="font-normal text-[#a8a29e]">
+            <span className="font-semibold">
               engineered in-house and installed without sub-contracted labour.
             </span>
           </h2>

@@ -84,8 +84,8 @@ export default function AboutPage() {
           <div className="container-final">
             <Reveal>
               <p className="overline">What we stand for</p>
-              <h2 className="mt-4 max-w-3xl font-display text-3xl font-medium tracking-tight sm:text-4xl lg:text-5xl">
-                Boring fundamentals, done properly.
+              <h2 className="display-lead mt-4 max-w-3xl">
+                <span className="font-semibold">Boring fundamentals, done properly.</span>
               </h2>
             </Reveal>
             <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">

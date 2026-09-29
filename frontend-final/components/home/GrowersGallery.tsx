@@ -13,9 +13,9 @@ export default function GrowersGallery() {
   return (
     <section className="container-final pb-24 md:pb-32">
       <Reveal variant="rise">
-        <h2 className="mx-auto max-w-4xl text-center font-display text-[clamp(1.35rem,3vw,2rem)] font-light leading-snug text-[#1c1917]">
+        <h2 className="display-lead mx-auto max-w-4xl text-center">
           Real systems, delivered across Australia —{" "}
-          <span className="text-[#a8a29e]">
+          <span className="font-semibold">
             from commercial rooftops and irrigation pivots to fully off-grid homesteads.
           </span>
         </h2>

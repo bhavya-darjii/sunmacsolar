@@ -43,8 +43,8 @@ export default function ProductsPage() {
                 </div>
                 <div className="p-8 md:col-span-6 md:p-12">
                   <p className="overline">0{i + 1}</p>
-                  <h2 className="mt-3 font-display text-3xl font-medium tracking-tight sm:text-4xl">
-                    {p.title}
+                  <h2 className="display-lead mt-3">
+                    <span className="font-semibold">{p.title}</span>
                   </h2>
                   <p className="mt-4 text-[#57534e]">{p.desc}</p>
                   <ul className="mt-6 space-y-2">
@@ -105,8 +105,8 @@ export default function ProductsPage() {
           <div className="container-final">
             <Reveal>
               <p className="overline">Finance</p>
-              <h2 className="mt-4 max-w-3xl font-display text-3xl font-medium tracking-tight sm:text-4xl lg:text-5xl">
-                Flexible ways to pay — from $0 upfront.
+              <h2 className="display-lead mt-4 max-w-3xl">
+                <span className="font-semibold">Flexible ways to pay — from $0 upfront.</span>
               </h2>
               <p className="mt-5 max-w-2xl text-[#57534e]">
                 Every system we install — solar, battery, HVAC or heat pump — can be financed through

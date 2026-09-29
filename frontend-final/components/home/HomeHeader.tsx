@@ -148,11 +148,7 @@ export default function HomeHeader() {
           transition={{ duration: 0.6, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
           className="hidden shrink-0 md:block"
         >
-          <NavPillMenu
-            pathname={pathname}
-            variant="home"
-            className="glass-surface flex rounded-full px-2 py-2 nav-pill-shadow"
-          />
+          <NavPillMenu pathname={pathname} variant="home" />
         </motion.div>
 
       </div>

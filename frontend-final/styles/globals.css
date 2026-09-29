@@ -58,4 +58,28 @@
   .container-final {
     @apply mx-auto w-full max-w-[1240px] px-5 md:px-8;
   }
+
+  .section-pad {
+    @apply py-16 md:py-24;
+  }
+
+  .page-intro-pad {
+    @apply pt-12 md:pt-16 pb-10 md:pb-12;
+  }
+
+  .overline {
+    @apply text-[11px] font-bold tracking-[0.2em] text-[#d97706] uppercase;
+  }
+
+  .input-final {
+    @apply w-full rounded-2xl border border-[#e7e5e4] bg-[#fdfbf7] px-4 py-3 outline-none transition-colors focus:border-[#d97706];
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-[#d97706] px-7 py-3.5 text-sm font-medium text-[#fdfbf7] transition-colors hover:bg-[#b45309] disabled:opacity-60;
+  }
+
+  .btn-dark {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-[#1c1917] px-6 py-3 text-sm font-semibold text-[#fdfbf7] transition-colors hover:bg-[#d97706];
+  }
 }

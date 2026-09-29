@@ -13,7 +13,7 @@ export default function HomeHero() {
       <div className="absolute inset-0 overflow-hidden">
         <Image
           src={HERO_IMAGE}
-          alt="Agricultural silo against blue sky"
+          alt="Commercial solar installation across an Australian rooftop"
           fill
           priority
           className="hero-cover-image"
@@ -60,7 +60,7 @@ export default function HomeHero() {
             className="shrink-0"
           >
             <Link href="/contact" className="glass-surface-light hero-quote-cta">
-              Get a Quote
+              Request a free quote
             </Link>
           </motion.div>
         </div>

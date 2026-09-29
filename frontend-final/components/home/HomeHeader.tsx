@@ -3,9 +3,7 @@
 
 
 import Image from "next/image";
-
 import Link from "next/link";
-
 import { motion } from "framer-motion";
 
 import { useEffect, useState } from "react";
@@ -14,15 +12,7 @@ import { usePathname } from "next/navigation";
 
 
 
-const NAV = [
-  { label: "Home", href: "/" },
-  { label: "Products", href: "/products" },
-  { label: "Projects", href: "/projects" },
-  { label: "PPA Contracts", href: "/ppa" },
-  { label: "Blog", href: "/blog" },
-  { label: "About", href: "/about" },
-  { label: "Contact", href: "/contact" },
-];
+import NavPillMenu from "@/components/site/NavPillMenu";
 
 
 
@@ -112,23 +102,27 @@ export default function HomeHeader() {
 
         >
 
-          <Image
-
-            src="/logo/sunmac-solar-icon.png"
-
-            alt="SunMac"
-
-            width={32}
-
-            height={32}
-
-            className="shrink-0 rounded-full"
-
-          />
-
-          <span className="shrink-0 text-[11px] font-semibold tracking-[0.2em] text-white uppercase sm:text-xs">
-            SUNMAC
-          </span>
+          <Link
+            href="/"
+            className="flex min-w-0 shrink-0 items-center gap-2.5 sm:gap-3"
+            data-testid="home-header-logo"
+          >
+            <Image
+              src="/logo/sunmac-solar-icon.png"
+              alt="SunMac Solar"
+              width={36}
+              height={36}
+              className="shrink-0 rounded-full"
+            />
+            <div className="min-w-0 leading-tight">
+              <div className="truncate font-display text-sm font-semibold tracking-tight text-white sm:text-base">
+                SunMac Solar
+              </div>
+              <div className="hidden text-[10px] tracking-[0.18em] text-white/65 uppercase sm:block">
+                Ecomac Energy
+              </div>
+            </div>
+          </Link>
 
           <span className="hidden h-5 w-px shrink-0 bg-white/35 sm:block" aria-hidden />
 
@@ -148,41 +142,18 @@ export default function HomeHeader() {
 
 
 
-        <motion.nav
-
+        <motion.div
           initial={{ opacity: 0, y: -12 }}
-
           animate={{ opacity: 1, y: 0 }}
-
           transition={{ duration: 0.6, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
-
-          className="glass-surface hidden shrink-0 md:flex items-center gap-0.5 rounded-full px-1.5 py-1.5 nav-pill-shadow"
-
-          aria-label="Primary"
-
+          className="hidden shrink-0 md:block"
         >
-
-          {NAV.map((item) => {
-            const isActive =
-              pathname === item.href ||
-              (item.href !== "/" && pathname.startsWith(item.href));
-
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`rounded-full px-2.5 py-1.5 text-[13px] font-medium transition-colors whitespace-nowrap lg:px-3 lg:text-sm ${
-                  isActive
-                    ? "bg-white text-[#1c1917] shadow-sm"
-                    : "text-white/90 hover:text-white"
-                }`}
-              >
-                {item.label}
-              </Link>
-            );
-          })}
-
-        </motion.nav>
+          <NavPillMenu
+            pathname={pathname}
+            variant="home"
+            className="glass-surface flex rounded-full px-2 py-2 nav-pill-shadow"
+          />
+        </motion.div>
 
       </div>
 

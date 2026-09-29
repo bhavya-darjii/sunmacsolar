@@ -12,13 +12,13 @@ export default function HomePage() {
   return (
     <>
       <Head>
-        <title>SunMac | Precision agriculture & sustainable energy</title>
+        <title>SunMac Solar | Commercial & Off-Grid Solar Australia</title>
         <meta
           name="description"
-          content="SunMac delivers precision irrigation, crop health monitoring, and sustainable energy insights for modern growers."
+          content="Commercial, residential, irrigation and off-grid solar and battery systems engineered and installed across Australia."
         />
       </Head>
-      <div className="min-h-screen bg-[#fdfbf7]">
+      <div className="min-h-screen bg-[#fdfbf7]" data-testid="home-page">
         <HomeHero />
         <MissionSection />
         <MetricsBento />

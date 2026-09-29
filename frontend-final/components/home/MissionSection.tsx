@@ -1,5 +1,6 @@
 import Reveal from "@/components/Reveal";
 import Image from "next/image";
+import { MASCOT } from "@/data/site";
 
 const AVATARS = [
   "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=80&h=80&q=80",
@@ -14,9 +15,18 @@ export default function MissionSection() {
         <Reveal>
           <div>
             <p className="text-[11px] font-bold tracking-[0.2em] text-[#78716c] uppercase">
-              Our mission
+              Who we are
             </p>
             <div className="mt-6 flex items-center gap-3">
+              <div className="relative h-12 w-12 overflow-hidden rounded-full border-2 border-white shadow-sm">
+                <Image
+                  src={MASCOT.url}
+                  alt={MASCOT.name}
+                  fill
+                  className="object-cover"
+                  sizes="48px"
+                />
+              </div>
               <div className="flex -space-x-2">
                 {AVATARS.map((src, i) => (
                   <div
@@ -30,17 +40,17 @@ export default function MissionSection() {
               </div>
             </div>
             <p className="mt-4 text-xs leading-relaxed text-[#78716c]">
-              Trusted by over 100+ customers across precision agriculture and
-              renewable operations.
+              CEC-approved retailer with an in-house installation team — 50+ MW installed
+              nationwide and trusted by Australian farmers.
             </p>
           </div>
         </Reveal>
 
         <Reveal delay={0.1}>
           <h2 className="font-display text-[clamp(1.75rem,4vw,2.75rem)] font-light leading-[1.15] text-[#1c1917]">
-            From precision irrigation to remote crop health monitoring to{" "}
+            A specialist solar partner — from a single rooftop to a 5MW farm,{" "}
             <span className="font-normal text-[#a8a29e]">
-              fulfilling the promise of tomorrow&apos;s technology.
+              engineered in-house and installed without sub-contracted labour.
             </span>
           </h2>
         </Reveal>

@@ -1,0 +1,43 @@
+{
+  "summary": "Iteration 2 verifies the newly-added Resend email integration end-to-end. All 8 pytest backend tests pass (health, blog, blog 404, leads CRUD+persistence, ppa-inquiries CRUD+persistence, plus 2 validation cases). Resend email side-effect confirmed: 'Lead email sent to info@sunmacsolar.com.au (subject=Lead)' log line appears after every POST /api/leads and POST /api/ppa-inquiries (log count went 0→3 after pytest, then 3→6 after Playwright ran Contact + PPA + Joey chat submits). Frontend: Contact form, PPA form, and Joey floating chat widget all submit successfully with 200 response and correct success toasts / done state. Joey submits with service_type='joey-chat' verified in request body.",
+  "tested_scope": ["backend", "frontend", "integration", "resend-email-side-effect"],
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {"ui_bugs": [], "integration_issues": [], "design_issues": []},
+  "passed": [
+    "GET /api/health -> 200 {status: ok}",
+    "GET /api/blog -> 200 (3 seeded posts)",
+    "GET /api/blog/off-grid-solar-systems-outback-australia -> 200",
+    "GET /api/blog/ecomac-energy-site -> 404 (unknown slug — expected, no regression)",
+    "POST /api/leads full payload -> 200, persisted (GET /api/leads finds it)",
+    "POST /api/ppa-inquiries full payload -> 200, persisted (GET /api/ppa-inquiries finds it)",
+    "POST /api/leads invalid email -> 422 (Pydantic EmailStr validation)",
+    "POST /api/ppa-inquiries missing land_location -> 422",
+    "Resend side-effect: 'Lead email sent to info@sunmacsolar.com.au (subject=Lead)' log line present after every lead/ppa POST (verified via grep on /var/log/supervisor/backend.err.log, count 0→3 after pytest, 3→6 after 3 frontend submits)",
+    "Contact form (/contact) -> POST /api/leads 200, 'Thanks — we'll be in touch within 48 hours.' toast shown",
+    "PPA form (/ppa) -> POST /api/ppa-inquiries 200, 'Inquiry sent — our PPA team will be in touch within 2 business days.' toast shown",
+    "Joey floating chat -> Start conversation -> fill name/email/phone/message -> submit -> POST /api/leads 200 with service_type='joey-chat' in request body -> 'Thanks, mate!' done state visible"
+  ],
+  "failed": [],
+  "test_report_links": [
+    "/app/backend/tests/backend_test.py",
+    "/app/test_reports/pytest/pytest_results.xml"
+  ],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "_send_lead_email correctly wraps SDK call in try/except and no-ops on empty key — lead flow will not break if RESEND_API_KEY is removed. Good defensive coding.",
+    "asyncio.create_task is fire-and-forget; if a lead POST returns 200 and the container is killed within ms, the email task may be lost. Acceptable for MVP but consider a background queue for production reliability.",
+    "SENDER_EMAIL is still onboarding@resend.dev (Resend sandbox). In sandbox mode Resend only delivers to the account-owner mailbox — info@sunmacsolar.com.au will NOT receive emails until the sunmacsolar.com.au domain is verified in Resend. This is expected per the review request but should be tracked as a follow-up before go-live.",
+    "server.py is a single 320-line file — acceptable for current scope but consider splitting into routers/models/email modules if it grows past ~500 lines."
+  ],
+  "updated_files": [
+    "/app/backend/tests/backend_test.py (new)",
+    "/app/backend/tests/__init__.py (new empty)"
+  ],
+  "success_rate": {"backend": "100% (8/8 pytest)", "frontend": "100% (3/3 lead flows)"},
+  "test_credentials": "N/A — no auth on this app",
+  "seed_data_creation": "Test-prefixed leads and ppa-inquiries created via TEST_<uuid> markers; per review instructions these were NOT cleaned up (do not delete leads/ppa_inquiries collections).",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "Resend integration is wired via async fire-and-forget (asyncio.create_task) and the success log line 'Lead email sent to info@sunmacsolar.com.au (subject=Lead)' in /var/log/supervisor/backend.err.log is the canonical proof of successful SDK invocation. Sender is sandbox onboarding@resend.dev, so actual mail delivery only reaches the Resend account owner until the sunmacsolar.com.au domain is verified. All 3 frontend lead entry points (Contact page, PPA page, Joey chat) hit the correct endpoints with the correct payload shape.",
+  "rca of the issue": "No issues found."
+}

@@ -1,0 +1,134 @@
+{
+  "theme": "light",
+  "archetype": "1 (Organic & Earthy)",
+  "colors": {
+    "background": "#FDFBF7",
+    "surface": "#F5F5F0",
+    "primary": "#D97706",
+    "primary_hover": "#B45309",
+    "secondary": "#1C1917",
+    "accent_green": "#166534",
+    "text_main": "#1C1917",
+    "text_muted": "#57534E",
+    "border": "#E7E5E4"
+  },
+  "typography": {
+    "heading_font": "Outfit, sans-serif",
+    "body_font": "Manrope, sans-serif",
+    "scale": {
+      "h1": "text-5xl sm:text-6xl tracking-tight font-light",
+      "h2": "text-3xl sm:text-4xl tracking-tight font-medium",
+      "h3": "text-xl sm:text-2xl font-medium",
+      "body": "text-base leading-relaxed",
+      "overline": "text-xs tracking-[0.2em] uppercase font-bold"
+    }
+  },
+  "spacing_and_layout": {
+    "section_padding": "py-20 md:py-32",
+    "container": "max-w-7xl mx-auto px-6 md:px-12",
+    "grid_bento": "grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8",
+    "card_padding": "p-8 md:p-12"
+  },
+  "surfaces": {
+    "hero_overlay": "bg-black/40",
+    "glass_header": "backdrop-blur-xl bg-[#FDFBF7]/80 border-b border-[#E7E5E4]/50",
+    "cards": "bg-[#F5F5F0] border border-[#E7E5E4] rounded-2xl shadow-sm hover:-translate-y-1 transition-transform duration-300"
+  },
+  "pages": [
+    {
+      "name": "Home",
+      "sections": [
+        "Hero (Image background of solar panels, H1, Primary CTA)",
+        "Marquee (Trusted by farmers, commercial businesses across Australia)",
+        "About Teaser (Who we are, mention RB Trades)",
+        "Services Bento (Commercial, Residential, Irrigation, Off-grid)",
+        "Projects Highlight",
+        "CTA (Get a Quote)"
+      ]
+    },
+    {
+      "name": "Products",
+      "sections": [
+        "Hero Header (Simple, text-focused)",
+        "Product Categories Grid (Solar Panels, Batteries, Inverters, Irrigation Kits, Off-grid Systems)"
+      ]
+    },
+    {
+      "name": "Our Projects",
+      "sections": [
+        "Hero Header",
+        "Projects Gallery (Image, Location, Capacity)"
+      ]
+    },
+    {
+      "name": "About Us",
+      "sections": [
+        "Company Story (Ecomac Energy Pty Ltd & Ofgrid Solar)",
+        "Partnership (RB Trades Services - in-house design & installation)",
+        "Core Values"
+      ]
+    },
+    {
+      "name": "Blog",
+      "sections": [
+        "Featured Post",
+        "Recent Posts Grid"
+      ]
+    },
+    {
+      "name": "PPA Contracts",
+      "sections": [
+        "What is a PPA? (Info for landowners)",
+        "Benefits (Turn vacant land into revenue)",
+        "Inquiry Form (Shadcn Form)"
+      ]
+    },
+    {
+      "name": "Contact",
+      "sections": [
+        "Contact Form",
+        "Company Details (Address, Phone, Email, ABN/ACN)"
+      ]
+    }
+  ],
+  "components": {
+    "buttons": "rounded-full px-8 py-4 font-medium transition-colors",
+    "forms": "Use Shadcn UI Form, Input, Textarea, Select",
+    "icons": "lucide-react",
+    "animations": "Framer Motion for scroll reveals (y: 20, opacity: 0 -> y: 0, opacity: 1)"
+  },
+  "media": {
+    "hero_commercial_solar": {
+      "url": "https://images.unsplash.com/photo-1724041875334-0a6397111c7e?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1OTN8MHwxfHNlYXJjaHwxfHxjb21tZXJjaWFsJTIwc29sYXIlMjBwYW5lbHMlMjByb29mfGVufDB8fHx8MTc4MTU3NTk0NXww&ixlib=rb-4.1.0&q=85",
+      "description": "Commercial solar panels on roof",
+      "usage": "Home Page Hero Background"
+    },
+    "service_irrigation": {
+      "url": "https://images.unsplash.com/photo-1717702576954-c07131c54169?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjY2NzZ8MHwxfHNlYXJjaHwyfHxmYXJtZXIlMjBmaWVsZCUyMHN1bnNldHxlbnwwfHx8fDE3ODE1NzU5NDV8MA&ixlib=rb-4.1.0&q=85",
+      "description": "Farmer field at sunset",
+      "usage": "Irrigation pumps / Farming services section"
+    },
+    "service_battery": {
+      "url": "https://images.unsplash.com/photo-1780445392417-68b9dccc45f2?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjY2NzZ8MHwxfHNlYXJjaHwxfHxzb2xhciUyMGJhdHRlcnklMjBzeXN0ZW18ZW58MHx8fHwxNzgxNTc1OTQ1fDA&ixlib=rb-4.1.0&q=85",
+      "description": "Solar battery system mounted",
+      "usage": "Battery solutions section"
+    },
+    "service_offgrid": {
+      "url": "https://images.unsplash.com/flagged/photo-1566838616631-f2618f74a6a2?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NTZ8MHwxfHNlYXJjaHwxfHxvZmYlMjBncmlkJTIwc29sYXIlMjBob3VzZXxlbnwwfHx8fDE3ODE1NzU5NDV8MA&ixlib=rb-4.1.0&q=85",
+      "description": "Off-grid house with solar",
+      "usage": "Off-grid specialist section"
+    }
+  },
+  "instructions_to_main_agent": [
+    "Use react-router-dom for navigation.",
+    "Install required fonts from google fonts: Outfit and Manrope.",
+    "Use lenis for smooth scrolling.",
+    "Implement routing for Home, Products, Projects, About Us, Blog, PPA Contracts, Contact.",
+    "Ensure Header is sticky with glassmorphism.",
+    "Footer must include company details: 'trading as ofgrid solar, parent company Ecomac Energy pty ltd', Address: 7/175-179 James ruse drive, camelia NSW 2142, ABN/ACN: 25 658 565 194, Email: info@ofgridsolar.com.au, Number: 0493097601.",
+    "Use framer-motion for smooth entrance animations on sections.",
+    "RB Trades Services MUST be highlighted as the in-house design and installation partner.",
+    "Never use generic placeholder images. Rely strictly on the media URLs provided.",
+    "Apply data-testid attributes to all interactive elements."
+  ]
+}

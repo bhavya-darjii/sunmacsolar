@@ -1,0 +1,42 @@
+{
+  "summary": "Iteration 3 post code-review regression PASSED. Verified BackgroundTasks migration (asyncio.create_task -> FastAPI BackgroundTasks + _send_lead_email_sync) did NOT break the email side-effect. All 8 pytest backend tests pass (same suite as iter_2). The 'Lead email sent to info@sunmacsolar.com.au (subject=Lead)' log line count went 10 -> 13 after Contact + PPA + Joey submits, confirming the sync callable is being invoked by BackgroundTasks after each POST. Frontend regression: PPA filter removed from Projects page (labels now = [All, Commercial, Residential, Irrigation, Off-Grid]); Home featured project cards (home-project-0/1/2) are now <a> tags with href=/projects/{slug|id} and clicking navigates correctly; all pages (Home, Products, Projects, Savings, PPA, Blog, About, Contact) render without functional errors; Savings calculator computes with kW + payback shown; Contact + PPA + Joey forms all submit 200 with correct success toasts / done state.",
+  "tested_scope": ["backend", "frontend", "background-tasks-email-side-effect", "regression"],
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {"ui_bugs": [], "integration_issues": [], "design_issues": []},
+  "passed": [
+    "pytest: 8/8 pass — TestHealthAndBlog + TestLeadsAndEmail (see pytest_results.xml)",
+    "POST /api/leads full payload -> 200, persisted (GET /api/leads finds it), 'Lead email sent ... subject=Lead' log line appears within ~4s (BackgroundTasks + _send_lead_email_sync)",
+    "POST /api/ppa-inquiries full payload -> 200, persisted, email log line appears",
+    "GET /api/health -> 200 {status: ok}; GET /api/blog -> 200 (3 seeded posts); GET /api/blog/off-grid-solar-systems-outback-australia -> 200; GET /api/blog/ecomac-energy-site -> 404",
+    "POST /api/leads invalid email -> 422; POST /api/ppa-inquiries missing land_location -> 422",
+    "Empty-key safety verified by code inspection: server.py:167-170 _send_lead_email_sync early-returns with warning when RESEND_API_KEY is empty — lead flow will still return 200",
+    "Projects page CATEGORIES = ['All','Commercial','Residential','Irrigation','Off-Grid'] — PPA filter removed; filter-ppa selector no longer present; card counts by filter: All=7, Commercial=4, Residential=1, Irrigation=1, Off-Grid=1 (all non-empty)",
+    "Home featured project cards home-project-0/1/2 are <a> Links with href=/projects/commercial-86kw-rooftop, /projects/1, /projects/2 — clicking home-project-0 navigates to /projects/commercial-86kw-rooftop",
+    "Video file /projects/commercial-86kw-rooftop.mp4 serves 200, content-length=9400536 (~9.0MB), h264 Main profile yuv420p 848x478 30fps, faststart moov (moov@36, mdat@31426) — will play in all real user browsers",
+    "Savings calculator ($450 NSW) computes and page contains 'kW' + 'payback/years' — output valid",
+    "Contact form (/contact) -> POST /api/leads 200, success toast shown",
+    "PPA form (/ppa) -> POST /api/ppa-inquiries 200, success toast shown",
+    "Joey chat (data-testid='joey-chat-*') -> POST /api/leads 200 with service_type='joey-chat', 'Thanks, mate!' done state visible"
+  ],
+  "failed": [],
+  "test_report_links": [
+    "/app/backend/tests/backend_test.py",
+    "/app/test_reports/pytest/pytest_results.xml"
+  ],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "BackgroundTasks migration is clean: both /api/leads and /api/ppa-inquiries now receive `background_tasks: BackgroundTasks` and call `background_tasks.add_task(_send_lead_email_sync, 'Lead', html)`. This is the correct FastAPI pattern and avoids the create_task GC pitfall. Good fix.",
+    "_send_lead_email_sync duplicates the api_key check + try/except/logging from _send_lead_email. The async _send_lead_email helper is now unused — consider deleting it to keep the module DRY (minor; ~20 lines of dead code).",
+    "SENDER_EMAIL is still onboarding@resend.dev (Resend sandbox). Delivery is restricted to the Resend account owner mailbox until sunmacsolar.com.au is verified. One historical ERROR line ('sunmacsolar.com.au domain is not verified') was observed in the log from an earlier attempt with a custom sender — current sandbox sender does NOT hit this. Track domain verification as pre-launch task.",
+    "server.py is now 340 lines — still under the 700-line split threshold, but as more endpoints/emails/routers are added, consider splitting into routers/, models/, emails/.",
+    "Playwright's bundled Chromium build lacks proprietary h264 codec, so the video element hits MEDIA_ERR_SRC_NOT_SUPPORTED inside automated tests. This is a Playwright limitation only — real Chrome/Edge/Safari/Firefox users will play the video normally. Verified codec/container/faststart by ffprobe; no code fix required."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "100% (8/8 pytest)", "frontend": "100% (all 3 lead flows + all pages render + PPA filter removed + Home cards clickable + Savings computes)"},
+  "test_credentials": "N/A — no auth on this app",
+  "seed_data_creation": "Test-prefixed leads and ppa-inquiries created via TEST_<marker> markers by pytest + Playwright submits; per review instructions these were NOT cleaned up.",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "Backend now uses FastAPI BackgroundTasks (framework-managed) instead of asyncio.create_task. The canonical success proof is still the 'Lead email sent to info@sunmacsolar.com.au (subject=Lead)' INFO log line in /var/log/supervisor/backend.err.log — count increments by 1 per successful POST /api/leads or /api/ppa-inquiries. Empty RESEND_API_KEY early-return is guaranteed by _send_lead_email_sync (lines 167-170). Frontend: Projects filters are now [All, Commercial, Residential, Irrigation, Off-Grid] (PPA removed); Home featured cards use data-testid='home-project-{id}' and are <a> Link elements to /projects/{slug || id}. NOTE for future testers: Playwright Chromium cannot play h264 mp4 — video autoplay checks must be code/file-inspection based, not runtime playback based.",
+  "rca of the issue": "No issues found. All post-refactor regression assertions pass."
+}

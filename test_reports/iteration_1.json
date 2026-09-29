@@ -1,0 +1,28 @@
+{
+  "summary": "First-finish E2E smoke test of Ofgrid Solar marketing site. All 5 backend endpoints and all critical frontend flows (navigation, blog detail, projects filter, contact + PPA forms) work end-to-end. Verified API integrations return 200 with valid payloads and frontend toasts appear on submit.",
+  "tested_scope": ["backend", "frontend", "integration"],
+  "passed": [
+    "GET /api/health -> 200 {status: ok}",
+    "GET /api/blog -> 200 returns 3 seeded posts",
+    "GET /api/blog/{valid-slug} -> 200 returns single post (verified with off-grid-solar-systems-outback-australia)",
+    "GET /api/blog/{invalid-slug} -> 404",
+    "POST /api/leads -> 200 creates lead with UUID; GET /api/leads -> 200 lists",
+    "POST /api/ppa-inquiries (with land_location) -> 200 creates inquiry; GET lists",
+    "Home renders hero (H1 'Power your business, farm or remote home with the sun.'), services bento with 5 specialisations, featured projects, CTA",
+    "Navigation works across all 7 routes (Home, Products, Projects, PPA, Blog, About, Contact)",
+    "Products page lists 5 categories (Solar Panels, Battery Storage, Inverters, Irrigation Kits, Off-Grid Systems)",
+    "Projects page has all 6 filter buttons (All, Commercial, Residential, Irrigation, Off-Grid, PPA) and Commercial filter clicks",
+    "Blog list loads 3 posts from API; clicking opens /blog/{slug} detail page",
+    "PPA form -> POST /api/ppa-inquiries returns 200; success toast 'Inquiry sent - our PPA team will be in touch within 2 business days.'",
+    "Contact form -> POST /api/leads returns 200; success toast \"Thanks - we'll be in touch within 48 hours.\"",
+    "Footer shows ABN 25 658 565 194, info@ofgridsolar.com.au, 0493 097 601, 7/175-179 James Ruse Drive Camellia NSW 2142, RB Trades partner link"
+  ],
+  "failed": [],
+  "notes": [
+    "The test request mentioned slug 'ecomac-energy-site' which is not a seeded slug; seeded slugs are off-grid-solar-systems-outback-australia, ppa-contracts-for-australian-landowners, why-australian-farmers-are-switching-to-solar-irrigation. API correctly returns 404 for the requested slug. Not a bug."
+  ],
+  "action_items": [],
+  "success_rate": {"backend": "100%", "frontend": "100%"},
+  "retest_needed": false,
+  "full_testing_deferred": true
+}

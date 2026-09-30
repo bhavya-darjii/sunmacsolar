@@ -8,6 +8,13 @@ const AVATARS = [
   "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=80&h=80&q=80",
 ];
 
+const TRUST_HIGHLIGHTS = [
+  "CEC-approved retailer",
+  "In-house installation team",
+  "50+ MW installed nationwide",
+  "Trusted by Australian farmers",
+] as const;
+
 export default function MissionSection() {
   return (
     <section className="container-final py-16 md:py-24">
@@ -39,10 +46,6 @@ export default function MissionSection() {
                 ))}
               </div>
             </div>
-            <p className="mt-4 text-xs leading-relaxed text-[#78716c]">
-              CEC-approved retailer with an in-house installation team — 50+ MW installed
-              nationwide and trusted by Australian farmers.
-            </p>
           </div>
         </Reveal>
 
@@ -55,6 +58,18 @@ export default function MissionSection() {
           </h2>
         </Reveal>
       </div>
+
+      <Reveal delay={0.15} className="mt-14 border-t border-[#e7e5e4] pt-12 md:mt-16 md:pt-14">
+        <ul className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
+          {TRUST_HIGHLIGHTS.map((label) => (
+            <li key={label} className="border-l-2 border-[#d97706] pl-4">
+              <p className="font-display text-base font-semibold leading-snug text-[#1c1917] md:text-lg">
+                {label}
+              </p>
+            </li>
+          ))}
+        </ul>
+      </Reveal>
     </section>
   );
 }

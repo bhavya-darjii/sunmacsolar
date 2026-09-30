@@ -18,7 +18,7 @@ export default function HomePage() {
           content="Commercial, residential, irrigation and off-grid solar and battery systems engineered and installed across Australia."
         />
       </Head>
-      <div className="min-h-screen bg-[#fdfbf7]" data-testid="home-page">
+      <div className="min-h-screen overflow-x-hidden bg-[#fdfbf7]" data-testid="home-page">
         <HomeHero />
         <MissionSection />
         <MetricsBento />

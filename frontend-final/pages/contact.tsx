@@ -5,18 +5,9 @@ import { Mail, Phone, MapPin, Globe } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import PageIntro from "@/components/site/PageIntro";
 import { api } from "@/lib/api";
+import ContactFeaturedForm from "@/components/contact/ContactFeaturedForm";
+import { CONTACT_SERVICE_OPTIONS } from "@/data/contact";
 import { COMPANY } from "@/data/site";
-
-const SERVICE_OPTIONS = [
-  { value: "", label: "What are you looking for?" },
-  { value: "commercial", label: "Commercial solar & battery" },
-  { value: "residential", label: "Residential solar & battery" },
-  { value: "irrigation", label: "Solar irrigation pumps" },
-  { value: "offgrid", label: "Off-grid system" },
-  { value: "hvac", label: "Commercial HVAC / air conditioning" },
-  { value: "ppa", label: "PPA / solar farm on my land" },
-  { value: "other", label: "Other / general enquiry" },
-];
 
 export default function ContactPage() {
   const [form, setForm] = useState({
@@ -108,7 +99,7 @@ export default function ContactPage() {
                 data-testid="contact-service"
                 className="input-final"
               >
-                {SERVICE_OPTIONS.map((o) => (
+                {CONTACT_SERVICE_OPTIONS.map((o) => (
                   <option key={o.value} value={o.value} disabled={o.value === ""}>
                     {o.label}
                   </option>
@@ -168,11 +159,17 @@ export default function ContactPage() {
             <div className="rounded-[var(--radius-card)] border border-[#e7e5e4] bg-[#f5f5f0] p-8">
               <p className="overline">Hours</p>
               <div className="mt-3 space-y-1 text-sm text-[#57534e]">
-                <div>Mon — Fri: 8:00am — 5:30pm</div>
+                <div>Mon — Fri: 8:00 a.m. — 5:30 p.m.</div>
                 <div>Sat: by appointment</div>
                 <div>Sun: closed</div>
               </div>
             </div>
+          </Reveal>
+        </section>
+
+        <section className="container-final border-t border-[#e7e5e4] pb-24">
+          <Reveal>
+            <ContactFeaturedForm />
           </Reveal>
         </section>
       </div>

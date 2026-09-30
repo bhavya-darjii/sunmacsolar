@@ -2,14 +2,28 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, useInView, useReducedMotion } from "framer-motion";
+import { useRef } from "react";
 import HomeHeader from "./HomeHeader";
 
 const HERO_IMAGE = "/hero-section.png";
+const ease = [0.22, 1, 0.36, 1] as const;
 
 export default function HomeHero() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const reduceMotion = useReducedMotion();
+  const heroInView = useInView(sectionRef, {
+    once: false,
+    amount: 0.25,
+    margin: "0px 0px -8% 0px",
+  });
+  const show = reduceMotion || heroInView;
+
   return (
-    <section className="relative h-[100dvh] w-full min-h-[600px] bg-[#1c1917]">
+    <section
+      ref={sectionRef}
+      className="relative h-[100dvh] w-full min-h-[600px] bg-[#1c1917]"
+    >
       <div className="absolute inset-0 overflow-hidden">
         <Image
           src={HERO_IMAGE}
@@ -26,14 +40,14 @@ export default function HomeHero() {
         />
       </div>
 
-      <HomeHeader />
+      <HomeHeader heroInView={show} />
 
       <div className="relative flex h-full flex-col items-center justify-center px-5 md:px-8">
         <motion.h1
-          initial={{ opacity: 0, y: 32 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-          className="hero-word w-full max-w-[100vw] -translate-y-8 text-center uppercase text-white md:-translate-y-12"
+          initial={false}
+          animate={show ? { opacity: 1, y: 0 } : { opacity: 0, y: 32 }}
+          transition={{ duration: 0.9, delay: show ? 0.15 : 0, ease }}
+          className="hero-word w-full max-w-[100vw] -translate-y-5 text-center uppercase text-white md:-translate-y-9"
         >
           SunMac
         </motion.h1>
@@ -41,28 +55,14 @@ export default function HomeHero() {
 
       <div className="absolute inset-x-0 bottom-0 z-10 pb-8 md:pb-10">
         <div className="flex w-full flex-col items-stretch gap-3 px-5 sm:flex-row sm:items-center sm:justify-between sm:gap-4 md:px-8">
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
-            className="w-fit max-w-full"
-          >
-            <p className="glass-surface-light hero-glass-pill text-left text-sm font-medium leading-snug text-white/90 md:text-[15px]">
-              Power your business, farm or remote home{" "}
-              <span className="text-sunmac-amber">with the sun.</span>
-            </p>
-          </motion.div>
+          <p className="glass-surface-light hero-glass-pill w-fit max-w-full text-left text-sm font-medium leading-snug text-white/90 md:text-[15px]">
+            Power your business, farm or remote home{" "}
+            <span className="text-sunmac-amber">with the sun.</span>
+          </p>
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.42, ease: [0.22, 1, 0.36, 1] }}
-            className="shrink-0"
-          >
-            <Link href="/contact" className="glass-surface-light hero-quote-cta">
-              Request a free quote
-            </Link>
-          </motion.div>
+          <Link href="/contact" className="glass-surface-light hero-quote-cta shrink-0">
+            Request a free quote
+          </Link>
         </div>
       </div>
     </section>

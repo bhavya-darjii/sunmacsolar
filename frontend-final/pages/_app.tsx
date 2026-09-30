@@ -7,6 +7,8 @@ import SiteHeader from "@/components/site/SiteHeader";
 import SiteFooter from "@/components/site/SiteFooter";
 import "@/styles/globals.css";
 import "@/styles/home.css";
+import "@/styles/contact-featured-form.css";
+import "@/components/ui/GlideSelect.css";
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();

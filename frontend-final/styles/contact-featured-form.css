@@ -1,0 +1,17 @@
+.contact-featured-form-bg {
+  position: relative;
+  background: #000000;
+}
+
+.contact-featured-form {
+  position: relative;
+  z-index: 1;
+  color: #ffffff;
+}
+
+.contact-featured-form .glide-select__trigger,
+.contact-featured-form .glide-select__option,
+.contact-featured-form .glide-select__label {
+  font-weight: 700;
+  color: #ffffff;
+}

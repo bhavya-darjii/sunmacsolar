@@ -447,3 +447,83 @@
 }
 
 
+
+.growers-marquee-viewport {
+
+  width: 100%;
+
+  max-width: 100%;
+
+  overflow: hidden;
+
+}
+
+
+
+.growers-marquee-track {
+
+  animation: growers-marquee 52s linear infinite;
+
+  will-change: transform;
+
+}
+
+
+
+.growers-marquee-track:hover {
+
+  animation-play-state: paused;
+
+}
+
+
+
+@keyframes growers-marquee {
+
+  from {
+
+    transform: translate3d(0, 0, 0);
+
+  }
+
+  to {
+
+    transform: translate3d(-50%, 0, 0);
+
+  }
+
+}
+
+
+
+@media (prefers-reduced-motion: reduce) {
+
+  .growers-marquee-viewport {
+
+    display: flex;
+
+    justify-content: center;
+
+  }
+
+  .growers-marquee-track {
+
+    animation: none;
+
+    flex-wrap: wrap;
+
+    justify-content: center;
+
+    width: 100%;
+
+    max-width: 72rem;
+
+    margin-inline: auto;
+
+    padding-inline: 1.25rem;
+
+  }
+
+}
+
+

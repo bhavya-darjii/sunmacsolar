@@ -4,18 +4,27 @@ import { useState } from "react";
 import Link from "next/link";
 import {
   ChevronDown,
+  Droplets,
   Factory,
   Home,
   MountainSnow,
+  Sun,
   type LucideIcon,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import Reveal from "@/components/Reveal";
 import { cn } from "@/lib/utils";
 import { SERVICES } from "@/data/site";
 
-type AccordionId = "commercial" | "residential" | "offgrid";
+type AccordionId = "commercial" | "residential" | "irrigation" | "offgrid" | "ppa";
 
-const ACCORDION_IDS: AccordionId[] = ["commercial", "residential", "offgrid"];
+const ACCORDION_IDS: AccordionId[] = [
+  "commercial",
+  "residential",
+  "irrigation",
+  "offgrid",
+  "ppa",
+];
 
 const PANEL_META: Record<
   AccordionId,
@@ -33,11 +42,23 @@ const PANEL_META: Record<
     badge: "Residential",
     icon: Home,
   },
+  irrigation: {
+    stat: "Farm",
+    statLabel: "Bore pumps & pivots",
+    badge: "Irrigation",
+    icon: Droplets,
+  },
   offgrid: {
     stat: "24/7",
     statLabel: "Autonomous remote power",
     badge: "Off-grid",
     icon: MountainSnow,
+  },
+  ppa: {
+    stat: "PPA",
+    statLabel: "Finance, build & operate",
+    badge: "Solar farms",
+    icon: Sun,
   },
 };
 
@@ -47,7 +68,7 @@ export default function ServicesAccordion() {
   return (
     <section className="container-final pb-20 md:pb-28">
       <div className="divide-y divide-[#e7e5e4] border-y border-[#e7e5e4]">
-        {ACCORDION_IDS.map((itemId) => {
+        {ACCORDION_IDS.map((itemId, index) => {
           const service = SERVICES.find((s) => s.id === itemId);
           if (!service) return null;
 
@@ -56,7 +77,8 @@ export default function ServicesAccordion() {
           const isOpen = open === itemId;
 
           return (
-            <div key={itemId} className="py-5 md:py-6">
+            <Reveal key={itemId} delay={index * 0.1}>
+              <div className="py-5 md:py-6">
                 <button
                   type="button"
                   onClick={() => setOpen(itemId)}
@@ -81,7 +103,7 @@ export default function ServicesAccordion() {
                 </button>
 
                 <AnimatePresence initial={false}>
-                  {isOpen && (
+                  {isOpen ? (
                     <motion.div
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
@@ -124,9 +146,10 @@ export default function ServicesAccordion() {
                         </Link>
                       </div>
                     </motion.div>
-                  )}
+                  ) : null}
                 </AnimatePresence>
-            </div>
+              </div>
+            </Reveal>
           );
         })}
       </div>

@@ -62,7 +62,12 @@ function formatHeaderDateTime(date: Date) {
 
 
 
-export default function HomeHeader() {
+type HomeHeaderProps = {
+  /** Drives entrance animation; replays when the hero scrolls back into view. */
+  heroInView?: boolean;
+};
+
+export default function HomeHeader({ heroInView = true }: HomeHeaderProps) {
 
   const pathname = usePathname();
 
@@ -92,11 +97,13 @@ export default function HomeHeader() {
 
         <motion.div
 
-          initial={{ opacity: 0, y: -12 }}
+          initial={false}
 
-          animate={{ opacity: 1, y: 0 }}
+          animate={
+            heroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -12 }
+          }
 
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.6, delay: heroInView ? 0 : 0, ease: [0.22, 1, 0.36, 1] }}
 
           className="flex min-w-0 max-w-[55%] items-center gap-3 md:max-w-none md:gap-4"
 
@@ -142,14 +149,9 @@ export default function HomeHeader() {
 
 
 
-        <motion.div
-          initial={{ opacity: 0, y: -12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
-          className="hidden shrink-0 md:block"
-        >
+        <div className="hidden shrink-0 md:block">
           <NavPillMenu pathname={pathname} variant="home" />
-        </motion.div>
+        </div>
 
       </div>
 

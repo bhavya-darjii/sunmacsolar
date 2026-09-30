@@ -12,6 +12,8 @@ interface RevealProps {
   amount?: number;
   /** "fade" = opacity + slide. "rise" = slide only (keeps cards visible while waiting). */
   variant?: "fade" | "rise";
+  /** When false, animation replays each time the element enters the viewport. */
+  once?: boolean;
 }
 
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -19,22 +21,23 @@ const ease = [0.22, 1, 0.36, 1] as const;
 export default function Reveal({
   children,
   delay = 0,
-  y = 20,
+  y = 36,
   className = "",
-  amount = 0.08,
+  amount = 0.12,
   variant = "fade",
+  once = false,
 }: RevealProps) {
   const ref = useRef<HTMLDivElement>(null);
   const reduceMotion = useReducedMotion();
   const inView = useInView(ref, {
-    once: true,
+    once,
     amount,
-    margin: "0px 0px -4% 0px",
+    margin: "0px 0px -6% 0px",
   });
 
   const riseOnly = variant === "rise";
   const hidden = riseOnly
-    ? { opacity: 1, y: Math.min(y, 16) }
+    ? { opacity: 1, y: Math.min(y, 28) }
     : { opacity: 0, y };
   const shown = { opacity: 1, y: 0 };
 
@@ -52,7 +55,7 @@ export default function Reveal({
       className={className}
       initial={hidden}
       animate={inView ? shown : hidden}
-      transition={{ duration: 0.65, delay: inView ? delay : 0, ease }}
+      transition={{ duration: 0.75, delay: inView ? delay : 0, ease }}
       data-in-view={inView ? "" : undefined}
       data-reveal-instant={inView ? "" : undefined}
     >

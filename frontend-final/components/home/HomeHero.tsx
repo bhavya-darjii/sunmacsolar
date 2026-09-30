@@ -47,7 +47,7 @@ export default function HomeHero() {
           initial={false}
           animate={show ? { opacity: 1, y: 0 } : { opacity: 0, y: 32 }}
           transition={{ duration: 0.9, delay: show ? 0.15 : 0, ease }}
-          className="hero-word w-full max-w-[100vw] -translate-y-5 text-center uppercase text-white md:-translate-y-9"
+          className="hero-word w-full max-w-[100vw] -translate-y-9 text-center uppercase text-white md:-translate-y-12"
         >
           SunMac
         </motion.h1>

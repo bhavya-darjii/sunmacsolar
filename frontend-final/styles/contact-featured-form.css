@@ -9,9 +9,45 @@
   color: #ffffff;
 }
 
-.contact-featured-form .glide-select__trigger,
-.contact-featured-form .glide-select__option,
-.contact-featured-form .glide-select__label {
+.contact-featured-form .glide-select--glass .glide-select__trigger,
+.contact-featured-form .glide-select--glass .glide-select__trigger .glide-select__label {
   font-weight: 700;
   color: #ffffff;
+  background: #000000;
+  transition: none;
+  transform: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .contact-featured-form .glide-select--glass .glide-select__trigger:not(:disabled):hover {
+    background: #000000;
+    color: #ffffff;
+  }
+}
+
+.contact-featured-form .glide-select--glass .glide-select__trigger[aria-expanded="true"],
+.contact-featured-form .glide-select--glass .glide-select__trigger:not(:disabled):active {
+  background: #000000;
+  color: #ffffff;
+  transform: none;
+}
+
+.contact-featured-form .glide-select__trigger .glide-select__chevron {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.contact-featured-form .glide-select--glass .glide-select__menu,
+.contact-featured-form .glide-select--glass .glide-select__list {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.12);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+}
+
+.contact-featured-form .glide-select__menu .glide-select__option {
+  font-weight: 700;
+  color: #000000;
+}
+
+.contact-featured-form .glide-select__menu .glide-select__pill {
+  background: #e7e5e4;
 }

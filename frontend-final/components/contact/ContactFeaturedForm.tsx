@@ -16,10 +16,10 @@ const messageFieldClass =
 const labelClass =
   "text-sm font-bold tracking-wide text-[#ffffff] uppercase";
 
-const GLIDE_SURFACE = "rgba(0, 0, 0, 0.55)";
-const GLIDE_HIGHLIGHT = "rgba(255, 255, 255, 0.12)";
-const GLIDE_TEXT = "#ffffff";
-const GLIDE_ACCENT = "#ffffff";
+const GLIDE_SURFACE = "#000000";
+const GLIDE_HIGHLIGHT = "#e7e5e4";
+const GLIDE_TEXT = "#000000";
+const GLIDE_ACCENT = "#000000";
 
 const SERVICE_GLIDE_OPTIONS = CONTACT_SERVICE_PILLS.map((o) => ({
   value: o.value,

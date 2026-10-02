@@ -1,5 +1,3 @@
-"use client";
-
 
 
 import Image from "next/image";
@@ -7,8 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 
 import { useEffect, useState } from "react";
-
-import { usePathname } from "next/navigation";
+import { useRouter } from "next/router";
 
 
 
@@ -69,7 +66,8 @@ type HomeHeaderProps = {
 
 export default function HomeHeader({ heroInView = true }: HomeHeaderProps) {
 
-  const pathname = usePathname();
+  const router = useRouter();
+  const pathname = router.asPath.split("?")[0];
 
   const [dateTime, setDateTime] = useState<string | null>(null);
 

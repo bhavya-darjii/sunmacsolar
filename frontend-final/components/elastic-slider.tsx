@@ -333,7 +333,7 @@ export function ElasticSlider({
       // independent of the WAI-ARIA Page step (which scales with range).
       const arrowStep = e.shiftKey ? step * 10 : step
 
-      let next: number | null = null
+      let next: number;
 
       switch (e.key) {
         case "ArrowRight":

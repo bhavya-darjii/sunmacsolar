@@ -1,5 +1,3 @@
-"use client";
-
 import { useState } from "react";
 import { X, Send, MessageCircle } from "lucide-react";
 import { toast } from "sonner";

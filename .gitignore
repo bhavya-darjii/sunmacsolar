@@ -90,3 +90,4 @@ credentials.json
 
 # Added by ggshield
 .cache_ggshield
+.vercel

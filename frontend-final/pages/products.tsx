@@ -63,7 +63,7 @@ export default function ProductsPage() {
                       <div>
                         <p className="text-sm leading-relaxed text-[#1c1917]">{p.scheme}</p>
                         <Link
-                          href="/savings#pdrs"
+                          href="/calculator#pdrs"
                           data-testid={`product-scheme-link-${p.id}`}
                           className="mt-2 inline-flex items-center gap-1.5 text-sm font-medium text-[#166534] hover:text-[#14532d]"
                         >

@@ -1,8 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
-import { motion, useInView, useReducedMotion } from "framer-motion";
-import { useRef } from "react";
+import {
+  motion,
+  useInView,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+} from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 import HomeHeader from "./HomeHeader";
+import { heroPanelLinePercent } from "@/lib/heroPanelLine";
 
 const HERO_IMAGE = "/hero-section.png";
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -17,38 +24,90 @@ export default function HomeHero() {
   });
   const show = reduceMotion || heroInView;
 
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+
+  const sunMacScrollY = useTransform(scrollYProgress, [0, 1], [0, reduceMotion ? 0 : 96]);
+  const heroFadeOpacity = useTransform(
+    scrollYProgress,
+    [0, 0.18, 0.72],
+    [1, 0.72, reduceMotion ? 1 : 0]
+  );
+
+  const sunMacScrollOpacity = useTransform(scrollYProgress, (progress) => {
+    if (reduceMotion) return 1;
+    if (progress <= 0.08) return 1;
+    if (progress >= 0.58) return 0;
+    const t = (progress - 0.08) / 0.5;
+    return 1 - t;
+  });
+
+  const [panelLinePct, setPanelLinePct] = useState(72);
+
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+
+    const update = () => {
+      setPanelLinePct(heroPanelLinePercent(el.clientWidth, el.clientHeight));
+    };
+
+    update();
+    const observer = new ResizeObserver(update);
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section
       ref={sectionRef}
       className="relative h-[100dvh] w-full min-h-[600px] bg-[#1c1917]"
     >
       <div className="absolute inset-0 overflow-hidden">
-        <Image
-          src={HERO_IMAGE}
-          alt="Commercial solar installation across an Australian rooftop"
-          fill
-          priority
-          className="hero-cover-image"
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-black/30" aria-hidden />
-        <div
-          className="absolute inset-0 bg-gradient-to-b from-[#1c1917]/35 via-black/10 to-[#1c1917]/55"
-          aria-hidden
-        />
+        <motion.div className="absolute inset-0" style={{ opacity: heroFadeOpacity }}>
+          <Image
+            src={HERO_IMAGE}
+            alt="Commercial solar installation across an Australian rooftop"
+            fill
+            priority
+            className="hero-cover-image"
+            sizes="100vw"
+          />
+          <div className="absolute inset-0 bg-black/30" aria-hidden />
+          <div
+            className="absolute inset-0 bg-gradient-to-b from-[#1c1917]/35 via-black/10 to-[#1c1917]/55"
+            aria-hidden
+          />
+        </motion.div>
       </div>
 
       <HomeHeader heroInView={show} />
 
-      <div className="relative flex h-full flex-col items-center justify-center px-5 md:px-8">
-        <motion.h1
-          initial={false}
-          animate={show ? { opacity: 1, y: 0 } : { opacity: 0, y: 32 }}
-          transition={{ duration: 0.9, delay: show ? 0.15 : 0, ease }}
-          className="hero-word w-full max-w-[100vw] -translate-y-9 text-center uppercase text-white md:-translate-y-12"
-        >
-          SunMac
-        </motion.h1>
+      <div
+        className="pointer-events-none absolute inset-x-0 z-[5] px-5 md:px-8"
+        style={{ top: `${panelLinePct}%` }}
+      >
+        <div className="hero-sunmac-anchor w-full">
+          <motion.div
+            className="w-full"
+            style={{ opacity: sunMacScrollOpacity }}
+          >
+            <motion.div
+              initial={false}
+              animate={show ? { opacity: 1, y: 0 } : { opacity: 0, y: 32 }}
+              transition={{ duration: 0.9, delay: show ? 0.15 : 0, ease }}
+            >
+              <motion.h1
+                style={{ y: sunMacScrollY }}
+                className="hero-word w-full text-center text-white will-change-[transform,opacity]"
+              >
+                SunMac
+              </motion.h1>
+            </motion.div>
+          </motion.div>
+        </div>
       </div>
 
       <div className="absolute inset-x-0 bottom-0 z-10 pb-8 md:pb-10">

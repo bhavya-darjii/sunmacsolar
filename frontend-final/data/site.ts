@@ -50,7 +50,6 @@ export const NAV = [
   { href: "/", label: "Home" },
   { href: "/products", label: "Products" },
   { href: "/projects", label: "Projects" },
-  { href: "/savings", label: "Savings" },
   { href: "/ppa", label: "PPA Contracts" },
   { href: "/blog", label: "Blog" },
   { href: "/about", label: "About" },

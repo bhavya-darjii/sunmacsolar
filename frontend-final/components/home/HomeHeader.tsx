@@ -115,9 +115,9 @@ export default function HomeHeader({ heroInView = true }: HomeHeaderProps) {
             <Image
               src="/logo/sunmac-solar-icon.png"
               alt="SunMac Solar"
-              width={36}
-              height={36}
-              className="shrink-0 rounded-full"
+              width={44}
+              height={44}
+              className="h-11 w-11 shrink-0 rounded-full"
             />
             <div className="min-w-0 leading-tight">
               <div className="truncate font-display text-sm font-semibold tracking-tight text-white sm:text-base">

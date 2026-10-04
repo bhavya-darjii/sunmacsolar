@@ -10,9 +10,19 @@
 
 
 
+/* SunMac baseline: top set from JS (heroPanelLine); -100% places bottom on panel edge */
+
+.hero-sunmac-anchor {
+
+  transform: translateY(calc(-100% + var(--hero-text-nudge, 42px)));
+
+}
+
+
+
 .hero-word {
 
-  font-family: "Inter", "Manrope", sans-serif;
+  font-family: "Outfit", "Manrope", sans-serif;
 
   font-size: clamp(4.5rem, 21vw, 14.75rem);
 
@@ -202,7 +212,7 @@
 
 .footer-word {
 
-  font-family: "Inter", "Manrope", sans-serif;
+  font-family: "Outfit", "Manrope", sans-serif;
 
   font-size: clamp(3rem, 18vw, 13rem);
 

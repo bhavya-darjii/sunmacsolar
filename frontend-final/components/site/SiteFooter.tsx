@@ -97,7 +97,7 @@ export default function SiteFooter() {
       <div className="footer-sunmac-wrap w-full shrink-0 overflow-hidden px-0">
         <Reveal delay={0.08}>
           <p
-            className="footer-word footer-word--compact text-center uppercase text-white"
+            className="footer-word footer-word--compact text-center text-white"
             aria-hidden
           >
             SunMac

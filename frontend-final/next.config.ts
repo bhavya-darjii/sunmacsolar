@@ -5,6 +5,15 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: __dirname,
   },
+  async redirects() {
+    return [
+      {
+        source: "/savings",
+        destination: "/calculator",
+        permanent: true,
+      },
+    ];
+  },
   async rewrites() {
     return [
       { source: "/projects/:slug", destination: "/project-detail?slug=:slug" },

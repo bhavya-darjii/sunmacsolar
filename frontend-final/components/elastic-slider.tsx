@@ -551,7 +551,7 @@ export function ElasticSlider({
           data-slot="elastic-slider-value"
           aria-hidden="true"
           className={cn(
-            "pointer-events-none absolute top-1/2 right-3 -translate-y-1/2 font-mono text-sm/none font-medium transition-colors",
+            "pointer-events-none absolute top-1/2 right-3 -translate-y-1/2 font-sans tabular-nums text-sm/none font-medium transition-colors",
             "text-(--elastic-slider-label) group-data-[active=true]/elastic-slider:text-(--elastic-slider-focus)"
           )}
         >

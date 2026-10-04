@@ -207,7 +207,7 @@ function pdrsEstimate(venueKey: string, coolingKw: number) {
   };
 }
 
-export default function Savings() {
+export default function CalculatorPage() {
   const [monthly, setMonthly] = useState<number | string>(350);
   const [stateKey, setStateKey] = useState("NSW");
   const result = useMemo(() => calculate(Number(monthly), stateKey), [monthly, stateKey]);

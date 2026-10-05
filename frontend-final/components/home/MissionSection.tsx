@@ -1,4 +1,5 @@
 import Reveal from "@/components/Reveal";
+import TrustHighlightsBento from "@/components/home/TrustHighlightsBento";
 import Image from "next/image";
 import { MASCOT } from "@/data/site";
 
@@ -7,13 +8,6 @@ const AVATARS = [
   "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=80&h=80&q=80",
   "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=80&h=80&q=80",
 ];
-
-const TRUST_HIGHLIGHTS = [
-  "CEC-approved retailer",
-  "In-house installation team",
-  "50+ MW installed nationwide",
-  "Trusted by Australian farmers",
-] as const;
 
 export default function MissionSection() {
   return (
@@ -60,15 +54,7 @@ export default function MissionSection() {
       </div>
 
       <Reveal delay={0.15} className="mt-14 border-t border-[#e7e5e4] pt-12 md:mt-16 md:pt-14">
-        <ul className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
-          {TRUST_HIGHLIGHTS.map((label) => (
-            <li key={label} className="border-l-2 border-[#d97706] pl-4">
-              <p className="font-display text-base font-semibold leading-snug text-[#1c1917] md:text-lg">
-                {label}
-              </p>
-            </li>
-          ))}
-        </ul>
+        <TrustHighlightsBento />
       </Reveal>
     </section>
   );

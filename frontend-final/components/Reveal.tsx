@@ -50,7 +50,7 @@ export default function Reveal({
   return (
     <motion.div
       ref={ref}
-      className={className}
+      className={`overflow-visible ${className}`.trim()}
       initial={hidden}
       animate={inView ? shown : hidden}
       transition={{ duration: 0.75, delay: inView ? delay : 0, ease }}

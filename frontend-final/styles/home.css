@@ -382,18 +382,13 @@
 
 
 
-.accordion-chevron {
-
-  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-
+.services-tab-strip {
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
 }
 
-
-
-.accordion-chevron.open {
-
-  transform: rotate(45deg);
-
+.services-tab-strip::-webkit-scrollbar {
+  display: none;
 }
 
 

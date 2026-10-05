@@ -1,5 +1,4 @@
 import Head from "next/head";
-import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import PageIntro from "@/components/site/PageIntro";
 import { COMPANY } from "@/data/site";
@@ -105,42 +104,6 @@ export default function AboutPage() {
               ))}
             </div>
           </div>
-        </section>
-
-        <section className="container-final section-pad">
-          <Reveal>
-            <div className="grid gap-10 rounded-[var(--radius-card)] bg-[#1c1917] p-10 text-[#fdfbf7] md:grid-cols-2 md:p-16">
-              <div>
-                <p className="text-[11px] font-bold tracking-[0.2em] text-[#fbbf24] uppercase">
-                  Company details
-                </p>
-                <h3 className="mt-4 font-display text-2xl font-medium md:text-3xl">
-                  {COMPANY.name} — a trading division of {COMPANY.parent}
-                </h3>
-              </div>
-              <div className="space-y-3 text-sm text-[#d6d3d1]">
-                <div>
-                  <span className="text-[#a8a29e]">Address: </span>
-                  {COMPANY.address}
-                </div>
-                <div>
-                  <span className="text-[#a8a29e]">Phone: </span>
-                  {COMPANY.phone}
-                </div>
-                <div>
-                  <span className="text-[#a8a29e]">Email: </span>
-                  {COMPANY.email}
-                </div>
-                <div>
-                  <span className="text-[#a8a29e]">ABN/ACN: </span>
-                  {COMPANY.abn}
-                </div>
-                <Link href="/contact" className="btn-primary mt-6" data-testid="about-contact-cta">
-                  Get in touch
-                </Link>
-              </div>
-            </div>
-          </Reveal>
         </section>
       </div>
     </>

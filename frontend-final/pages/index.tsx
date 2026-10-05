@@ -1,7 +1,6 @@
 import Head from "next/head";
 import HomeHero from "@/components/home/HomeHero";
 import MissionSection from "@/components/home/MissionSection";
-import MetricsBento from "@/components/home/MetricsBento";
 import DiscoverySection from "@/components/home/DiscoverySection";
 import ServicesAccordion from "@/components/home/ServicesAccordion";
 import EnergyTransition from "@/components/home/EnergyTransition";
@@ -18,10 +17,9 @@ export default function HomePage() {
           content="Commercial, residential, irrigation and off-grid solar and battery systems engineered and installed across Australia."
         />
       </Head>
-      <div className="min-h-screen overflow-x-hidden bg-[#fdfbf7]" data-testid="home-page">
+      <div className="min-h-screen overflow-x-clip bg-[#fdfbf7]" data-testid="home-page">
         <HomeHero />
         <MissionSection />
-        <MetricsBento />
         <DiscoverySection />
         <ServicesAccordion />
         <EnergyTransition />

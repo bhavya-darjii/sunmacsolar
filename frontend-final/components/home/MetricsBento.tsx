@@ -12,7 +12,7 @@ const BENTO_SERVICES = BENTO_SERVICE_ORDER.map((id) => SERVICES.find((s) => s.id
 
 const CARD_THEMES = [
   {
-    card: "bg-[#1c1917] text-[#fdfbf7]",
+    card: "bg-black text-white",
     title: "text-white/90",
     desc: "text-white/60",
   },

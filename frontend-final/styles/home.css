@@ -14,7 +14,7 @@
 
 .hero-sunmac-anchor {
 
-  transform: translateY(calc(-100% + var(--hero-text-nudge, 42px)));
+  transform: translateY(calc(-100% + var(--hero-text-nudge, 41px)));
 
 }
 
@@ -294,6 +294,52 @@
 
 
 
+/* Bottom bar flag icons — height locked; scale --footer-flag-h without growing the footer row */
+
+.footer-flags {
+
+  --footer-flag-h: 2.125rem;
+
+  display: flex;
+
+  height: var(--footer-flag-h);
+
+  max-height: var(--footer-flag-h);
+
+  flex-shrink: 0;
+
+  align-items: center;
+
+  gap: 0.5rem;
+
+  overflow: hidden;
+
+  margin-left: 1rem;
+
+  transform: translateX(1.25rem);
+
+}
+
+
+
+.footer-flag-icon {
+
+  display: block;
+
+  height: 100%;
+
+  width: auto;
+
+  flex-shrink: 0;
+
+  border-radius: 10px;
+
+  overflow: hidden;
+
+}
+
+
+
 .nav-pill-shadow {
 
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
@@ -362,65 +408,11 @@
 
 
 
-.segment-bar span {
+.segment-bar {
 
-  transform-origin: left center;
+  transform: translateZ(0);
 
-  transform: scaleX(0);
-
-  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
-
-}
-
-
-
-[data-in-view] .segment-bar span {
-
-  transform: scaleX(1);
-
-  transition-duration: 1s;
-
-}
-
-
-
-[data-in-view][data-reveal-instant] .segment-bar span {
-
-  transition-duration: 0s;
-
-  transition-delay: 0s !important;
-
-}
-
-
-
-[data-in-view] .segment-bar span:nth-child(1) {
-
-  transition-delay: 0.08s;
-
-}
-
-[data-in-view] .segment-bar span:nth-child(2) {
-
-  transition-delay: 0.2s;
-
-}
-
-[data-in-view] .segment-bar span:nth-child(3) {
-
-  transition-delay: 0.32s;
-
-}
-
-[data-in-view] .segment-bar span:nth-child(4) {
-
-  transition-delay: 0.44s;
-
-}
-
-[data-in-view] .segment-bar span:nth-child(5) {
-
-  transition-delay: 0.56s;
+  backface-visibility: hidden;
 
 }
 
@@ -535,5 +527,4 @@
   }
 
 }
-
 

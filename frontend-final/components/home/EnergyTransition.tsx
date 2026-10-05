@@ -8,7 +8,7 @@ const BANNER_IMAGE =
 export default function EnergyTransition() {
   return (
     <section className="container-final pb-20 md:pb-28">
-      <Reveal variant="rise">
+      <Reveal variant="rise" once>
         <div className="relative overflow-hidden rounded-[var(--radius-card)]">
           <div className="relative aspect-[16/7] min-h-[240px] md:aspect-[21/9] md:min-h-[320px]">
             <Image
@@ -20,26 +20,26 @@ export default function EnergyTransition() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#1c1917]/55 via-[#1c1917]/15 to-transparent" />
 
-            <div className="absolute inset-x-0 bottom-0 z-10 flex flex-col items-center gap-4 px-5 pb-8 md:px-8 md:pb-10">
-              <p className="max-w-2xl text-center font-display text-lg font-medium leading-snug text-white md:text-2xl md:leading-snug">
+            <div className="absolute inset-x-0 bottom-0 z-10 flex flex-col items-center gap-5 px-5 pb-8 md:gap-6 md:px-8 md:pb-12">
+              <p className="max-w-3xl text-center font-display text-xl font-medium leading-snug text-white md:text-3xl md:leading-snug lg:text-[2rem]">
                 Talk to an engineer, not a salesperson — realistic designs and quotes within 48
                 hours.
               </p>
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center rounded-full bg-[#1c1917] px-5 py-2.5 text-sm font-medium text-[#fdfbf7] transition-colors hover:bg-[#d97706] hover:text-[#fdfbf7]"
+                className="inline-flex items-center justify-center rounded-full bg-black px-7 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#d97706] hover:text-white md:px-8 md:py-3.5 md:text-base"
               >
                 Request a free quote
               </Link>
             </div>
           </div>
 
-          <div className="segment-bar flex h-1.5 gap-1 bg-[#1c1917]/10">
-            <span className="flex-[3] bg-[#1c1917]" />
-            <span className="flex-[2] bg-[#d97706]" />
-            <span className="flex-[2] bg-[#166534]" />
-            <span className="flex-[1] bg-[#e7e5e4]" />
-            <span className="flex-[2] bg-[#57534e]" />
+          <div className="segment-bar flex h-1.5 shrink-0 bg-[#012169]" aria-hidden>
+            <span className="h-full flex-[3] bg-[#012169]" />
+            <span className="h-full flex-[2] bg-white" />
+            <span className="h-full flex-[2] bg-[#e4002b]" />
+            <span className="h-full flex-[1] bg-white" />
+            <span className="h-full flex-[2] bg-[#012169]" />
           </div>
         </div>
       </Reveal>

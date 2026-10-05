@@ -45,11 +45,6 @@ export default function ContactFeaturedForm() {
     e.preventDefault();
     if (submitting) return;
 
-    if (!form.service_type) {
-      toast.error("Please choose what you are looking for.");
-      return;
-    }
-
     setSubmitting(true);
     try {
       await api.post("/leads", form);
@@ -86,7 +81,7 @@ export default function ContactFeaturedForm() {
           <form
             onSubmit={onSubmit}
             className="contact-featured-form space-y-8 sm:space-y-10"
-            data-testid="contact-featured-form"
+            data-testid="contact-form"
           >
             <div className="space-y-3">
               <p className="text-xl font-bold uppercase tracking-wide text-[#ffffff] sm:text-2xl md:text-3xl">
@@ -106,7 +101,7 @@ export default function ContactFeaturedForm() {
                   value={form.name}
                   onChange={(e) => onChange("name", e.target.value)}
                   placeholder="Your name"
-                  data-testid="contact-featured-name"
+                  data-testid="contact-name"
                   className={fieldClass}
                 />
               </label>
@@ -118,7 +113,7 @@ export default function ContactFeaturedForm() {
                   value={form.email}
                   onChange={(e) => onChange("email", e.target.value)}
                   placeholder="you@company.com"
-                  data-testid="contact-featured-email"
+                  data-testid="contact-email"
                   className={fieldClass}
                 />
               </label>
@@ -129,7 +124,7 @@ export default function ContactFeaturedForm() {
                   value={form.phone}
                   onChange={(e) => onChange("phone", e.target.value)}
                   placeholder="Best number to reach you"
-                  data-testid="contact-featured-phone"
+                  data-testid="contact-phone"
                   className={fieldClass}
                 />
               </label>
@@ -139,7 +134,7 @@ export default function ContactFeaturedForm() {
                   value={form.location}
                   onChange={(e) => onChange("location", e.target.value)}
                   placeholder="Suburb, state"
-                  data-testid="contact-featured-location"
+                  data-testid="contact-location"
                   className={fieldClass}
                 />
               </label>
@@ -147,7 +142,7 @@ export default function ContactFeaturedForm() {
 
             <div className="space-y-3">
               <p className={labelClass}>What are you looking for?</p>
-              <div data-testid="contact-featured-service">
+              <div data-testid="contact-service">
                 <GlideSelect
                   className="glide-select--glass glide-select--matched-width"
                   options={SERVICE_GLIDE_OPTIONS}
@@ -179,7 +174,7 @@ export default function ContactFeaturedForm() {
                 value={form.message}
                 onChange={(e) => onChange("message", e.target.value)}
                 placeholder="Daily energy use, roof or land available, existing system if any…"
-                data-testid="contact-featured-message"
+                data-testid="contact-message"
                 className={messageFieldClass}
               />
             </label>
@@ -206,7 +201,7 @@ export default function ContactFeaturedForm() {
                   type="submit"
                   disabled={submitting}
                   className="group flex items-center gap-2 text-2xl font-bold text-[#ffffff] transition-opacity hover:opacity-80 disabled:opacity-50 sm:gap-3 sm:text-3xl md:text-4xl"
-                  data-testid="contact-featured-submit"
+                  data-testid="contact-submit"
                 >
                   {submitting ? (
                     <>

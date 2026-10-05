@@ -28,13 +28,13 @@ function AnalogClockFace({
 
   return (
     <div
-      className={`relative shrink-0 rounded-full border-2 border-[#d6d3d1] bg-[#fdfbf7] shadow-sm ${
+      className={`relative shrink-0 rounded-full border-2 border-[#d6d3d1] bg-white shadow-sm ${
         isSmall ? "h-7 w-7 md:h-8 md:w-8" : "h-20 w-20"
       } ${className}`}
       aria-hidden
     >
       <div
-        className={`absolute left-1/2 top-1/2 origin-bottom rounded-full bg-[#1c1917]/70 ${
+        className={`absolute left-1/2 top-1/2 origin-bottom rounded-full bg-black/70 ${
           isSmall ? "h-2.5 w-[1.5px]" : "h-7 w-0.5"
         }`}
         style={clockHandStyle(minuteAngle)}
@@ -77,7 +77,7 @@ function OfficeMapIllustration() {
 }
 
 const linkClass =
-  "flex items-center gap-2.5 text-sm text-white/75 transition-colors hover:text-[#fbbf24]";
+  "flex items-center gap-2.5 text-sm text-white/75 transition-colors hover:text-[#d97706]";
 
 const cardBase =
   "card-lift flex h-full min-h-[280px] flex-col rounded-[var(--radius-card)] p-6 md:min-h-[320px] md:p-8";
@@ -89,7 +89,7 @@ export default function ContactOfficeHoursBento() {
     <Reveal variant="rise" className="pt-12 md:pt-16">
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-5">
         <article
-          className={`${cardBase} bg-[#1c1917] text-[#fdfbf7]`}
+          className={`${cardBase} bg-black text-white`}
           data-testid="contact-office-bento"
         >
           <div className="flex items-start justify-between gap-4 pb-4">
@@ -102,7 +102,7 @@ export default function ContactOfficeHoursBento() {
 
           <div className="space-y-6">
             <div className="space-y-2.5">
-              <a href={`mailto:${COMPANY.email}`} className={linkClass} data-testid="contact-bento-email">
+              <a href={`mailto:${COMPANY.email}`} className={linkClass} data-testid="contact-email-link">
                 <Mail className="h-4 w-4 shrink-0" />
                 {COMPANY.email}
               </a>
@@ -111,7 +111,7 @@ export default function ContactOfficeHoursBento() {
                 target="_blank"
                 rel="noreferrer"
                 className={linkClass}
-                data-testid="contact-bento-website"
+                data-testid="contact-website-link"
               >
                 <Globe className="h-4 w-4 shrink-0" />
                 {COMPANY.website}
@@ -120,8 +120,8 @@ export default function ContactOfficeHoursBento() {
 
             <a
               href={telHref}
-              className="font-display text-4xl font-semibold tracking-tight transition-colors hover:text-[#fbbf24] md:text-5xl"
-              data-testid="contact-bento-phone"
+              className="font-display text-4xl font-semibold tracking-tight transition-colors hover:text-[#d97706] md:text-5xl"
+              data-testid="contact-phone-link"
             >
               {COMPANY.phone}
             </a>
@@ -134,7 +134,7 @@ export default function ContactOfficeHoursBento() {
         </article>
 
         <article
-          className={`${cardBase} justify-between bg-[#f5f5f0]`}
+          className={`${cardBase} justify-between bg-[#e7e5e4]`}
           data-testid="contact-hours-bento"
         >
           <div className="flex items-start justify-between gap-4">
@@ -152,7 +152,7 @@ export default function ContactOfficeHoursBento() {
           </div>
 
           <div className="mt-auto">
-            <p className="font-display text-3xl font-semibold tracking-tight text-[#1c1917] md:text-4xl">
+            <p className="font-display text-3xl font-semibold tracking-tight text-black md:text-4xl">
               8:00 a.m. — 5:30 p.m.
             </p>
             <p className="mt-1 text-xs text-[#57534e]">Mon — Fri</p>

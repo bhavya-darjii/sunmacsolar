@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { ChevronDown } from "lucide-react";
 import Reveal from "@/components/Reveal";
+import FooterAustraliaFlags from "@/components/site/FooterAustraliaFlags";
 import { COMPANY, NAV } from "@/data/site";
 
 const EXPLORE_LINKS = NAV.filter((n) => n.href !== "/").map((n) => ({
@@ -113,13 +113,7 @@ export default function SiteFooter() {
             © {new Date().getFullYear()} {COMPANY.parent}. Trading as SunMac Solar.
           </span>
 
-          <button
-            type="button"
-            className="inline-flex items-center gap-1.5 rounded-full border border-white/15 px-3 py-1.5 text-white/70 transition hover:border-white/30 hover:text-white"
-          >
-            English (AU)
-            <ChevronDown className="h-3.5 w-3.5" />
-          </button>
+          <FooterAustraliaFlags />
         </div>
       </div>
     </footer>

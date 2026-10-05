@@ -1,6 +1,8 @@
 import Reveal from "@/components/Reveal";
 import Image from "next/image";
 import Link from "next/link";
+import { useInView } from "framer-motion";
+import { useRef } from "react";
 import { PROJECTS } from "@/data/site";
 
 const GALLERY = PROJECTS.slice(0, 5).map((project) => ({
@@ -44,6 +46,9 @@ function GalleryCard({
 }
 
 export default function GrowersGallery() {
+  const marqueeRef = useRef<HTMLDivElement>(null);
+  const marqueeInView = useInView(marqueeRef, { amount: 0.08, margin: "80px" });
+
   return (
     <section className="overflow-hidden pb-24 md:pb-32">
       <div className="container-final">
@@ -57,7 +62,11 @@ export default function GrowersGallery() {
         </Reveal>
       </div>
 
-      <div className="growers-marquee-viewport mt-12 md:mt-14" aria-label="Featured project gallery">
+      <div
+        ref={marqueeRef}
+        className={`growers-marquee-viewport mt-12 md:mt-14${marqueeInView ? " is-in-view" : ""}`}
+        aria-label="Featured project gallery"
+      >
         <div className="growers-marquee-track flex w-max gap-5 md:gap-6">
           {LOOP_ITEMS.map((item, index) => (
             <GalleryCard

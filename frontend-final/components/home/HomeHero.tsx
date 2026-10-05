@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import {
   motion,
-  useInView,
   useReducedMotion,
   useScroll,
   useTransform,
@@ -10,6 +9,7 @@ import {
 import { useEffect, useRef, useState } from "react";
 import HomeHeader from "./HomeHeader";
 import { heroPanelLinePercent } from "@/lib/heroPanelLine";
+import { useHysteresisInView } from "@/hooks/use-hysteresis-in-view";
 
 const HERO_IMAGE = "/hero-section.png";
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -17,10 +17,9 @@ const ease = [0.22, 1, 0.36, 1] as const;
 export default function HomeHero() {
   const sectionRef = useRef<HTMLElement>(null);
   const reduceMotion = useReducedMotion();
-  const heroInView = useInView(sectionRef, {
-    once: false,
+  const heroInView = useHysteresisInView(sectionRef, {
     amount: 0.25,
-    margin: "0px 0px -8% 0px",
+    rootMargin: "0px 0px -8% 0px",
   });
   const show = reduceMotion || heroInView;
 
@@ -30,11 +29,6 @@ export default function HomeHero() {
   });
 
   const sunMacScrollY = useTransform(scrollYProgress, [0, 1], [0, reduceMotion ? 0 : 96]);
-  const heroFadeOpacity = useTransform(
-    scrollYProgress,
-    [0, 0.18, 0.72],
-    [1, 0.72, reduceMotion ? 1 : 0]
-  );
 
   const sunMacScrollOpacity = useTransform(scrollYProgress, (progress) => {
     if (reduceMotion) return 1;
@@ -65,8 +59,8 @@ export default function HomeHero() {
       ref={sectionRef}
       className="relative h-[100dvh] w-full min-h-[600px] bg-[#1c1917]"
     >
-      <div className="absolute inset-0 overflow-hidden">
-        <motion.div className="absolute inset-0" style={{ opacity: heroFadeOpacity }}>
+      <div className="hero-background-shell absolute inset-0 overflow-hidden">
+        <div className="hero-background-motion absolute inset-0">
           <Image
             src={HERO_IMAGE}
             alt="Commercial solar installation across an Australian rooftop"
@@ -80,7 +74,7 @@ export default function HomeHero() {
             className="absolute inset-0 bg-gradient-to-b from-[#1c1917]/35 via-black/10 to-[#1c1917]/55"
             aria-hidden
           />
-        </motion.div>
+        </div>
       </div>
 
       <HomeHeader heroInView={show} />
@@ -101,7 +95,7 @@ export default function HomeHero() {
             >
               <motion.h1
                 style={{ y: sunMacScrollY }}
-                className="hero-word w-full text-center text-white will-change-[transform,opacity]"
+                className="hero-word w-full text-center text-white"
               >
                 SunMac
               </motion.h1>

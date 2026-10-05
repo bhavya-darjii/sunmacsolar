@@ -1,5 +1,6 @@
-import { motion, useInView, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { ReactNode, useRef } from "react";
+import { useHysteresisInView } from "@/hooks/use-hysteresis-in-view";
 
 interface RevealProps {
   children: ReactNode;
@@ -10,7 +11,7 @@ interface RevealProps {
   amount?: number;
   /** "fade" = opacity + slide. "rise" = slide only (keeps cards visible while waiting). */
   variant?: "fade" | "rise";
-  /** When false, animation replays each time the element enters the viewport. */
+  /** When true, reveal only the first time (no reset on scroll away). */
   once?: boolean;
 }
 
@@ -27,11 +28,7 @@ export default function Reveal({
 }: RevealProps) {
   const ref = useRef<HTMLDivElement>(null);
   const reduceMotion = useReducedMotion();
-  const inView = useInView(ref, {
-    once,
-    amount,
-    margin: "0px 0px -6% 0px",
-  });
+  const inView = useHysteresisInView(ref, { amount, once });
 
   const riseOnly = variant === "rise";
   const hidden = riseOnly

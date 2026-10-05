@@ -270,25 +270,15 @@
 
 
 
-/* Gap between link grid and SunMac only (not full-footer height) — tweak to taste */
+/* SunMac sits in the flex space between link grid and bottom bar */
 
 .footer-sunmac-wrap {
 
-  --footer-sunmac-gap: 3.25rem;
+  display: flex;
 
-  margin-top: var(--footer-sunmac-gap);
+  align-items: center;
 
-}
-
-
-
-@media (min-width: 768px) {
-
-  .footer-sunmac-wrap {
-
-    --footer-sunmac-gap: 4.85rem;
-
-  }
+  justify-content: center;
 
 }
 

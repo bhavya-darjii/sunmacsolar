@@ -94,8 +94,8 @@ export default function SiteFooter() {
         </Reveal>
       </div>
 
-      <div className="footer-sunmac-wrap w-full shrink-0 overflow-hidden px-0">
-        <Reveal delay={0.08}>
+      <div className="footer-sunmac-wrap w-full min-h-0 flex-1 overflow-hidden px-0">
+        <Reveal delay={0.08} className="flex w-full items-center justify-center">
           <p
             className="footer-word footer-word--compact text-center text-white"
             aria-hidden
@@ -104,8 +104,6 @@ export default function SiteFooter() {
           </p>
         </Reveal>
       </div>
-
-      <div className="min-h-0 flex-1" aria-hidden />
 
       <div className="shrink-0">
         <div className="container-final flex min-h-[48px] items-center justify-between gap-4 py-3 text-xs text-white/45">

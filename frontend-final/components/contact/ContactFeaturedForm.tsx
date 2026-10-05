@@ -6,15 +6,11 @@ import { api } from "@/lib/api";
 import { CONTACT_SERVICE_PILLS } from "@/data/contact";
 import GlideSelect from "@/components/ui/GlideSelect";
 import ContactOfficeHoursBento from "@/components/contact/ContactOfficeHoursBento";
-
-const fieldClass =
-  "w-full border-b-2 border-[#ffffff]/35 bg-transparent px-1 py-2 font-bold text-[#ffffff] outline-none placeholder:font-bold placeholder:text-[#ffffff]/55 focus:border-[#ffffff]";
-
-const messageFieldClass =
-  `${fieldClass} min-h-[2.75rem] resize-y max-h-40 leading-snug`;
-
-const labelClass =
-  "text-sm font-bold tracking-wide text-[#ffffff] uppercase";
+import {
+  featuredFormFieldClass as fieldClass,
+  featuredFormLabelClass as labelClass,
+  featuredFormMessageFieldClass as messageFieldClass,
+} from "@/components/forms/featuredFormStyles";
 
 const GLIDE_SURFACE = "#000000";
 const GLIDE_HIGHLIGHT = "#e7e5e4";

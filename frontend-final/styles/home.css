@@ -513,3 +513,80 @@
 
 }
 
+/* Meet Joey — DiscoverySection */
+.home-discovery-joey {
+  position: relative;
+  isolation: isolate;
+  min-height: 22rem;
+  background-color: #1c1917;
+}
+
+@media (min-width: 768px) {
+  .home-discovery-joey {
+    min-height: 28rem;
+  }
+}
+
+.home-discovery-joey::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: url("/images/joey.png") 78% center / cover no-repeat;
+}
+
+.home-discovery-joey__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.28);
+  pointer-events: none;
+}
+
+.home-discovery-joey__inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  min-height: inherit;
+  align-items: center;
+}
+
+.home-discovery-joey__content {
+  margin-left: -0.75rem;
+}
+
+@media (min-width: 768px) {
+  .home-discovery-joey__content {
+    margin-left: -1.25rem;
+  }
+}
+
+.home-discovery-joey__panel {
+  border-radius: 1rem;
+  padding: 1.25rem 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(28, 25, 23, 0.12);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  backdrop-filter: blur(14px) saturate(140%);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+}
+
+@media (min-width: 768px) {
+  .home-discovery-joey__panel {
+    border-radius: 1.25rem;
+    padding: 1.5rem 1.75rem;
+  }
+}
+
+@supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+  .home-discovery-joey__panel {
+    background: rgba(28, 25, 23, 0.28);
+  }
+}
+
+.home-discovery-joey__panel p,
+.home-discovery-joey__panel .display-lead,
+.home-discovery-joey__panel .display-lead span {
+  color: #ffffff;
+}
+

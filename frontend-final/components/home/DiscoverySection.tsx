@@ -1,24 +1,29 @@
 import Reveal from "@/components/Reveal";
-import { Sun } from "lucide-react";
 import { MASCOT } from "@/data/site";
 
 export default function DiscoverySection() {
   return (
-    <section className="container-final border-t border-[#e7e5e4] py-14 md:py-20">
-      <Reveal>
-        <div className="grid gap-8 md:grid-cols-[120px_1fr] md:items-start">
-          <div className="flex flex-col gap-3">
-            <Sun className="h-6 w-6 text-[#78716c]" strokeWidth={1.5} />
-            <p className="text-xs font-medium text-[#78716c]">Meet {MASCOT.name}</p>
+    <section className="home-discovery-joey" data-testid="home-discovery-joey">
+      <div className="home-discovery-joey__overlay" aria-hidden />
+      <div className="container-final home-discovery-joey__inner py-20 md:py-28">
+        <Reveal variant="rise">
+          <div className="home-discovery-joey__content max-w-4xl">
+            <div className="glass-surface-light home-discovery-joey__panel w-fit max-w-full text-left">
+              <p className="text-xs font-bold">Meet {MASCOT.name}</p>
+              <h2 className="display-lead mt-2">
+                {MASCOT.name} — our off-grid mate.{" "}
+                <span className="font-semibold">
+                  Rugged, friendly
+                  <br />
+                  solar guidance from Camellia rooftops to
+                  <br />
+                  outback stations.
+                </span>
+              </h2>
+            </div>
           </div>
-          <h2 className="display-lead">
-            {MASCOT.name} — our off-grid mate.{" "}
-            <span className="font-semibold">
-              Rugged, friendly solar guidance from Camellia rooftops to outback stations.
-            </span>
-          </h2>
-        </div>
-      </Reveal>
+        </Reveal>
+      </div>
     </section>
   );
 }

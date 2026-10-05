@@ -9,6 +9,17 @@
   color: #ffffff;
 }
 
+.contact-featured-form input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+.contact-featured-form input[type="number"]::-webkit-outer-spin-button,
+.contact-featured-form input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .contact-featured-form .glide-select--glass .glide-select__trigger,
 .contact-featured-form .glide-select--glass .glide-select__trigger .glide-select__label {
   font-weight: 700;

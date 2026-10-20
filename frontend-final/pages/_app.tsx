@@ -9,6 +9,7 @@ import "@/styles/globals.css";
 import "@/styles/home.css";
 import "@/components/ui/GlideSelect.css";
 import "@/styles/contact-featured-form.css";
+import "@/styles/inner-pages.css";
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();

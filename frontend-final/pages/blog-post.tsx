@@ -6,6 +6,7 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { api } from "@/lib/api";
 import Reveal from "@/components/Reveal";
+import PageCanvas from "@/components/site/PageCanvas";
 
 interface BlogPostDetail {
   slug: string;
@@ -61,7 +62,7 @@ export default function BlogPostPage() {
         <title>{post.title} | SunMac Solar</title>
         <meta name="description" content={post.excerpt} />
       </Head>
-      <div data-testid="blog-post-page">
+      <PageCanvas data-testid="blog-post-page">
         <section className="relative min-h-[400px] h-[50vh] overflow-hidden">
           <Image src={post.cover_image} alt={post.title} fill className="object-cover" priority sizes="100vw" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#1c1917]/90 via-[#1c1917]/40 to-transparent" />
@@ -91,20 +92,22 @@ export default function BlogPostPage() {
 
         <article className="container-final max-w-3xl py-16">
           <Reveal>
-            <p className="text-xl leading-relaxed text-[#57534e]">{post.excerpt}</p>
-            <div className="mt-10 space-y-6 leading-relaxed whitespace-pre-line text-[#1c1917]">
-              {post.content}
-            </div>
-            <div className="mt-12 flex flex-wrap gap-2 border-t border-[#e7e5e4] pt-8">
-              {(post.tags || []).map((t) => (
-                <span key={t} className="rounded-full bg-[#f5f5f0] px-3 py-1 text-xs text-[#57534e]">
-                  #{t}
-                </span>
-              ))}
+            <div className="surface-glass p-8 md:p-10">
+              <p className="text-xl leading-relaxed text-[#57534e]">{post.excerpt}</p>
+              <div className="mt-10 space-y-6 leading-relaxed whitespace-pre-line text-[#1c1917]">
+                {post.content}
+              </div>
+              <div className="mt-12 flex flex-wrap gap-2 border-t border-white/50 pt-8">
+                {(post.tags || []).map((t) => (
+                  <span key={t} className="tag-glass">
+                    #{t}
+                  </span>
+                ))}
+              </div>
             </div>
           </Reveal>
         </article>
-      </div>
+      </PageCanvas>
     </>
   );
 }

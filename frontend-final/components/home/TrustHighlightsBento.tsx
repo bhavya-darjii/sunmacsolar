@@ -32,7 +32,7 @@ function themeForIndex(index: number) {
 const DIAGRAM_ICON_CLASS = "h-8 w-8 shrink-0 text-[#d97706]";
 const DIAGRAM_ICON_STROKE = 1.5;
 
-/** Minimal installer figure — faces +x when used on the left, mirror with scale(-1,1) on the right. */
+/** Minimal installer figure, faces +x when used on the left, mirror with scale(-1,1) on the right. */
 function InstallerFigure({ flip }: { flip?: boolean }) {
   return (
     <g transform={flip ? "scale(-1, 1)" : undefined}>
@@ -64,7 +64,7 @@ function InstallerFigure({ flip }: { flip?: boolean }) {
   );
 }
 
-/** Farmer figure for dark cards — light strokes for contrast. */
+/** Farmer figure for dark cards, light strokes for contrast. */
 function FarmerFigure({ flip }: { flip?: boolean }) {
   return (
     <g transform={flip ? "scale(-1, 1)" : undefined}>

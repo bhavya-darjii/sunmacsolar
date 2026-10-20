@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Check, ArrowRight, Leaf, Wallet } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import PageIntro from "@/components/site/PageIntro";
+import PageCanvas from "@/components/site/PageCanvas";
 import { PRODUCTS, FINANCE_OPTIONS } from "@/data/site";
 
 export default function ProductsPage() {
@@ -16,22 +17,22 @@ export default function ProductsPage() {
           content="Tier-1 solar modules, commercial inverters, battery storage and efficient heat pump systems installed across Australia."
         />
       </Head>
-      <div data-testid="products-page">
+      <PageCanvas data-testid="products-page">
         <PageIntro
           overline="Products"
           title="Tier-1 hardware, matched to your site and load."
-          description="We do not push a single brand. We specify the right module, inverter and battery for the application — from a single home up to multi-megawatt commercial sites."
+          description="We do not push a single brand. We specify the right module, inverter and battery for the application from a single home up to multi-megawatt commercial sites. Gear is selected for Australian heat, dust and warranty support in the field, and installed by our in-house team on the same engineering brief from design through commissioning."
         />
 
         <section className="container-final space-y-10 pb-24">
           {PRODUCTS.map((p, i) => (
             <Reveal key={p.id} delay={i * 0.05}>
               <div
-                className="card-lift grid items-center gap-8 overflow-hidden rounded-[var(--radius-card)] border border-[#e7e5e4] bg-[#f5f5f0] md:grid-cols-12"
+                className="card-lift surface-glass grid items-center gap-6 md:grid-cols-12 md:gap-8"
                 data-testid={`product-card-${p.id}`}
               >
                 <div
-                  className={`relative aspect-[4/3] min-h-[240px] md:col-span-6 md:aspect-auto md:min-h-[320px] ${i % 2 === 1 ? "md:order-2" : ""}`}
+                  className={`relative m-4 aspect-[4/3] min-h-[240px] overflow-hidden rounded-[var(--radius-card)] ring-1 ring-[#e7e5e4]/60 md:col-span-6 md:m-6 md:aspect-auto md:min-h-[320px] ${i % 2 === 1 ? "md:order-2" : ""}`}
                 >
                   <Image
                     src={p.image}
@@ -41,7 +42,7 @@ export default function ProductsPage() {
                     sizes="(max-width: 768px) 100vw, 600px"
                   />
                 </div>
-                <div className="p-8 md:col-span-6 md:p-12">
+                <div className="px-4 pb-8 md:col-span-6 md:px-6 md:py-8 md:pr-10 lg:pr-12">
                   <p className="overline">0{i + 1}</p>
                   <h2 className="display-lead mt-3">
                     <span className="font-semibold">{p.title}</span>
@@ -79,7 +80,7 @@ export default function ProductsPage() {
                         {p.brands.map((b) => (
                           <div
                             key={b.name}
-                            className="rounded-2xl border border-[#e7e5e4] bg-[#fdfbf7] p-3"
+                            className="surface-glass--inset p-3"
                           >
                             <div className="font-display text-sm font-semibold">{b.name}</div>
                             <div className="mt-0.5 text-xs text-[#57534e]">{b.spec}</div>
@@ -101,15 +102,15 @@ export default function ProductsPage() {
           ))}
         </section>
 
-        <section className="section-pad bg-[#f5f5f0]" data-testid="finance-section">
-          <div className="container-final">
+        <section className="page-band section-pad" data-testid="finance-section">
+          <div className="page-band__inner container-final">
             <Reveal>
               <p className="overline">Finance</p>
               <h2 className="display-lead mt-4 max-w-3xl">
-                <span className="font-semibold">Flexible ways to pay — from $0 upfront.</span>
+                <span className="font-semibold">Flexible ways to pay from $0 upfront.</span>
               </h2>
               <p className="mt-5 max-w-2xl text-[#57534e]">
-                Every system we install — solar, battery, HVAC or heat pump — can be financed through
+                Every system we install, whether solar, battery, HVAC or heat pump, can be financed through
                 our trusted partners, so your savings start before your first repayment.
               </p>
             </Reveal>
@@ -117,7 +118,7 @@ export default function ProductsPage() {
               {FINANCE_OPTIONS.map((f, i) => (
                 <Reveal key={f.id} delay={i * 0.08}>
                   <div
-                    className="card-lift flex h-full flex-col rounded-[var(--radius-card)] border border-[#e7e5e4] bg-[#fdfbf7] p-8"
+                    className="card-lift surface-glass flex h-full flex-col p-8"
                     data-testid={`finance-card-${f.id}`}
                   >
                     <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#d97706]/10 text-[#d97706]">
@@ -142,7 +143,7 @@ export default function ProductsPage() {
             </div>
           </div>
         </section>
-      </div>
+      </PageCanvas>
     </>
   );
 }

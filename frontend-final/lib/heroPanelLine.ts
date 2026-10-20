@@ -27,7 +27,7 @@ function horizonFraction(viewportWidth: number, viewportHeight: number): number 
 
 /**
  * Where the panel top edge sits as % of hero height, for object-fit: cover
- * and a fixed object-position Y — stays in sync with the photo on resize.
+ * and a fixed object-position Y, stays in sync with the photo on resize.
  */
 export function heroPanelLinePercent(
   viewportWidth: number,

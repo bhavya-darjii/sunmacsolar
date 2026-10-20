@@ -134,7 +134,7 @@ export default function ContactOfficeHoursBento() {
         </article>
 
         <article
-          className={`${cardBase} justify-between bg-[#e7e5e4]`}
+          className={`${cardBase} justify-between bg-[#f5f5f0] text-[#1c1917]`}
           data-testid="contact-hours-bento"
         >
           <div className="flex items-start justify-between gap-4">
@@ -153,9 +153,9 @@ export default function ContactOfficeHoursBento() {
 
           <div className="mt-auto">
             <p className="font-display text-3xl font-semibold tracking-tight text-black md:text-4xl">
-              8:00 a.m. — 5:30 p.m.
+              8:00 a.m. to 5:30 p.m.
             </p>
-            <p className="mt-1 text-xs text-[#57534e]">Mon — Fri</p>
+            <p className="mt-1 text-xs text-[#57534e]">Mon to Fri</p>
             <p className="mt-3 text-sm leading-relaxed text-[#57534e]">
               Sat by appointment · Sun closed
             </p>

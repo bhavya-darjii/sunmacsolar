@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 
-/** Decorative footer icons — fixed aspect, sized by parent height only. */
+/** Decorative footer icons, fixed aspect, sized by parent height only. */
 
 function FlagFrame({
   title,
@@ -56,7 +56,7 @@ export function AustralianNationalFlag() {
   return (
     <FlagFrame title="Australian national flag">
       <rect width="60" height="40" fill="#012169" />
-      {/* Canton — simplified Union Jack */}
+      {/* Canton, simplified Union Jack */}
       <rect x="0" y="0" width="30" height="20" fill="#012169" />
       <rect x="13" y="0" width="4" height="20" fill="#ffffff" />
       <rect x="0" y="8" width="30" height="4" fill="#ffffff" />

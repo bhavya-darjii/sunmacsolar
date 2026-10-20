@@ -17,7 +17,7 @@ export default function PageIntro({ overline, title, description, children }: Pa
           <span className="font-semibold">{title}</span>
         </h1>
         {description && (
-          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-[#57534e]">{description}</p>
+          <p className="mt-6 max-w-none text-lg leading-relaxed text-[#57534e]">{description}</p>
         )}
         {children}
       </Reveal>

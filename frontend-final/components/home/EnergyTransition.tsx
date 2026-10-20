@@ -22,7 +22,7 @@ export default function EnergyTransition() {
 
             <div className="absolute inset-x-0 bottom-0 z-10 flex flex-col items-center gap-5 px-5 pb-8 md:gap-6 md:px-8 md:pb-12">
               <p className="max-w-3xl text-center font-display text-xl font-medium leading-snug text-white md:text-3xl md:leading-snug lg:text-[2rem]">
-                Talk to an engineer, not a salesperson — realistic designs and quotes within 48
+                Talk to an engineer, not a salesperson, with realistic designs and quotes within 48
                 hours.
               </p>
               <Link

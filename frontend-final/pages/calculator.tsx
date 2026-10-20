@@ -24,6 +24,8 @@ import {
   LucideIcon,
 } from "lucide-react";
 import Reveal from "@/components/Reveal";
+import PageIntro from "@/components/site/PageIntro";
+import PageCanvas from "@/components/site/PageCanvas";
 
 interface StateData {
   label: string;
@@ -34,12 +36,12 @@ interface StateData {
 
 const STATES: Record<string, StateData> = {
   NSW: { label: "New South Wales", irradiance: 1.00, fit: 0.06, tariff: 0.32 },
-  VIC: { label: "Victoria",        irradiance: 0.92, fit: 0.048, tariff: 0.28 },
-  QLD: { label: "Queensland",      irradiance: 1.08, fit: 0.08, tariff: 0.29 },
+  VIC: { label: "Victoria", irradiance: 0.92, fit: 0.048, tariff: 0.28 },
+  QLD: { label: "Queensland", irradiance: 1.08, fit: 0.08, tariff: 0.29 },
   SA:  { label: "South Australia", irradiance: 1.05, fit: 0.045, tariff: 0.42 },
   WA:  { label: "Western Australia", irradiance: 1.06, fit: 0.10, tariff: 0.30 },
-  TAS: { label: "Tasmania",        irradiance: 0.85, fit: 0.088, tariff: 0.30 },
-  ACT: { label: "ACT",             irradiance: 0.95, fit: 0.075, tariff: 0.28 },
+  TAS: { label: "Tasmania", irradiance: 0.85, fit: 0.088, tariff: 0.30 },
+  ACT: { label: "ACT", irradiance: 0.95, fit: 0.075, tariff: 0.28 },
   NT:  { label: "Northern Territory", irradiance: 1.15, fit: 0.085, tariff: 0.28 },
 };
 
@@ -87,11 +89,11 @@ interface RebateItem {
 const REBATES: RebateItem[] = [
   {
     icon: Sun,
-    title: "STC — Small-scale Technology Certificate",
+    title: "STC (Small-scale Technology Certificate)",
     tag: "Federal · Applies everywhere",
     summary: "The main federal rebate. Applied automatically as an upfront discount off your system price by any CEC-accredited retailer.",
     who: "Homeowners & small businesses installing solar under 100kW.",
-    how: "You do nothing — your solar retailer calculates STCs based on your postcode + system size and deducts them from your quote.",
+    how: "You do nothing, your solar retailer calculates STCs based on your postcode + system size and deducts them from your quote.",
     value: "Typical value: $2,500 – $5,500 off a 6.6kW home system.",
   },
   {
@@ -100,7 +102,7 @@ const REBATES: RebateItem[] = [
     tag: "State-set, paid by your retailer",
     summary: "A per-kWh credit for solar power you export back to the grid. Rates vary by state and retailer.",
     who: "Anyone with a grid-connected solar system.",
-    how: "Automatic — appears as a credit on your electricity bill from your retailer.",
+    how: "Automatic, appears as a credit on your electricity bill from your retailer.",
     value: "4c – 10c per kWh exported depending on state and plan.",
   },
   {
@@ -109,7 +111,7 @@ const REBATES: RebateItem[] = [
     tag: "New South Wales",
     summary: "NSW offers rebates for battery installation and household energy efficiency upgrades under the Peak Demand Reduction Scheme.",
     who: "NSW households and small businesses installing eligible batteries or solar-hot-water heat pumps.",
-    how: "Choose a scheme-accredited installer — the discount is applied at point of sale.",
+    how: "Choose a scheme-accredited installer, the discount is applied at point of sale.",
     value: "Battery: $1,600 – $2,400 upfront + optional VPP bonus.",
   },
   {
@@ -136,7 +138,7 @@ const REBATES: RebateItem[] = [
     tag: "South Australia",
     summary: "Grants and low-interest loans to help SA households install a home battery.",
     who: "SA homeowners installing eligible batteries.",
-    how: "Choose an approved system provider — subsidy applied at install.",
+    how: "Choose an approved system provider, subsidy applied at install.",
     value: "$2,000 – $3,000 subsidy plus optional finance.",
   },
   {
@@ -180,13 +182,13 @@ const PDRS_VENUES: Record<string, PdrsVenue> = {
     label: "Commercial warehouse",
     icon: Warehouse,
     perKw: 35,
-    note: "Daytime peak loads — high-efficiency VRF or packaged units score well.",
+    note: "Daytime peak loads, high-efficiency VRF or packaged units score well.",
   },
   coldstorage: {
     label: "Cold storage facility",
     icon: Snowflake,
     perKw: 45,
-    note: "24/7 run-hours mean the largest peak demand reduction — and the biggest incentive.",
+    note: "24/7 run-hours mean the largest peak demand reduction, and the biggest incentive.",
   },
   restaurant: {
     label: "Restaurant / hospitality",
@@ -221,36 +223,28 @@ export default function CalculatorPage() {
           content="Estimate your solar power savings and explore Australian government rebates, STCs, and NSW PDRS incentives."
         />
       </Head>
-      <div data-testid="savings-page">
-        {/* Hero */}
-        <section className="relative overflow-hidden bg-[#1C1917] text-[#FDFBF7]">
-          <div className="absolute -right-24 -top-24 w-96 h-96 rounded-full bg-[#D97706]/30 blur-3xl" />
-          <div className="absolute -left-24 -bottom-24 w-80 h-80 rounded-full bg-[#166534]/25 blur-3xl" />
-          <div className="relative container-final py-20 md:py-28 max-w-5xl">
-            <Reveal>
-              <div className="overline text-[#FBBF24]">Savings & Rebates</div>
-              <h1 className="font-display font-light text-4xl sm:text-5xl lg:text-6xl mt-6 leading-[1.05]">
-                Estimate your savings. <span className="italic text-[#FBBF24]">Claim your rebates.</span>
-              </h1>
-              <p className="mt-6 text-lg text-[#D6D3D1] max-w-2xl">
-                Punch in your average power bill and we&apos;ll show you what a solar system could save you — plus every Australian government rebate you can stack on top.
-              </p>
-            </Reveal>
-          </div>
-        </section>
+      <PageCanvas data-testid="savings-page">
+        <PageIntro
+          overline="Savings & rebates"
+          title={
+            <>
+              Estimate your savings. <span className="italic text-[#d97706]">Claim your rebates.</span>
+            </>
+          }
+          description="Punch in your average power bill and we'll show you what a solar system could save you, plus every Australian government rebate you can stack on top."
+        />
 
-        {/* Calculator */}
-        <section className="section-pad -mt-20 md:-mt-24" data-testid="savings-calculator">
+        <section className="container-final pb-16 md:pb-20" data-testid="savings-calculator">
           <div className="container-final">
             <Reveal>
-              <div className="grid lg:grid-cols-12 gap-8 bg-[#FDFBF7] border border-[#E7E5E4] rounded-[var(--radius-card)] shadow-xl overflow-hidden">
+              <div className="card-lift surface-glass grid gap-8 overflow-hidden lg:grid-cols-12">
                 {/* Left: form */}
-                <div className="lg:col-span-5 p-8 md:p-10 bg-[#F5F5F0] border-b lg:border-b-0 lg:border-r border-[#E7E5E4]">
+                <div className="surface-glass--muted surface-glass--panel border-b border-white/40 p-8 md:p-10 lg:col-span-5 lg:border-b-0 lg:border-r">
                   <div className="inline-flex items-center gap-2 text-[#D97706] text-xs tracking-[0.2em] uppercase font-bold">
                     <Calculator className="w-4 h-4" /> Solar savings calculator
                   </div>
                   <h2 className="font-display text-3xl mt-4 font-medium tracking-tight">Your details</h2>
-                  <p className="mt-2 text-sm text-[#57534E]">Estimates are indicative — a proper quote requires site inspection.</p>
+                  <p className="mt-2 text-sm text-[#57534E]">Estimates are indicative, a proper quote requires site inspection.</p>
 
                   <div className="mt-8 space-y-6">
                     <div>
@@ -265,7 +259,7 @@ export default function CalculatorPage() {
                           onChange={(e) => setMonthly(e.target.value)}
                           placeholder="350"
                           data-testid="savings-monthly-input"
-                          className="w-full pl-8 pr-4 py-3 rounded-xl border border-[#E7E5E4] bg-[#FDFBF7] text-lg font-medium outline-none focus:border-[#D97706]"
+                          className="input-final pl-8 text-lg font-medium"
                         />
                       </div>
                       <input
@@ -286,7 +280,7 @@ export default function CalculatorPage() {
                         value={stateKey}
                         onChange={(e) => setStateKey(e.target.value)}
                         data-testid="savings-state-select"
-                        className="mt-2 w-full px-4 py-3 rounded-xl border border-[#E7E5E4] bg-[#FDFBF7] text-lg font-medium outline-none focus:border-[#D97706]"
+                        className="input-final mt-2 text-lg font-medium"
                       >
                         {Object.entries(STATES).map(([k, v]) => (
                           <option key={k} value={k}>{v.label} ({k})</option>
@@ -294,7 +288,7 @@ export default function CalculatorPage() {
                       </select>
                     </div>
 
-                    <div className="p-4 rounded-xl bg-[#FDFBF7] border border-[#E7E5E4] flex gap-3">
+                    <div className="surface-glass--inset flex gap-3 p-4">
                       <Info className="w-4 h-4 text-[#D97706] mt-0.5 shrink-0" />
                       <p className="text-xs text-[#57534E] leading-relaxed">
                         Numbers use current Australian averages for retail tariffs, feed-in rates and installed cost of tier-1 systems (post-STC).
@@ -353,15 +347,15 @@ export default function CalculatorPage() {
         </section>
 
         {/* Rebates Guide */}
-        <section id="rebates" className="section-pad bg-[#F5F5F0]" data-testid="rebates-guide">
-          <div className="container-final">
+        <section id="rebates" className="page-band section-pad" data-testid="rebates-guide">
+          <div className="page-band__inner container-final">
             <Reveal>
               <div className="overline text-[#D97706]">Australian solar rebates guide</div>
               <h2 className="display-lead mt-4 max-w-3xl">
-                <span className="font-semibold">Every rebate you should know about — in plain English.</span>
+                <span className="font-semibold">Every rebate you should know about, in plain English.</span>
               </h2>
               <p className="mt-5 text-[#57534E] max-w-2xl">
-                You can stack federal rebates on top of state programs. Below is a quick guide to the main ones. Rules and amounts change frequently — we&apos;ll confirm your exact eligibility during a free consultation.
+                You can stack federal rebates on top of state programs. Below is a quick guide to the main ones. Rules and amounts change frequently, we&apos;ll confirm your exact eligibility during a free consultation.
               </p>
             </Reveal>
 
@@ -369,7 +363,7 @@ export default function CalculatorPage() {
             <div className="mt-14 grid md:grid-cols-2 lg:grid-cols-3 gap-5">
               {REBATES.map((r, i) => (
                 <Reveal key={r.title} delay={i * 0.04}>
-                  <div className="bg-[#FDFBF7] border border-[#E7E5E4] rounded-2xl p-7 h-full flex flex-col" data-testid={`rebate-${i}`}>
+                  <div className="card-lift surface-glass flex h-full flex-col p-7" data-testid={`rebate-${i}`}>
                     <div className="w-11 h-11 rounded-xl bg-[#D97706]/10 text-[#D97706] flex items-center justify-center">
                       <r.icon className="w-5 h-5" />
                     </div>
@@ -398,11 +392,11 @@ export default function CalculatorPage() {
               ))}
             </div>
 
-            {/* How to claim — 3 steps */}
+            {/* How to claim, 3 steps */}
             <Reveal>
               <div className="mt-16 grid md:grid-cols-3 gap-6">
                 {[
-                  { n: "01", title: "Choose a CEC-accredited retailer", body: "That's us — required to unlock the federal STC rebate. We handle all the paperwork." },
+                  { n: "01", title: "Choose a CEC-accredited retailer", body: "That's us, required to unlock the federal STC rebate. We handle all the paperwork." },
                   { n: "02", title: "We calculate every rebate you qualify for", body: "STC upfront, plus any state-specific programs stacked on top of the price we quote." },
                   { n: "03", title: "You pay the discounted price only", body: "We claim the rebates on your behalf and apply them directly to your invoice." },
                 ].map((s) => (
@@ -428,7 +422,7 @@ export default function CalculatorPage() {
                 <span className="font-semibold">PDRS incentives for upgrading your HVAC.</span>
               </h2>
               <p className="mt-5 text-[#57534E] max-w-2xl">
-                The NSW <strong>Peak Demand Reduction Scheme (PDRS)</strong> — part of the state&apos;s Net Zero plan — pays businesses to install high-efficiency air conditioning. Each 0.1&nbsp;kW of peak demand you cut earns a Peak Reduction Certificate (PRC), which we convert into an upfront discount on your HVAC install.
+                The NSW <strong>Peak Demand Reduction Scheme (PDRS)</strong>, part of the state&apos;s Net Zero plan, pays businesses to install high-efficiency air conditioning. Each 0.1&nbsp;kW of peak demand you cut earns a Peak Reduction Certificate (PRC), which we convert into an upfront discount on your HVAC install.
               </p>
             </Reveal>
 
@@ -437,9 +431,9 @@ export default function CalculatorPage() {
               <Reveal className="lg:col-span-5">
                 <div className="space-y-4">
                   {[
-                    { n: "01", title: "Who qualifies", body: "NSW businesses installing or replacing air conditioning with high-efficiency, GEMS-registered systems — warehouses, cold storage and restaurants are ideal candidates." },
+                    { n: "01", title: "Who qualifies", body: "NSW businesses installing or replacing air conditioning with high-efficiency, GEMS-registered systems, warehouses, cold storage and restaurants are ideal candidates." },
                     { n: "02", title: "How it's paid", body: "No paperwork for you. As part of an accredited pathway, we calculate the PRCs your upgrade earns and apply the value as a point-of-sale discount on your quote." },
-                    { n: "03", title: "Why it's generous", body: "PRCs are earned on 12 years of peak demand reduction — so efficient VRF and ducted systems from Mitsubishi Electric, Daikin, ActronAir and Midea can attract thousands off." },
+                    { n: "03", title: "Why it's generous", body: "PRCs are earned on 12 years of peak demand reduction, so efficient VRF and ducted systems from Mitsubishi Electric, Daikin, ActronAir and Midea can attract thousands off." },
                   ].map((s) => (
                     <div key={s.n} className="bg-[#1C1917] text-[#FDFBF7] rounded-2xl p-7" data-testid={`pdrs-step-${s.n}`}>
                       <div className="flex items-start gap-4">
@@ -465,7 +459,7 @@ export default function CalculatorPage() {
         {/* Final CTA */}
         <section className="section-pad">
           <div className="container-final">
-            <div className="rounded-[var(--radius-card)] bg-[#D97706] text-[#FDFBF7] p-10 md:p-16 flex flex-wrap items-center justify-between gap-6">
+            <div className="card-lift flex flex-wrap items-center justify-between gap-6 rounded-[var(--radius-card)] bg-[#d97706] p-10 text-[#fdfbf7] shadow-xl shadow-[#d97706]/25 md:p-16">
               <div>
                 <div className="overline text-[#1C1917]/70">Ready to save?</div>
                 <h2 className="display-lead mt-3 max-w-xl text-[#FDFBF7]">
@@ -484,7 +478,7 @@ export default function CalculatorPage() {
             </div>
           </div>
         </section>
-      </div>
+      </PageCanvas>
     </>
   );
 }
@@ -496,7 +490,7 @@ function PdrsEstimator() {
   const v = PDRS_VENUES[venue];
 
   return (
-    <div className="bg-[#F5F5F0] border border-[#E7E5E4] rounded-[var(--radius-card)] p-8 md:p-10 h-full" data-testid="pdrs-estimator">
+    <div className="card-lift surface-glass h-full p-8 md:p-10" data-testid="pdrs-estimator">
       <div className="inline-flex items-center gap-2 text-[#D97706] text-xs tracking-[0.2em] uppercase font-bold">
         <Calculator className="w-4 h-4" /> PDRS incentive estimator
       </div>
@@ -510,7 +504,7 @@ function PdrsEstimator() {
               type="button"
               onClick={() => setVenue(k)}
               data-testid={`pdrs-venue-${k}`}
-              className={`rounded-xl border p-4 text-left transition-colors ${venue === k ? "border-[#D97706] bg-[#FDFBF7]" : "border-[#E7E5E4] bg-[#FDFBF7]/60 hover:border-[#D97706]/50"}`}
+              className={`surface-glass--inset p-4 text-left transition-colors ${venue === k ? "ring-2 ring-[#d97706]/80" : "hover:ring-1 hover:ring-[#d97706]/40"}`}
             >
               <opt.icon className={`w-5 h-5 ${venue === k ? "text-[#D97706]" : "text-[#57534E]"}`} />
               <div className="text-sm font-medium mt-2 leading-snug">{opt.label}</div>
@@ -530,7 +524,7 @@ function PdrsEstimator() {
             value={coolingKw}
             onChange={(e) => setCoolingKw(e.target.value)}
             data-testid="pdrs-capacity-input"
-            className="w-28 px-4 py-3 rounded-xl border border-[#E7E5E4] bg-[#FDFBF7] text-lg font-medium outline-none focus:border-[#D97706]"
+            className="input-final w-28 text-lg font-medium"
           />
           <input
             type="range"
@@ -547,7 +541,7 @@ function PdrsEstimator() {
       </div>
 
       {est && (
-        <div className="mt-8 bg-[#FDFBF7] border border-[#E7E5E4] rounded-2xl p-7" data-testid="pdrs-result">
+        <div className="surface-glass--inset mt-8 p-7" data-testid="pdrs-result">
           <div className="overline text-[#166534]">Indicative PDRS incentive</div>
           <div className="font-display text-3xl md:text-4xl font-medium tracking-tight mt-2 text-[#166534]" data-testid="pdrs-result-range">
             {currency(est.low)} – {currency(est.high)}
@@ -571,7 +565,7 @@ function PdrsEstimator() {
       <div className="mt-5 flex gap-2.5">
         <Info className="w-4 h-4 text-[#D97706] mt-0.5 shrink-0" />
         <p className="text-xs text-[#57534E] leading-relaxed">
-          Indicative only. Final incentive depends on the GEMS-registered efficiency of the equipment installed, your existing system, and the market price of PRCs at install time — confirmed in your formal quote.
+          Indicative only. Final incentive depends on the GEMS-registered efficiency of the equipment installed, your existing system, and the market price of PRCs at install time, confirmed in your formal quote.
         </p>
       </div>
     </div>
@@ -588,12 +582,12 @@ interface ResultTileProps {
 
 function ResultTile({ icon: Icon, label, value, sub, tone = "neutral" }: ResultTileProps) {
   const toneMap = {
-    neutral: "bg-[#F5F5F0] text-[#1C1917]",
-    orange:  "bg-[#FFF7ED] text-[#9A3412]",
-    green:   "bg-[#F0FDF4] text-[#166534]",
+    neutral: "text-[#1c1917]",
+    orange: "text-[#9a3412]",
+    green: "text-[#166534]",
   };
   return (
-    <div className={`${toneMap[tone]} rounded-2xl p-5 border border-[#E7E5E4]`}>
+    <div className={`surface-glass--inset ${toneMap[tone]} p-5`}>
       <div className="flex items-center gap-2 text-xs tracking-wide uppercase font-semibold opacity-80">
         <Icon className="w-3.5 h-3.5" /> {label}
       </div>

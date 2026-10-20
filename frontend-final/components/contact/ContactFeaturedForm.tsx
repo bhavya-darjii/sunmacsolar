@@ -45,7 +45,7 @@ export default function ContactFeaturedForm() {
     try {
       await api.post("/leads", form);
       setSubmitStatus("success");
-      toast.success("Thanks — we'll be in touch within 48 hours.");
+      toast.success("Thanks. We'll be in touch within 48 hours.");
       setForm({
         name: "",
         email: "",
@@ -72,7 +72,7 @@ export default function ContactFeaturedForm() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="contact-featured-form-bg overflow-hidden rounded-3xl border border-[#ffffff]/10 p-8 shadow-2xl shadow-black/60 md:p-12 lg:p-16"
+          className="contact-featured-form-bg featured-panel p-8 md:p-12 lg:p-16"
         >
           <form
             onSubmit={onSubmit}
@@ -182,7 +182,7 @@ export default function ContactFeaturedForm() {
                   animate={{ opacity: 1, y: 0 }}
                   className="text-xl font-bold text-[#ffffff] sm:text-2xl md:text-3xl"
                 >
-                  Sent — we&apos;ll be in touch within 48 hours.
+                  Sent. We&apos;ll be in touch within 48 hours.
                 </motion.p>
               ) : submitStatus === "error" ? (
                 <motion.p

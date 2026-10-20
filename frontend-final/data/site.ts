@@ -2,7 +2,7 @@ export const TESTIMONIALS = [
   {
     id: "t1",
     name: "Mark & Susan Riley",
-    role: "Cattle station owners — Longreach, QLD",
+    role: "Cattle station owners, Longreach, QLD",
     quote:
       "Our homestead has been fully off-grid for 18 months now. The SunMac team designed everything around our loads and even integrated our old genset as backup. We haven't bought a litre of diesel since.",
     service: "Off-Grid System",
@@ -10,15 +10,15 @@ export const TESTIMONIALS = [
   {
     id: "t2",
     name: "David Nguyen",
-    role: "Operations Manager — Western Sydney logistics warehouse",
+    role: "Operations Manager, Western Sydney logistics warehouse",
     quote:
-      "The 250kW rooftop system paid for itself faster than projected. From design to grid approval, SunMac handled everything in-house — our energy bill dropped by over 60% in the first quarter.",
+      "The 250kW rooftop system paid for itself faster than projected. From design to grid approval, SunMac handled everything in-house, our energy bill dropped by over 60% in the first quarter.",
     service: "Commercial Solar",
   },
   {
     id: "t3",
     name: "Helen Cartwright",
-    role: "Orchard owner — Griffith, NSW",
+    role: "Orchard owner, Griffith, NSW",
     quote:
       "Switching our bore pumps to solar was the best decision we've made on the farm. Installation was clean, on time, and the monitoring app lets me check the pumps from anywhere.",
     service: "Solar Irrigation",
@@ -72,7 +72,7 @@ export const SERVICES = [
   {
     id: "irrigation",
     title: "Solar Irrigation Pumps",
-    desc: "Engineered packages for bore pumps and pivots — designed for Australian farms.",
+    desc: "Engineered packages for bore pumps and pivots, designed for Australian farms.",
     icon: "Droplets",
   },
   {
@@ -84,7 +84,7 @@ export const SERVICES = [
   {
     id: "ppa",
     title: "PPA & Solar Farms",
-    desc: "Turn vacant land into recurring revenue — we finance, build and operate.",
+    desc: "Turn vacant land into recurring revenue, we finance, build and operate.",
     icon: "Sun",
   },
 ];
@@ -118,7 +118,7 @@ export const PROJECTS: Project[] = [
     summary:
       "Hybrid rooftop solar-plus-storage system designed for 24/7 self-consumption and demand-response participation.",
     description:
-      "This commercial rooftop installation delivers 86kW of generation paired with a 100kWh Goodwe battery bank — large enough to keep critical loads running through the evening peak and provide whole-site backup during grid outages. The two 29.9kW Goodwe hybrid inverters were chosen for their robust three-phase output, seamless battery integration and proven track record on Australian commercial sites. Jinko Tiger Neo 475W N-type modules were selected for their low temperature coefficient and 30-year linear performance warranty — important for a rooftop installation that will see sustained ambient temperatures above 35°C every summer.\n\nThe project was designed and installed in-house by our team and our partner RB Trades Services, with full electrical commissioning and remote monitoring set up before handover. The system began exporting in the first week of operation and is forecast to offset more than 70% of the site's annual energy bill.",
+      "This commercial rooftop installation delivers 86kW of generation paired with a 100kWh Goodwe battery bank, large enough to keep critical loads running through the evening peak and provide whole-site backup during grid outages. The two 29.9kW Goodwe hybrid inverters were chosen for their robust three-phase output, seamless battery integration and proven track record on Australian commercial sites. Jinko Tiger Neo 475W N-type modules were selected for their low temperature coefficient and 30-year linear performance warranty, important for a rooftop installation that will see sustained ambient temperatures above 35°C every summer.\n\nThe project was designed and installed in-house by our team and our partner RB Trades Services, with full electrical commissioning and remote monitoring set up before handover. The system began exporting in the first week of operation and is forecast to offset more than 70% of the site's annual energy bill.",
     specs: [
       { label: "Solar panels", value: "Jinko Tiger Neo 475W (×181)" },
       { label: "Inverters", value: "2× Goodwe 29.9kW Hybrid" },
@@ -274,7 +274,7 @@ export const PRODUCTS = [
   {
     id: "heatpump",
     title: "Heat Pump Hot Water",
-    desc: "High-efficiency heat pump hot water systems — up to 5x cheaper to run than electric resistive units.",
+    desc: "High-efficiency heat pump hot water systems, up to 5x cheaper to run than electric resistive units.",
     points: [
       "Sanden, Midea, Emerald Planet & Reclaim",
       "270L – 400L tanks",
@@ -298,7 +298,7 @@ export const PRODUCTS = [
   {
     id: "hvac",
     title: "Commercial HVAC Systems",
-    desc: "Complete HVAC solutions for commercial warehouses, cold storage facilities and restaurants — engineered, installed and maintained under the NSW Net Zero carbon plan.",
+    desc: "Complete HVAC solutions for commercial warehouses, cold storage facilities and restaurants, engineered, installed and maintained under the NSW Net Zero carbon plan.",
     points: [
       "Commercial warehouses, cold storage & restaurants",
       "Split, multi-split, VRF/VRV & ducted systems",
@@ -307,7 +307,7 @@ export const PRODUCTS = [
       "Residential aircon also available",
     ],
     scheme:
-      "NSW PDRS Eligible — as an Accredited pathway under the NSW Peak Demand Reduction Scheme (part of the Net Zero plan), eligible high-efficiency HVAC upgrades attract government incentives that significantly reduce your upfront cost.",
+      "NSW PDRS Eligible, as an Accredited pathway under the NSW Peak Demand Reduction Scheme (part of the Net Zero plan), eligible high-efficiency HVAC upgrades attract government incentives that significantly reduce your upfront cost.",
     image:
       "https://images.unsplash.com/photo-1774290331891-5d759056c68d?auto=format&fit=crop&w=1600&q=80",
     brands: [
@@ -327,7 +327,7 @@ export const FINANCE_OPTIONS = [
     id: "brighte",
     name: "Brighte",
     tagline: "0% interest payment plans",
-    desc: "Spread the cost of your solar, battery, HVAC or heat pump over fortnightly repayments — with $0 upfront and fast digital approval.",
+    desc: "Spread the cost of your solar, battery, HVAC or heat pump over fortnightly repayments, with $0 upfront and fast digital approval.",
   },
   {
     id: "plenti",
@@ -339,7 +339,7 @@ export const FINANCE_OPTIONS = [
     id: "ppa-finance",
     name: "PPA Contracts",
     tagline: "$0 capital outlay",
-    desc: "We fund, build and maintain the system on your site — you simply purchase the energy it produces at a rate below the grid. Ideal for commercial sites.",
+    desc: "We fund, build and maintain the system on your site, you simply purchase the energy it produces at a rate below the grid. Ideal for commercial sites.",
     link: "/ppa",
   },
 ];

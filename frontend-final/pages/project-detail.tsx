@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowLeft, MapPin, Zap, ArrowRight } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import { PROJECTS } from "@/data/site";
+import PageCanvas from "@/components/site/PageCanvas";
 
 export default function ProjectDetailPage() {
   const router = useRouter();
@@ -37,7 +38,7 @@ export default function ProjectDetailPage() {
         <title>{project.title} | SunMac Solar</title>
         <meta name="description" content={project.summary} />
       </Head>
-      <div data-testid="project-detail-page">
+      <PageCanvas data-testid="project-detail-page">
         <section className="relative min-h-[460px] h-[60vh] overflow-hidden bg-black">
           {project.video ? (
             <video
@@ -104,7 +105,7 @@ export default function ProjectDetailPage() {
           <Reveal delay={0.1} className="lg:col-span-5">
             {project.specs && (
               <div
-                className="rounded-[var(--radius-card)] border border-[#e7e5e4] bg-[#f5f5f0] p-6 md:p-8"
+                className="surface-glass surface-glass--muted p-6 md:p-8"
                 data-testid="project-detail-specs"
               >
                 <p className="overline">System specifications</p>
@@ -122,8 +123,8 @@ export default function ProjectDetailPage() {
         </section>
 
         {related.length > 0 && (
-          <section className="bg-[#f5f5f0]">
-            <div className="container-final py-16">
+          <section className="page-band">
+            <div className="page-band__inner container-final py-16">
               <p className="overline">More {project.category.toLowerCase()} projects</p>
               <h3 className="mt-3 font-display text-3xl font-medium">You may also like</h3>
               <div className="mt-10 grid gap-6 md:grid-cols-3">
@@ -131,7 +132,7 @@ export default function ProjectDetailPage() {
                   <Link
                     key={p.id}
                     href={`/projects/${p.slug || p.id}`}
-                    className="card-lift group overflow-hidden rounded-[var(--radius-card)] border border-[#e7e5e4] bg-[#fdfbf7]"
+                    className="card-lift surface-glass group overflow-hidden"
                     data-testid={`related-project-${p.id}`}
                   >
                     <div className="relative aspect-[4/3] overflow-hidden">
@@ -154,7 +155,7 @@ export default function ProjectDetailPage() {
             </div>
           </section>
         )}
-      </div>
+      </PageCanvas>
     </>
   );
 }

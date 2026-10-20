@@ -40,7 +40,7 @@
 
 
 
-/* Nav: frosted glass — no tint, blur only */
+/* Nav: frosted glass, no tint, blur only */
 
 .glass-surface {
 
@@ -228,7 +228,7 @@
 
 
 
-/* Footer “SunMac” — change --footer-sunmac-* to resize (min | fluid vw | max) */
+/* Footer “SunMac”, change --footer-sunmac-* to resize (min | fluid vw | max) */
 
 .footer-word--compact {
 
@@ -282,7 +282,7 @@
 
 
 
-/* Bottom bar flag icons — height locked; scale --footer-flag-h without growing the footer row */
+/* Bottom bar flag icons, height locked; scale --footer-flag-h without growing the footer row */
 
 .footer-flags {
 
@@ -515,7 +515,7 @@
 
 }
 
-/* Meet Joey — DiscoverySection */
+/* Meet Joey, DiscoverySection */
 .home-discovery-joey {
   position: relative;
   isolation: isolate;

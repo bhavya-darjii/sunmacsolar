@@ -11,7 +11,7 @@ export default function DiscoverySection() {
             <div className="glass-surface-light home-discovery-joey__panel w-fit max-w-full text-left">
               <p className="text-xs font-bold">Meet {MASCOT.name}</p>
               <h2 className="display-lead mt-2">
-                {MASCOT.name} — our off-grid mate.{" "}
+                {MASCOT.name}, our off-grid mate.{" "}
                 <span className="font-semibold">
                   Rugged, friendly
                   <br />

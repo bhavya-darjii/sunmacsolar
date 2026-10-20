@@ -291,7 +291,7 @@ export default function AdminLeads() {
       if (errorObj?.response?.status === 401) {
         sessionStorage.removeItem("sunmac_admin_key");
         setAdminKey("");
-        toast.error("Session expired — enter your admin key again");
+        toast.error("Session expired, enter your admin key again");
       } else {
         toast.error("Failed to load leads");
       }

@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Reveal from "@/components/Reveal";
 import PageIntro from "@/components/site/PageIntro";
+import PageCanvas from "@/components/site/PageCanvas";
 import ContactFeaturedForm from "@/components/contact/ContactFeaturedForm";
 
 export default function ContactPage() {
@@ -13,11 +14,11 @@ export default function ContactPage() {
           content="Request a realistic concept and quote within 48 hours for your commercial, regional, or off-grid solar installation."
         />
       </Head>
-      <div data-testid="contact-page">
+      <PageCanvas data-testid="contact-page">
         <PageIntro
           overline="Contact"
           title="Talk to our engineering team."
-          description="Tell us a bit about your site and what you are trying to achieve. We will come back within 48 hours with a realistic system concept and quote."
+          description="Tell us a bit about your site and what you are trying to achieve. We will come back within 48 hours with a realistic system concept and quote. Share whatever details you have about the property and your goals; the form below is the quickest way to get in touch."
         />
 
         <section className="container-final pb-24">
@@ -25,7 +26,7 @@ export default function ContactPage() {
             <ContactFeaturedForm />
           </Reveal>
         </section>
-      </div>
+      </PageCanvas>
     </>
   );
 }

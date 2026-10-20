@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import PageIntro from "@/components/site/PageIntro";
+import PageCanvas from "@/components/site/PageCanvas";
 import { api } from "@/lib/api";
 
 interface BlogPostItem {
@@ -41,7 +42,7 @@ export default function BlogPage() {
           content="Field notes, guides, and insights from commercial and off-grid solar projects across Australia."
         />
       </Head>
-      <div data-testid="blog-page">
+      <PageCanvas data-testid="blog-page">
         <PageIntro
           overline="Insights"
           title="Field notes from solar projects across Australia."
@@ -55,7 +56,7 @@ export default function BlogPage() {
 
         {!loading && posts.length === 0 && (
           <div className="container-final pb-24 text-[#57534e]" data-testid="blog-empty">
-            No posts yet — check back soon.
+            No posts yet. Check back soon.
           </div>
         )}
 
@@ -64,7 +65,7 @@ export default function BlogPage() {
             <Reveal>
               <Link
                 href={`/blog/${featured.slug}`}
-                className="card-lift group grid items-center gap-8 overflow-hidden rounded-[var(--radius-card)] border border-[#e7e5e4] bg-[#f5f5f0] md:grid-cols-12"
+                className="card-lift surface-glass group grid items-center gap-8 overflow-hidden md:grid-cols-12"
                 data-testid="blog-featured"
               >
                 <div className="relative aspect-[16/10] overflow-hidden md:col-span-7">
@@ -97,7 +98,7 @@ export default function BlogPage() {
               <Reveal key={p.id} delay={i * 0.05}>
                 <Link
                   href={`/blog/${p.slug}`}
-                  className="card-lift group block h-full overflow-hidden rounded-[var(--radius-card)] border border-[#e7e5e4] bg-[#fdfbf7]"
+                  className="card-lift surface-glass group block h-full overflow-hidden"
                   data-testid={`blog-post-${p.slug}`}
                 >
                   <div className="relative aspect-[4/3] overflow-hidden">
@@ -119,7 +120,7 @@ export default function BlogPage() {
             ))}
           </section>
         )}
-      </div>
+      </PageCanvas>
     </>
   );
 }

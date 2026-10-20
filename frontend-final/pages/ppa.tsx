@@ -9,11 +9,14 @@ import {
   FileText,
   Loader2,
   Map,
+  Scale,
   Wrench,
+  Zap,
   type LucideIcon,
 } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import PageIntro from "@/components/site/PageIntro";
+import PageCanvas from "@/components/site/PageCanvas";
 import {
   featuredFormFieldClass,
   featuredFormLabelClass,
@@ -50,6 +53,42 @@ const BENEFITS: Benefit[] = [
   },
 ];
 
+const PPA_STEPS = [
+  {
+    step: "01",
+    title: "Desktop review",
+    body:
+      "You submit basic land details. We check size, terrain, state, proximity to lines and whether the block looks viable for a utility-scale array before anyone travels.",
+  },
+  {
+    step: "02",
+    title: "Feasibility and grid",
+    body:
+      "For promising sites we run preliminary layout work, yield estimates and a grid connection conversation with the local network. You see plain-English feedback on timelines and risks.",
+  },
+  {
+    step: "03",
+    title: "Lease and build",
+    body:
+      "When both sides agree, we execute the PPA and lease, then finance and construct the farm. You receive scheduled lease and revenue-share payments while we operate the asset long term.",
+  },
+] as const;
+
+const PPA_FAQ = [
+  {
+    q: "Do I need to fund any of the build?",
+    a: "No. SunMac finances development and construction. Your role is providing land access under an agreed lease structure.",
+  },
+  {
+    q: "Can I keep farming part of the property?",
+    a: "Often yes. Arrays are sited on the clearest, lowest-value paddocks. We design around existing access, water and stock routes where possible.",
+  },
+  {
+    q: "How long does evaluation take?",
+    a: "Initial desktop feedback is typically within two business days. Full feasibility depends on grid and council timelines and can take several weeks for larger sites.",
+  },
+] as const;
+
 export default function PpaPage() {
   const [form, setForm] = useState({
     name: "",
@@ -76,7 +115,7 @@ export default function PpaPage() {
         land_size_acres: form.land_size_acres ? parseFloat(form.land_size_acres) : null,
       });
       setSubmitStatus("success");
-      toast.success("Inquiry sent — our PPA team will be in touch within 2 business days.");
+      toast.success("Inquiry sent. Our PPA team will be in touch within 2 business days.");
       setForm({
         name: "",
         email: "",
@@ -105,15 +144,65 @@ export default function PpaPage() {
           content="Host a utility solar farm on your rural land with $0 capital and guaranteed long-term lease returns."
         />
       </Head>
-      <div data-testid="ppa-page">
+      <PageCanvas data-testid="ppa-page">
         <PageIntro
           overline="PPA contracts"
           title="Turn vacant land into long-term solar revenue."
-          description="A Power Purchase Agreement (PPA) lets landowners host a utility-scale solar farm on their land — financed, built and operated entirely by SunMac Solar. You receive lease and revenue-share payments across the life of the project."
+          description="A Power Purchase Agreement (PPA) lets landowners host a utility-scale solar farm on their land, financed, built and operated entirely by SunMac Solar. You receive lease and revenue-share payments across the life of the project. We manage feasibility, grid applications, construction and long-term operations so you are not carrying project risk or upfront capital."
         />
 
-        <section className="section-pad bg-[#f5f5f0]">
-          <div className="container-final">
+        <section className="container-final pb-12 md:pb-16">
+          <Reveal>
+            <p className="overline">How it works</p>
+            <h2 className="display-lead mt-4 max-w-3xl">
+              <span className="font-semibold">From first enquiry to operating solar farm.</span>
+            </h2>
+            <p className="mt-5 max-w-none leading-relaxed text-[#57534e]">
+              Every site is different, but the path is consistent: we qualify the land quickly, only
+              advance serious opportunities, and keep you informed before anything is signed.
+            </p>
+          </Reveal>
+          <div className="mt-10 grid gap-5 lg:grid-cols-3">
+            {PPA_STEPS.map((s, i) => (
+              <Reveal key={s.step} delay={i * 0.05}>
+                <div className="card-lift surface-glass h-full p-8">
+                  <p className="font-display text-3xl font-light text-[#d97706]">{s.step}</p>
+                  <h3 className="mt-4 font-display text-xl font-medium">{s.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-[#57534e]">{s.body}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+          <div className="mt-8 grid gap-5 md:grid-cols-2">
+            <Reveal delay={0.08}>
+              <div className="surface-glass surface-glass--muted flex gap-4 p-6 md:p-8">
+                <Zap className="mt-0.5 h-6 w-6 shrink-0 text-[#166534]" />
+                <div>
+                  <p className="font-display text-lg font-medium">Steady income from underused land</p>
+                  <p className="mt-2 text-sm leading-relaxed text-[#57534e]">
+                    Marginal or hard-to-farm blocks can produce decades of predictable lease income
+                    without you operating plant equipment or trading power on the market.
+                  </p>
+                </div>
+              </div>
+            </Reveal>
+            <Reveal delay={0.12}>
+              <div className="surface-glass surface-glass--muted flex gap-4 p-6 md:p-8">
+                <Scale className="mt-0.5 h-6 w-6 shrink-0 text-[#166534]" />
+                <div>
+                  <p className="font-display text-lg font-medium">Clear roles in the agreement</p>
+                  <p className="mt-2 text-sm leading-relaxed text-[#57534e]">
+                    You grant access and receive payments. We carry development, compliance,
+                    insurance, maintenance and commercial performance of the solar farm.
+                  </p>
+                </div>
+              </div>
+            </Reveal>
+          </div>
+        </section>
+
+        <section className="page-band section-pad">
+          <div className="page-band__inner container-final">
             <Reveal>
               <p className="overline">Why landowners choose us</p>
               <h2 className="display-lead mt-4 max-w-3xl">
@@ -124,7 +213,7 @@ export default function PpaPage() {
               {BENEFITS.map((b, i) => (
                 <Reveal key={b.title} delay={i * 0.05}>
                   <div
-                    className="card-lift h-full rounded-[var(--radius-card)] border border-[#e7e5e4] bg-[#fdfbf7] p-8"
+                    className="card-lift surface-glass h-full p-8"
                     data-testid={`ppa-benefit-${i}`}
                   >
                     <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#166534]/10 text-[#166534]">
@@ -146,7 +235,12 @@ export default function PpaPage() {
               <h3 className="display-lead mt-4">
                 <span className="font-semibold">Does your land qualify?</span>
               </h3>
-              <ul className="space-y-3 text-[#57534e]">
+              <p className="text-[#57534e] leading-relaxed">
+                We are looking for parcels that can host arrays safely and connect without prohibitive
+                grid cost. You do not need perfect topography; gentle slopes and mixed grazing country
+                are common on successful projects.
+              </p>
+              <ul className="mt-6 space-y-3 text-[#57534e]">
                 {[
                   "20+ acres of clear, relatively flat land",
                   "Reasonable proximity to existing power lines (ideally within 5km)",
@@ -167,7 +261,7 @@ export default function PpaPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
-                className="contact-featured-form-bg overflow-hidden rounded-3xl border border-[#ffffff]/10 p-8 shadow-2xl shadow-black/60 md:p-12 lg:p-16"
+                className="contact-featured-form-bg featured-panel p-8 md:p-12 lg:p-16"
               >
                 <form
                   onSubmit={onSubmit}
@@ -286,7 +380,7 @@ export default function PpaPage() {
                         animate={{ opacity: 1, y: 0 }}
                         className="text-xl font-bold text-[#ffffff] sm:text-2xl md:text-3xl"
                       >
-                        Sent — our PPA team will be in touch within 2 business days.
+                        Sent. Our PPA team will be in touch within 2 business days.
                       </motion.p>
                     ) : submitStatus === "error" ? (
                       <motion.p
@@ -324,7 +418,28 @@ export default function PpaPage() {
             </Reveal>
           </div>
         </section>
-      </div>
+
+        <section className="container-final section-pad pb-24">
+          <Reveal>
+            <p className="overline">Common questions</p>
+            <h2 className="display-lead mt-4 max-w-3xl">
+              <span className="font-semibold">Quick answers for landowners.</span>
+            </h2>
+          </Reveal>
+          <div className="mt-10 space-y-4">
+            {PPA_FAQ.map((item, i) => (
+              <Reveal key={item.q} delay={i * 0.04}>
+                <div className="surface-glass p-6 md:p-8">
+                  <h3 className="font-display text-lg font-medium">{item.q}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-[#57534e] md:text-base">
+                    {item.a}
+                  </p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </section>
+      </PageCanvas>
     </>
   );
 }

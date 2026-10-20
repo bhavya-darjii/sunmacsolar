@@ -28,7 +28,7 @@ function GalleryCard({
       tabIndex={decorative ? -1 : undefined}
     >
       <figure className="w-[200px] sm:w-[220px] md:w-[240px] lg:w-[260px]">
-        <div className="relative aspect-[4/5] overflow-hidden rounded-[var(--radius-card)] bg-[#f5f5f0] shadow-sm ring-1 ring-[#e7e5e4]/80">
+        <div className="relative aspect-[4/5] overflow-hidden rounded-[var(--radius-card)] bg-white shadow-sm ring-1 ring-[#e7e5e4]/80">
           <Image
             src={item.src}
             alt={decorative ? "" : item.caption}

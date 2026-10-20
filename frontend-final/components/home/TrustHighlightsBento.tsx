@@ -16,11 +16,11 @@ const CARD_THEMES = [
     title: "text-white/90",
   },
   {
-    card: "bg-[#f5f5f0] text-[#1c1917]",
+    card: "bg-white text-[#1c1917] ring-1 ring-[#e7e5e4]",
     title: "text-[#1c1917]",
   },
   {
-    card: "bg-[#e7e5e4]/60 text-[#1c1917]",
+    card: "bg-white text-[#1c1917] ring-1 ring-[#e7e5e4]",
     title: "text-[#1c1917]",
   },
 ] as const;
@@ -94,10 +94,10 @@ function CecIllustration() {
   return (
     <div className="relative mx-auto h-28 w-36 shrink-0">
       <div
-        className="absolute inset-x-6 top-4 rounded-lg border border-white/20 bg-gradient-to-br from-[#fafaf9] to-[#e7e5e4] px-4 py-5 shadow-[0_8px_24px_rgba(0,0,0,0.2)]"
+        className="absolute inset-x-6 top-4 rounded-lg border border-white/20 bg-gradient-to-br from-white to-[#e7e5e4] px-4 py-5 shadow-[0_8px_24px_rgba(0,0,0,0.2)]"
         style={{ transform: "perspective(400px) rotateX(8deg) rotateY(6deg)" }}
       >
-        <div className="mx-auto h-8 w-8 rounded-full border-2 border-[#d97706]/50 bg-[#fdfbf7]" />
+        <div className="mx-auto h-8 w-8 rounded-full border-2 border-[#d97706]/50 bg-white" />
         <div className="mt-2 space-y-1">
           <div className="h-1 w-full rounded-full bg-[#d6d3d1]" />
           <div className="h-1 w-4/5 rounded-full bg-[#e7e5e4]" />
@@ -124,7 +124,7 @@ function InHouseIllustration() {
             width="48"
             height="28"
             rx="2"
-            fill="#f5f5f0"
+            fill="#ffffff"
             stroke="#78716c"
             strokeWidth="1.25"
           />

@@ -36,7 +36,7 @@ export default function JoeyChat() {
     <div className="fixed bottom-5 left-5 z-50" data-testid="joey-chat-root">
       {open && (
         <div
-          className="mb-3 w-[340px] max-w-[calc(100vw-2.5rem)] overflow-hidden rounded-[var(--radius-card)] border border-[#e7e5e4] bg-[#fdfbf7] shadow-2xl"
+          className="mb-3 w-[340px] max-w-[calc(100vw-2.5rem)] overflow-hidden rounded-[var(--radius-card)] border border-[#e7e5e4] bg-white shadow-2xl"
           data-testid="joey-chat-panel"
         >
           <div className="flex items-center gap-3 bg-[#1c1917] p-4 text-[#fdfbf7]">
@@ -68,7 +68,7 @@ export default function JoeyChat() {
           <div className="max-h-[60vh] overflow-y-auto p-5">
             {step === "intro" && (
               <div className="space-y-4" data-testid="joey-chat-intro">
-                <div className="rounded-2xl rounded-tl-md bg-[#f5f5f0] p-4 text-sm leading-relaxed">
+                <div className="rounded-2xl rounded-tl-md bg-white p-4 text-sm leading-relaxed ring-1 ring-[#e7e5e4]">
                   G&apos;day! I&apos;m Joey. Tell our team a bit about your project and we&apos;ll
                   come back within 48 hours with a realistic quote.
                 </div>
@@ -195,7 +195,7 @@ export default function JoeyChat() {
         className="group relative flex items-center gap-3 rounded-full bg-[#1c1917] py-1 pl-1 pr-5 text-[#fdfbf7] shadow-xl transition-colors hover:bg-[#d97706]"
       >
         <span className="relative">
-          <span className="block h-14 w-14 overflow-hidden rounded-full border-2 border-[#d97706] bg-[#f5f5f0]">
+          <span className="block h-14 w-14 overflow-hidden rounded-full border-2 border-[#d97706] bg-white">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={MASCOT.url} alt="Joey" className="h-full w-full object-cover" />
           </span>

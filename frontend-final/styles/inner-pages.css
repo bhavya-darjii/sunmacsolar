@@ -1,4 +1,4 @@
-/* Inner pages, ambient cream canvas + light glass surfaces (home / contact family) */
+/* Inner pages, unified white canvas + light glass surfaces */
 
 .inner-page {
   position: relative;
@@ -56,35 +56,35 @@
 }
 
 .surface-glass--muted {
-  background: rgba(245, 245, 240, 0.62);
+  background: rgba(255, 255, 255, 0.62);
   border-color: rgba(231, 229, 228, 0.9);
 }
 
 .surface-glass--inset {
   border-radius: 1rem;
   border: 1px solid rgba(255, 255, 255, 0.65);
-  background: rgba(253, 251, 247, 0.55);
+  background: rgba(255, 255, 255, 0.55);
   -webkit-backdrop-filter: blur(12px) saturate(140%);
   backdrop-filter: blur(12px) saturate(140%);
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.7) inset;
 }
 
 .surface-glass--panel {
-  background: rgba(245, 245, 240, 0.5);
+  background: rgba(255, 255, 255, 0.5);
   border-color: rgba(231, 229, 228, 0.75);
 }
 
 @supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
   .surface-glass {
-    background: rgba(253, 251, 247, 0.94);
+    background: rgba(255, 255, 255, 0.94);
   }
 
   .surface-glass--muted {
-    background: #f5f5f0;
+    background: #ffffff;
   }
 
   .surface-glass--inset {
-    background: #fdfbf7;
+    background: #ffffff;
   }
 }
 
@@ -98,10 +98,8 @@
   position: absolute;
   inset: 0;
   z-index: 0;
-  border-block: 1px solid rgba(255, 255, 255, 0.55);
-  background: rgba(245, 245, 240, 0.42);
-  -webkit-backdrop-filter: blur(14px) saturate(130%);
-  backdrop-filter: blur(14px) saturate(130%);
+  border-block: 1px solid rgba(231, 229, 228, 0.65);
+  background: #ffffff;
 }
 
 .page-band > .page-band__inner {
@@ -116,7 +114,7 @@
   font-weight: 600;
   line-height: 1.25rem;
   border: 1px solid #e7e5e4;
-  background: #f5f5f0;
+  background: #ffffff;
   color: #1c1917;
   box-shadow: 0 1px 2px rgba(28, 25, 23, 0.06);
   transition:
@@ -128,7 +126,7 @@
 
 @media (hover: hover) and (pointer: fine) {
   .filter-chip:not(.filter-chip--active):hover {
-    background: #fdfbf7;
+    background: #ffffff;
     border-color: #d6d3d1;
     box-shadow: 0 4px 12px rgba(28, 25, 23, 0.08);
   }

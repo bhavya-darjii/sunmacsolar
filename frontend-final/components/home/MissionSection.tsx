@@ -18,9 +18,9 @@ const unsplashFace = (id: string, alt: string): WhoWeAreAvatar => ({
 
 const WHO_WE_ARE_AVATARS: WhoWeAreAvatar[] = [
   {
-    src: "/images/joey.png",
+    src: "/images/joey-avatar.png",
     alt: `${MASCOT.name}, SunMac mascot`,
-    className: "object-cover object-[78%_center]",
+    className: "object-cover",
   },
   unsplashFace(
     "photo-1560250097-0b93528c311a",
@@ -50,7 +50,7 @@ export default function MissionSection() {
                 {WHO_WE_ARE_AVATARS.map((avatar, i) => (
                   <div
                     key={avatar.src}
-                    className="relative h-11 w-11 shrink-0 overflow-hidden rounded-full bg-[#e7e5e4] ring-2 ring-[#fdfbf7] shadow-sm"
+                    className="relative h-11 w-11 shrink-0 overflow-hidden rounded-full bg-[#e7e5e4] ring-2 ring-white shadow-sm"
                     style={{ zIndex: WHO_WE_ARE_AVATARS.length - i }}
                   >
                     <Image

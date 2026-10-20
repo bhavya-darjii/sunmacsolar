@@ -134,7 +134,7 @@ export default function ContactOfficeHoursBento() {
         </article>
 
         <article
-          className={`${cardBase} justify-between bg-[#f5f5f0] text-[#1c1917]`}
+          className={`${cardBase} justify-between bg-white text-[#1c1917] ring-1 ring-[#e7e5e4]`}
           data-testid="contact-hours-bento"
         >
           <div className="flex items-start justify-between gap-4">

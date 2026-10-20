@@ -21,7 +21,7 @@
   --color-surface-sky: #dce8f8;
   --color-footer: #1c1917;
   --color-cream: #fdfbf7;
-  --color-stone-muted: #f5f5f0;
+  --color-stone-muted: #ffffff;
   --radius-card: 1.75rem;
   --font-sans: "Manrope", "Outfit", sans-serif;
   --font-heading: "Outfit", "Manrope", sans-serif;
@@ -134,7 +134,7 @@
   }
 
   .input-final {
-    @apply w-full rounded-2xl border border-[#e7e5e4] bg-[#fdfbf7] px-4 py-3 outline-none transition-colors focus:border-[#d97706];
+    @apply w-full rounded-2xl border border-[#e7e5e4] bg-white px-4 py-3 outline-none transition-colors focus:border-[#d97706];
   }
 
   .btn-primary {

@@ -31,7 +31,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="flex min-h-screen flex-col bg-[#fdfbf7] text-[#1c1917]">
+      <div className="flex min-h-screen flex-col bg-white text-[#1c1917]">
         {!isHome && !isAdmin && <SiteHeader />}
         <main className="flex-1" data-testid="main-content">
           <Component {...pageProps} />

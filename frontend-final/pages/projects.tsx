@@ -99,7 +99,7 @@ export default function ProjectsPage() {
                   >
                     <div
                       className={cn(
-                        "flex h-14 w-14 items-center justify-center rounded-2xl bg-[#f5f5f0] shadow-sm ring-1 transition md:h-16 md:w-16",
+                        "flex h-14 w-14 items-center justify-center rounded-2xl bg-white shadow-sm ring-1 transition md:h-16 md:w-16",
                         isActive
                           ? "ring-[#d97706] ring-2"
                           : "ring-[#e7e5e4]/80 group-hover:ring-[#d6d3d1]"
@@ -145,7 +145,7 @@ export default function ProjectsPage() {
                       className="aspect-video h-full w-full object-cover lg:aspect-auto"
                       data-testid={`project-video-${p.id}`}
                     />
-                    <div className="absolute top-4 left-4 inline-flex items-center gap-1.5 rounded-full bg-[#fdfbf7]/95 px-3 py-1.5 text-xs font-medium backdrop-blur-md">
+                    <div className="absolute top-4 left-4 inline-flex items-center gap-1.5 rounded-full bg-white/95 px-3 py-1.5 text-xs font-medium backdrop-blur-md">
                       <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#d97706]" />{" "}
                       Project walkthrough
                     </div>

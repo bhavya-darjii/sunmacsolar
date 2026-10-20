@@ -79,8 +79,8 @@ export default function SiteHeader() {
         "transition-[transform,opacity] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
         footerHideT >= 0.98 && "pointer-events-none",
         scrolled
-          ? "border-b border-[#e7e5e4]/90 bg-[#fdfbf7]/92 backdrop-blur-xl shadow-sm"
-          : "border-b border-transparent bg-[#fdfbf7]"
+          ? "border-b border-[#e7e5e4]/90 bg-white/92 backdrop-blur-xl shadow-sm"
+          : "border-b border-transparent bg-white"
       )}
     >
       <div className="container-final flex h-16 items-center justify-between gap-4 md:h-[4.5rem]">
@@ -130,7 +130,7 @@ export default function SiteHeader() {
 
       {open && (
         <div
-          className="border-t border-[#e7e5e4] bg-[#fdfbf7] lg:hidden"
+          className="border-t border-[#e7e5e4] bg-white lg:hidden"
           data-testid="mobile-menu"
         >
           <div className="container-final flex flex-col gap-1 py-4">
@@ -146,7 +146,7 @@ export default function SiteHeader() {
                     "rounded-2xl px-4 py-3 text-sm font-medium",
                     isActive
                       ? "bg-[#1c1917] text-[#fdfbf7]"
-                      : "text-[#1c1917] hover:bg-[#f5f5f0]"
+                      : "text-[#1c1917] hover:bg-black/5"
                   )}
                 >
                   {item.label}

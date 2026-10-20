@@ -99,7 +99,7 @@ function KeyGate({ onUnlock }: { onUnlock: (key: string) => void }) {
   };
 
   return (
-    <div className="min-h-screen bg-[#FDFBF7] flex items-center justify-center px-4">
+    <div className="min-h-screen bg-white flex items-center justify-center px-4">
       <form
         onSubmit={submit}
         className="w-full max-w-sm bg-white border border-[#E7E5E4] rounded-2xl p-8"
@@ -116,7 +116,7 @@ function KeyGate({ onUnlock }: { onUnlock: (key: string) => void }) {
           onChange={(e) => setKey(e.target.value)}
           placeholder="Admin key"
           data-testid="admin-key-input"
-          className="mt-5 w-full rounded-xl border border-[#E7E5E4] bg-[#FDFBF7] px-4 py-3 text-sm focus:outline-none focus:border-[#D97706]"
+          className="mt-5 w-full rounded-xl border border-[#E7E5E4] bg-white px-4 py-3 text-sm focus:outline-none focus:border-[#D97706]"
         />
         <button
           type="submit"
@@ -171,7 +171,7 @@ function LeadsTable({
           {rows.map((l) => (
             <tr
               key={l.id}
-              className="border-b border-[#F5F5F0] align-top"
+              className="border-b border-[#E7E5E4] align-top"
               data-testid={`admin-lead-row-${l.id}`}
             >
               <td className="py-3 pr-4">
@@ -234,7 +234,7 @@ function PPATable({
           {rows.map((p) => (
             <tr
               key={p.id}
-              className="border-b border-[#F5F5F0] align-top"
+              className="border-b border-[#E7E5E4] align-top"
               data-testid={`admin-ppa-row-${p.id}`}
             >
               <td className="py-3 pr-4">
@@ -331,7 +331,7 @@ export default function AdminLeads() {
       <Head>
         <title>Leads Dashboard | SunMac Solar Admin</title>
       </Head>
-      <div className="min-h-screen bg-[#FDFBF7]" data-testid="admin-dashboard">
+      <div className="min-h-screen bg-white" data-testid="admin-dashboard">
         <header className="border-b border-[#E7E5E4] bg-white">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
             <div>

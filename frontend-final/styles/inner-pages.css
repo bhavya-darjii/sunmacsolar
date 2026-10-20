@@ -46,32 +46,26 @@
 
 .surface-glass {
   border-radius: var(--radius-card);
-  border: 1px solid rgba(255, 255, 255, 0.72);
-  background: rgba(255, 255, 255, 0.48);
-  -webkit-backdrop-filter: blur(18px) saturate(150%);
-  backdrop-filter: blur(18px) saturate(150%);
-  box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.85) inset,
-    0 12px 40px rgba(28, 25, 23, 0.07);
+  border: 1px solid #e7e5e4;
+  background: #ffffff;
+  box-shadow: 0 1px 2px rgba(28, 25, 23, 0.05);
 }
 
 .surface-glass--muted {
-  background: rgba(255, 255, 255, 0.62);
-  border-color: rgba(231, 229, 228, 0.9);
+  background: #ffffff;
+  border-color: #e7e5e4;
 }
 
 .surface-glass--inset {
   border-radius: 1rem;
-  border: 1px solid rgba(255, 255, 255, 0.65);
-  background: rgba(255, 255, 255, 0.55);
-  -webkit-backdrop-filter: blur(12px) saturate(140%);
-  backdrop-filter: blur(12px) saturate(140%);
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.7) inset;
+  border: 1px solid #e7e5e4;
+  background: #fdfbf7;
+  box-shadow: 0 1px 2px rgba(28, 25, 23, 0.03);
 }
 
 .surface-glass--panel {
-  background: rgba(255, 255, 255, 0.5);
-  border-color: rgba(231, 229, 228, 0.75);
+  background: #ffffff;
+  border-color: #e7e5e4;
 }
 
 @supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {

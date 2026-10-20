@@ -78,7 +78,7 @@ export default function MissionSection() {
         </Reveal>
       </div>
 
-      <Reveal delay={0.15} className="mt-14 border-t border-[#e7e5e4] pt-12 md:mt-16 md:pt-14">
+      <Reveal delay={0.15} className="mt-20 md:mt-28 lg:mt-30">
         <TrustHighlightsBento />
       </Reveal>
     </section>

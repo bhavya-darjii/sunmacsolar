@@ -28,7 +28,7 @@ export default function ProductsPage() {
           {PRODUCTS.map((p, i) => (
             <Reveal key={p.id} delay={i * 0.05}>
               <div
-                className="card-lift surface-glass grid items-center gap-6 md:grid-cols-12 md:gap-8"
+                className="card-lift grid items-center gap-6 rounded-[var(--radius-card)] bg-white border border-[#e7e5e4] shadow-sm hover:border-transparent md:grid-cols-12 md:gap-8"
                 data-testid={`product-card-${p.id}`}
               >
                 <div
@@ -80,7 +80,7 @@ export default function ProductsPage() {
                         {p.brands.map((b) => (
                           <div
                             key={b.name}
-                            className="surface-glass--inset p-3"
+                            className="rounded-xl border border-[#e7e5e4] bg-[#fdfbf7]/70 p-3 transition-colors hover:border-[#d6d3d1] hover:bg-white"
                           >
                             <div className="font-display text-sm font-semibold">{b.name}</div>
                             <div className="mt-0.5 text-xs text-[#57534e]">{b.spec}</div>
@@ -118,7 +118,7 @@ export default function ProductsPage() {
               {FINANCE_OPTIONS.map((f, i) => (
                 <Reveal key={f.id} delay={i * 0.08}>
                   <div
-                    className="card-lift surface-glass flex h-full flex-col p-8"
+                    className="card-lift flex h-full flex-col rounded-[var(--radius-card)] bg-white border border-[#e7e5e4] p-8 shadow-sm hover:border-transparent"
                     data-testid={`finance-card-${f.id}`}
                   >
                     <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#d97706]/10 text-[#d97706]">

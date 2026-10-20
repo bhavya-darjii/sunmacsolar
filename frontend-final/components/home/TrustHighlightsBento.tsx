@@ -16,11 +16,11 @@ const CARD_THEMES = [
     title: "text-white/90",
   },
   {
-    card: "bg-white text-[#1c1917] ring-1 ring-[#e7e5e4]",
+    card: "bg-[#f5f5f0] text-[#1c1917]",
     title: "text-[#1c1917]",
   },
   {
-    card: "bg-white text-[#1c1917] ring-1 ring-[#e7e5e4]",
+    card: "bg-[#e7e5e4]/60 text-[#1c1917]",
     title: "text-[#1c1917]",
   },
 ] as const;
@@ -124,7 +124,7 @@ function InHouseIllustration() {
             width="48"
             height="28"
             rx="2"
-            fill="#ffffff"
+            fill="#f5f5f0"
             stroke="#78716c"
             strokeWidth="1.25"
           />

@@ -175,7 +175,7 @@ export default function PpaPage() {
           </div>
           <div className="mt-8 grid gap-5 md:grid-cols-2">
             <Reveal delay={0.08}>
-              <div className="surface-glass surface-glass--muted flex gap-4 p-6 md:p-8">
+              <div className="card-lift surface-glass surface-glass--muted flex gap-4 p-6 md:p-8">
                 <Zap className="mt-0.5 h-6 w-6 shrink-0 text-[#166534]" />
                 <div>
                   <p className="font-display text-lg font-medium">Steady income from underused land</p>
@@ -187,7 +187,7 @@ export default function PpaPage() {
               </div>
             </Reveal>
             <Reveal delay={0.12}>
-              <div className="surface-glass surface-glass--muted flex gap-4 p-6 md:p-8">
+              <div className="card-lift surface-glass surface-glass--muted flex gap-4 p-6 md:p-8">
                 <Scale className="mt-0.5 h-6 w-6 shrink-0 text-[#166534]" />
                 <div>
                   <p className="font-display text-lg font-medium">Clear roles in the agreement</p>
@@ -429,7 +429,7 @@ export default function PpaPage() {
           <div className="mt-10 space-y-4">
             {PPA_FAQ.map((item, i) => (
               <Reveal key={item.q} delay={i * 0.04}>
-                <div className="surface-glass p-6 md:p-8">
+                <div className="card-lift surface-glass p-6 md:p-8">
                   <h3 className="font-display text-lg font-medium">{item.q}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-[#57534e] md:text-base">
                     {item.a}

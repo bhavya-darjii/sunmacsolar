@@ -80,7 +80,7 @@ const linkClass =
   "flex items-center gap-2.5 text-sm text-white/75 transition-colors hover:text-[#d97706]";
 
 const cardBase =
-  "card-lift flex h-full min-h-[280px] flex-col rounded-[var(--radius-card)] p-6 md:min-h-[320px] md:p-8";
+  "flex h-full min-h-[280px] flex-col rounded-[var(--radius-card)] p-6 md:min-h-[320px] md:p-8";
 
 export default function ContactOfficeHoursBento() {
   const telHref = `tel:${COMPANY.phone.replace(/\s/g, "")}`;
@@ -134,7 +134,7 @@ export default function ContactOfficeHoursBento() {
         </article>
 
         <article
-          className={`${cardBase} justify-between bg-white text-[#1c1917] ring-1 ring-[#e7e5e4]`}
+          className={`${cardBase} justify-between bg-[#f5f5f0] text-[#1c1917]`}
           data-testid="contact-hours-bento"
         >
           <div className="flex items-start justify-between gap-4">

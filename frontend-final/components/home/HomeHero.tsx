@@ -105,11 +105,11 @@ export default function HomeHero() {
       </div>
 
       <div className="absolute inset-x-0 bottom-0 z-10 pb-8 md:pb-10">
-        <div className="flex w-full flex-col items-stretch gap-3 px-5 sm:flex-row sm:items-center sm:justify-between sm:gap-4 md:px-8">
-          <p className="glass-surface-light hero-glass-pill w-fit max-w-full text-left text-sm font-medium leading-snug text-white/90 md:text-[15px]">
+        <div className="flex w-full items-center justify-center px-5 md:px-8">
+          {/* <p className="glass-surface-light hero-glass-pill w-fit max-w-full text-left text-sm font-medium leading-snug text-white/90 md:text-[15px]">
             Power your business, farm or remote home{" "}
             <span className="text-sunmac-amber">with the sun.</span>
-          </p>
+          </p> */}
 
           <Link href="/contact" className="glass-surface-light hero-quote-cta shrink-0">
             Request a free quote

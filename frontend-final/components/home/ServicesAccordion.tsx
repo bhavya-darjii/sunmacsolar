@@ -81,7 +81,7 @@ export default function ServicesAccordion() {
 
   return (
     <section
-      className="container-final border-t border-[#e7e5e4] pt-14 pb-20 md:pt-20 md:pb-28"
+      className="container-final pt-8 pb-14 md:pt-18 md:pb-18"
       data-testid="services-showcase"
     >
       <Reveal variant="rise" className="overflow-visible">

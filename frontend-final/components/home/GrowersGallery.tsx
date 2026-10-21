@@ -50,13 +50,13 @@ export default function GrowersGallery() {
   const marqueeInView = useInView(marqueeRef, { amount: 0.08, margin: "80px" });
 
   return (
-    <section className="overflow-hidden pb-24 md:pb-32">
+    <section className="overflow-hidden pb-14 md:pb-18">
       <div className="container-final">
         <Reveal variant="rise">
           <h2 className="display-lead mx-auto max-w-4xl text-center">
             Real systems, delivered across Australia.{" "}
             <span className="font-semibold">
-              from commercial rooftops and irrigation pivots to fully off-grid homesteads.
+              From commercial rooftops and irrigation pivots to fully off-grid homesteads.
             </span>
           </h2>
         </Reveal>

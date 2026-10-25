@@ -7,36 +7,7 @@
 }
 
 .inner-page__ambient {
-  pointer-events: none;
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  overflow: hidden;
-}
-
-.inner-page__ambient::before,
-.inner-page__ambient::after {
-  content: "";
-  position: absolute;
-  border-radius: 9999px;
-  filter: blur(80px);
-  opacity: 0.55;
-}
-
-.inner-page__ambient::before {
-  width: min(42rem, 70vw);
-  height: min(42rem, 70vw);
-  top: -12rem;
-  right: -10rem;
-  background: radial-gradient(circle, rgba(217, 119, 6, 0.14) 0%, transparent 70%);
-}
-
-.inner-page__ambient::after {
-  width: min(36rem, 65vw);
-  height: min(36rem, 65vw);
-  bottom: 8rem;
-  left: -12rem;
-  background: radial-gradient(circle, rgba(22, 101, 52, 0.1) 0%, transparent 70%);
+  display: none;
 }
 
 .inner-page > .inner-page__body {

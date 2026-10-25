@@ -1,4 +1,4 @@
-import Reveal from "@/components/Reveal";
+  import Reveal from "@/components/Reveal";
 
 interface BrandItem {
   id: string;
@@ -286,27 +286,22 @@ const BRANDS: BrandItem[] = [
     id: "sungrow",
     name: "Sungrow",
     svg: () => (
-      <svg
-        viewBox="0 0 150 36"
-        height="30"
+      <span
         aria-label="Sungrow"
         role="img"
-        className="shrink-0"
+        style={{
+          fontFamily: "'Outfit', 'Manrope', sans-serif",
+          fontWeight: 900,
+          fontSize: "21px",
+          letterSpacing: "0.03em",
+          color: "#f97316",
+          display: "inline-block",
+          lineHeight: 1,
+          whiteSpace: "nowrap",
+        }}
       >
-        <circle cx="20" cy="18" r="10" fill="#f97316" />
-        <circle cx="20" cy="18" r="5" fill="#ffffff" />
-        <text
-          x="38"
-          y="25"
-          fontFamily="'Outfit', sans-serif"
-          fontWeight="900"
-          fontSize="21"
-          letterSpacing="0.03em"
-          fill="#1c1917"
-        >
-          SUNGROW
-        </text>
-      </svg>
+        SUNGROW
+      </span>
     ),
   },
   {

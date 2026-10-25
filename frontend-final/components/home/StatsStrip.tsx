@@ -65,7 +65,7 @@ function StatCell({
   delay: number;
   inView: boolean;
 }) {
-  const count = useCountUp(stat.value, 4000, inView, stat.decimals);
+  const count = useCountUp(stat.value, 2200, inView, stat.decimals);
 
   return (
     <div

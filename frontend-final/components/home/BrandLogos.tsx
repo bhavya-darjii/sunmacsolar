@@ -287,16 +287,16 @@ const BRANDS: BrandItem[] = [
     name: "Sungrow",
     svg: () => (
       <svg
-        viewBox="0 0 140 36"
+        viewBox="0 0 150 36"
         height="30"
         aria-label="Sungrow"
         role="img"
         className="shrink-0"
       >
-        <circle cx="14" cy="18" r="10" fill="#f97316" />
-        <circle cx="14" cy="18" r="5" fill="#ffffff" />
+        <circle cx="20" cy="18" r="10" fill="#f97316" />
+        <circle cx="20" cy="18" r="5" fill="#ffffff" />
         <text
-          x="32"
+          x="38"
           y="25"
           fontFamily="'Outfit', sans-serif"
           fontWeight="900"

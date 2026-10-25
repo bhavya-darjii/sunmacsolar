@@ -167,7 +167,7 @@ export default function ServicesAccordion() {
                 <p className="mt-1 text-xs text-[#78716c]">{meta.statLabel}</p>
                 <Link
                   href="/products"
-                  className="mt-4 inline-flex items-center gap-1 rounded-full bg-[#1c1917] px-4 py-2 text-[11px] font-semibold tracking-wide text-[#fdfbf7] uppercase transition hover:bg-[#d97706]"
+                  className="mt-4 inline-flex items-center gap-1 rounded-full bg-[#1c1917] px-4 py-2 text-[11px] font-semibold tracking-wide text-white uppercase transition hover:bg-[#d97706]"
                 >
                   Know more
                   <ArrowUpRight className="h-3.5 w-3.5" aria-hidden />
@@ -185,7 +185,7 @@ export default function ServicesAccordion() {
 
               <Link
                 href="/contact"
-                className="h-fit rounded-full bg-[#1c1917] px-6 py-3 text-center text-sm font-semibold text-[#fdfbf7] transition hover:bg-[#d97706]"
+                className="h-fit rounded-full bg-[#d97706] px-6 py-3 text-center text-sm font-semibold text-white transition hover:bg-[#1c1917] hover:text-white"
               >
                 Request a quote
               </Link>

@@ -46,7 +46,7 @@ const PACKAGES: PackagePlan[] = [
     priceSuffix: "ex. GST",
     features: [
       { text: "30 kW Tier 1 monocrystalline solar array", icon: Sun },
-      { text: "15 kWh BYD HVM modular battery storage", icon: Battery },
+      { text: "100 kWh Fox ESS modular battery storage", icon: Battery },
       { text: "Commercial string inverter (SMA / Fronius)", icon: Zap },
       { text: "Network connection & DNSP approval included", icon: FileCheck },
       { text: "Turnkey installation by accredited electricians", icon: ShieldCheck },
@@ -69,7 +69,7 @@ const PACKAGES: PackagePlan[] = [
     priceSuffix: "ex. GST",
     features: [
       { text: "99 kW high-efficiency commercial rooftop array", icon: Sun },
-      { text: "50 kWh BYD modular battery storage bank", icon: Battery },
+      { text: "200 kWh Fox ESS modular battery storage bank", icon: Battery },
       { text: "3-phase smart inverter with cloud portal", icon: Zap },
       { text: "Structural engineering & council approvals", icon: FileCheck },
       { text: "In-house CEC team — zero sub-contractors", icon: ShieldCheck },

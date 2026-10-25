@@ -40,6 +40,12 @@ export default function HomeHero() {
 
   const [panelLinePct, setPanelLinePct] = useState(72);
 
+  // One-shot latch: once revealed, the button never hides again
+  const [btnRevealed, setBtnRevealed] = useState(false);
+  useEffect(() => {
+    if (show && !btnRevealed) setBtnRevealed(true);
+  }, [show, btnRevealed]);
+
   useEffect(() => {
     const el = sectionRef.current;
     if (!el) return;
@@ -111,9 +117,15 @@ export default function HomeHero() {
             <span className="text-sunmac-amber">with the sun.</span>
           </p> */}
 
-          <Link href="/contact" className="glass-surface-light hero-quote-cta shrink-0">
-            Request a free quote
-          </Link>
+          <motion.div
+            initial={false}
+            animate={btnRevealed ? { opacity: 1, y: 0 } : { opacity: 0, y: 32 }}
+            transition={{ duration: 0.9, delay: btnRevealed ? 0.45 : 0, ease }}
+          >
+            <Link href="/contact" className="hero-quote-cta shrink-0">
+              Request a free quote
+            </Link>
+          </motion.div>
         </div>
       </div>
     </section>

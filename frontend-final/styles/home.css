@@ -36,6 +36,17 @@
 
   padding-inline: clamp(0.75rem, 2.5vw, 2rem);
 
+  /* Keep rendering identical before, during, and after Framer Motion animation.
+     Without this, the browser tears down the compositor layer once opacity/transform
+     settle, which makes sub-pixel antialiasing recalculate and the text appears
+     to "thicken" visibly. Pinning the layer prevents that snap. */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: geometricPrecision;
+  transform: translateZ(0);
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+
 }
 
 

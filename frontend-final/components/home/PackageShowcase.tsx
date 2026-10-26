@@ -42,7 +42,7 @@ const PACKAGES: PackagePlan[] = [
     name: "Starter Commercial",
     subtitle: "Ideal for retail, workshops, and daytime commercial operations.",
     pricePrefix: "From",
-    price: "$28,500",
+    price: "$30,499",
     priceSuffix: "ex. GST",
     features: [
       { text: "30 kW Tier 1 monocrystalline solar array", icon: Sun },
@@ -65,7 +65,7 @@ const PACKAGES: PackagePlan[] = [
     name: "Growth Commercial",
     subtitle: "High-capacity generation & storage for agribusiness & manufacturing.",
     pricePrefix: "From",
-    price: "$82,000",
+    price: "$69,999",
     priceSuffix: "ex. GST",
     features: [
       { text: "99 kW high-efficiency commercial rooftop array", icon: Sun },
@@ -136,11 +136,10 @@ export default function PackageShowcase() {
                       <div className="package-badge-slot">
                         {pkg.badge ? (
                           <span
-                            className={`package-badge ${
-                              pkg.badge.variant === "amber"
+                            className={`package-badge ${pkg.badge.variant === "amber"
                                 ? "package-badge--amber"
                                 : "package-badge--soft"
-                            }`}
+                              }`}
                           >
                             {pkg.badge.text}
                           </span>
@@ -190,11 +189,10 @@ export default function PackageShowcase() {
                     {/* CTA Button */}
                     <Link
                       href={pkg.ctaHref}
-                      className={`package-cta-btn group ${
-                        pkg.featured
+                      className={`package-cta-btn group ${pkg.featured
                           ? "package-cta-btn--primary"
                           : "package-cta-btn--secondary"
-                      }`}
+                        }`}
                     >
                       <span>{pkg.ctaText}</span>
                       <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />

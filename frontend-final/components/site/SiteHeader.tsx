@@ -69,7 +69,8 @@ export default function SiteHeader() {
         opacity: 1 - footerHideT,
       }}
       className={cn(
-        "sticky top-0 z-50 will-change-[transform,opacity]",
+        // The white background runs up behind the status bar; the content stays below it
+        "sticky top-0 z-50 pt-[env(safe-area-inset-top)] will-change-[transform,opacity]",
         "transition-[transform,opacity] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
         footerHideT >= 0.98 && "pointer-events-none",
         scrolled

@@ -33,7 +33,9 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <QueryClientProvider client={queryClient}>
       <Head>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        {/* viewport-fit=cover lets the page run behind Safari's status bar and bottom toolbar;
+            headers, the menu and the footer pad themselves with env(safe-area-inset-*) */}
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
       </Head>
       <div className="flex min-h-screen flex-col bg-white text-[#1c1917]">
         {!isHome && !isAdmin && <SiteHeader />}

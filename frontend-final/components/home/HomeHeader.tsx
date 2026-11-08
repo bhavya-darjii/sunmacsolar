@@ -20,7 +20,7 @@ export default function HomeHeader({ heroInView = true, dateTime = null }: HomeH
 
   return (
 
-    <header className="absolute inset-x-0 top-0 z-30 pt-6 md:pt-8">
+    <header className="absolute inset-x-0 top-0 z-30 pt-[calc(1.5rem_+_env(safe-area-inset-top))] md:pt-[calc(2rem_+_env(safe-area-inset-top))]">
 
       <div className="container-final flex min-h-8 items-center justify-between gap-4 md:min-h-9">
 

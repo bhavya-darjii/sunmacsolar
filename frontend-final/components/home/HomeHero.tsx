@@ -45,11 +45,31 @@ export default function HomeHero() {
     if (show && !btnRevealed) setBtnRevealed(true);
   }, [show, btnRevealed]);
 
+  // While the photo is at the top of the screen, the page background (behind Safari's status bar
+  // and the overscroll bounce) matches the photo; once it scrolls away, it goes back to white.
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const root = document.documentElement;
+    const observer = new IntersectionObserver(
+      ([entry]) => root.classList.toggle("hero-scrolled", !entry.isIntersecting),
+      { rootMargin: "0px 0px -99% 0px" }
+    );
+    observer.observe(el);
+    return () => {
+      observer.disconnect();
+      root.classList.remove("hero-scrolled");
+    };
+  }, []);
+
   return (
     <section
       ref={sectionRef}
-      className="home-hero relative h-[100dvh] w-full min-h-[600px] bg-[#1c1917] max-md:portrait:h-[min(100svh,140vw)] max-md:portrait:min-h-[26rem]"
+      className="home-hero relative h-[100dvh] w-full min-h-[600px] bg-[#1c1917] max-md:portrait:h-[calc(min(100svh,140vw)_+_env(safe-area-inset-top))] max-md:portrait:min-h-[26rem]"
     >
+      {/* iOS phones: keeps Safari's bottom bar white while the white section below this shorter
+          hero sits behind it (the page background is the photo's colour at this point) */}
+      <div className="safari-bottom-white" aria-hidden />
       <div className="hero-background-shell absolute inset-0 overflow-hidden">
         <div className="hero-background-motion absolute inset-0">
           <Image
@@ -83,7 +103,7 @@ export default function HomeHero() {
                 {/* Phones have no room for the date in the header, so it sits above the word */}
                 <time
                   suppressHydrationWarning
-                  className="mb-1.5 block text-center text-xs font-semibold tracking-[0.2em] text-white/90 uppercase sm:hidden"
+                  className="mb-1 block text-center text-[10px] font-semibold tracking-[0.2em] text-white/90 uppercase sm:hidden"
                 >
                   {dateTime ?? " "}
                 </time>

@@ -126,7 +126,7 @@ export default function MobileNav({
           aria-modal="true"
           aria-label="Site menu"
           data-testid="mobile-menu"
-          className="fixed inset-0 z-[70] flex flex-col overflow-y-auto overscroll-contain bg-white text-[#1c1917]"
+          className="fixed inset-0 z-[70] flex flex-col overflow-y-auto overscroll-contain bg-white pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)] text-[#1c1917]"
           initial={reduceMotion ? { opacity: 1 } : { opacity: 0, y: -12 }}
           animate={{ opacity: 1, y: 0 }}
           exit={reduceMotion ? { opacity: 0, transition: { duration: 0 } } : { opacity: 0, y: -12 }}

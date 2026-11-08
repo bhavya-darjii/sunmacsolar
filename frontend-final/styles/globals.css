@@ -41,12 +41,13 @@
   }
 
   /*
-   * Safari (iOS 26) colours its status bar and bottom toolbar from a fixed or sticky element
-   * touching that edge, else from the page background, which is also what shows in the overscroll
-   * bounce. It reads the body's colour over the root's, so both are set. The page content always
-   * covers the body, so none of this changes how the page itself looks.
+   * Safari (iOS 26) paints a solid band behind its status bar or bottom toolbar in the colour of a
+   * fixed or sticky element touching that edge, so nothing is pinned to the edges: with
+   * viewport-fit=cover the page itself shows behind both bars. The page background is what shows
+   * past the ends of the page (the bounce). Safari reads the body's colour over the root's, so
+   * both are set; the page content always covers the body, so the page itself looks the same.
    * Home page: the hero photo's top-edge colour while the photo is at the top (HomeHero adds
-   * .hero-scrolled once it isn't). Black once the footer fills the screen (SiteFooter).
+   * .hero-scrolled once it isn't). Black while the footer is on screen (SiteFooter).
    */
   html:has(.home-hero):not(.hero-scrolled),
   html:has(.home-hero):not(.hero-scrolled) body {
@@ -61,15 +62,10 @@
     }
   }
 
-  html.footer-fills-screen,
-  html.footer-fills-screen body {
-    background-color: #000;
-  }
-
-  /* No bounce past the end of the page: on a fast flick it would flash the page background
-     before .footer-fills-screen catches up */
+  /* Black past the end of the page, and no bounce there at all, so a fast flick never flashes */
   html.footer-in-view,
   html.footer-in-view body {
+    background-color: #000;
     overscroll-behavior-y: none;
   }
 
@@ -149,49 +145,6 @@
     .container-final {
       padding-left: max(2rem, env(safe-area-inset-left));
       padding-right: max(2rem, env(safe-area-inset-right));
-    }
-  }
-
-  /* The black footer's top and bottom edges (SiteFooter). Sticky, so the moment the footer reaches
-     the bottom or top of the screen there's black on that edge for Safari to colour its bar from,
-     with no script to wait for. Black on black, so they're invisible. */
-  .footer-edge {
-    position: sticky;
-    z-index: 1;
-    flex-shrink: 0;
-    height: 12px;
-    background-color: #000;
-  }
-
-  .footer-edge--top {
-    top: 0;
-    margin-bottom: -12px;
-  }
-
-  .footer-edge--bottom {
-    bottom: 0;
-    margin-top: -12px;
-  }
-
-  /* iPhones, home page, while the shorter hero is at the top: the page background is the photo's
-     colour (for the status bar), so pin white to the bottom edge for the toolbar, over the white
-     section below the hero. Only where Safari paints its bar over it (iOS), never elsewhere. */
-  .safari-bottom-white {
-    display: none;
-  }
-
-  @supports (-webkit-touch-callout: none) {
-    @media (max-width: 767px) and (orientation: portrait) {
-      html:not(.hero-scrolled) .safari-bottom-white {
-        display: block;
-        position: fixed;
-        inset-inline: 0;
-        bottom: 0;
-        z-index: 40;
-        height: 12px;
-        background-color: #fff;
-        pointer-events: none;
-      }
     }
   }
 

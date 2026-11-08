@@ -53,25 +53,19 @@ function FooterLinkList({
 export default function SiteFooter() {
   const footerRef = useRef<HTMLElement>(null);
 
-  // Safari's bars (globals.css): .footer-in-view turns off the bounce past the end of the page;
-  // .footer-fills-screen turns the page background black once the footer covers the screen.
+  // While the footer is on screen (globals.css): black page background and no bounce past the
+  // end of the page. Set a whole screen before the end, so a fast flick never catches it white.
   useEffect(() => {
     const footer = footerRef.current;
     if (!footer) return;
     const root = document.documentElement;
-    const inView = new IntersectionObserver(([entry]) => {
+    const observer = new IntersectionObserver(([entry]) => {
       root.classList.toggle("footer-in-view", entry.isIntersecting);
     });
-    const fillsScreen = new IntersectionObserver(
-      ([entry]) => root.classList.toggle("footer-fills-screen", entry.isIntersecting),
-      { rootMargin: "0px 0px -99% 0px" }
-    );
-    inView.observe(footer);
-    fillsScreen.observe(footer);
+    observer.observe(footer);
     return () => {
-      inView.disconnect();
-      fillsScreen.disconnect();
-      root.classList.remove("footer-in-view", "footer-fills-screen");
+      observer.disconnect();
+      root.classList.remove("footer-in-view");
     };
   }, []);
 
@@ -81,7 +75,6 @@ export default function SiteFooter() {
       data-testid="site-footer"
       className="flex min-h-dvh flex-col bg-black text-[#fdfbf7]"
     >
-      <div className="footer-edge footer-edge--top" aria-hidden />
       <div className="container-final shrink-0 pt-6 md:pt-8">
         <Reveal>
           <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] lg:gap-10">
@@ -143,8 +136,6 @@ export default function SiteFooter() {
           <FooterAustraliaFlags />
         </div>
       </div>
-
-      <div className="footer-edge footer-edge--bottom" aria-hidden />
     </footer>
   );
 }

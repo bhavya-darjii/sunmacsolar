@@ -67,9 +67,6 @@ export default function HomeHero() {
       ref={sectionRef}
       className="home-hero relative h-[100dvh] w-full min-h-[600px] bg-[#1c1917] max-md:portrait:h-[calc(min(100svh,140vw)_+_env(safe-area-inset-top))] max-md:portrait:min-h-[26rem]"
     >
-      {/* iOS phones: keeps Safari's bottom bar white while the white section below this shorter
-          hero sits behind it (the page background is the photo's colour at this point) */}
-      <div className="safari-bottom-white" aria-hidden />
       <div className="hero-background-shell absolute inset-0 overflow-hidden">
         <div className="hero-background-motion absolute inset-0">
           <Image

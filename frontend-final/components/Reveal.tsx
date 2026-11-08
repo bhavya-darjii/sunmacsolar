@@ -36,21 +36,21 @@ export default function Reveal({
     : { opacity: 0, y };
   const shown = { opacity: 1, y: 0 };
 
-  if (reduceMotion) {
-    return (
-      <div className={className} data-in-view data-reveal-instant>
-        {children}
-      </div>
-    );
-  }
-
+  // Reduced motion still renders the same motion.div as the server did. Swapping
+  // to a plain <div> here caused a hydration mismatch that React never patches,
+  // leaving the server's `opacity: 0` in place, so content stayed invisible for
+  // anyone with "Reduce Motion" turned on (common on phones).
   return (
     <motion.div
       ref={ref}
       className={`overflow-visible ${className}`.trim()}
       initial={hidden}
-      animate={inView ? shown : hidden}
-      transition={{ duration: 0.75, delay: inView ? delay : 0, ease }}
+      animate={reduceMotion || inView ? shown : hidden}
+      transition={
+        reduceMotion
+          ? { duration: 0 }
+          : { duration: 0.75, delay: inView ? delay : 0, ease }
+      }
       data-in-view={inView ? "" : undefined}
       data-reveal-instant={inView ? "" : undefined}
     >

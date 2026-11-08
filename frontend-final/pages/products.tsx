@@ -32,7 +32,8 @@ export default function ProductsPage() {
                 data-testid={`product-card-${p.id}`}
               >
                 <div
-                  className={`relative m-4 aspect-[4/3] min-h-[240px] overflow-hidden rounded-[var(--radius-card)] ring-1 ring-[#e7e5e4]/60 md:col-span-6 md:m-6 md:aspect-auto md:min-h-[320px] ${i % 2 === 1 ? "md:order-2" : ""}`}
+                  // No min-height below md: combined with aspect-ratio it forced a 320px minimum width and overflowed small phones
+                  className={`relative m-4 aspect-[4/3] overflow-hidden rounded-[var(--radius-card)] ring-1 ring-[#e7e5e4]/60 md:col-span-6 md:m-6 md:aspect-auto md:min-h-[320px] ${i % 2 === 1 ? "md:order-2" : ""}`}
                 >
                   <Image
                     src={p.image}
@@ -50,8 +51,8 @@ export default function ProductsPage() {
                   <p className="mt-4 text-[#57534e]">{p.desc}</p>
                   <ul className="mt-6 space-y-2">
                     {p.points.map((pt) => (
-                      <li key={pt} className="flex items-center gap-2 text-sm text-[#1c1917]">
-                        <Check className="h-4 w-4 text-[#166534]" /> {pt}
+                      <li key={pt} className="flex items-start gap-2 text-sm text-[#1c1917]">
+                        <Check className="mt-0.5 h-4 w-4 shrink-0 text-[#166534]" /> {pt}
                       </li>
                     ))}
                   </ul>
@@ -118,7 +119,7 @@ export default function ProductsPage() {
               {FINANCE_OPTIONS.map((f, i) => (
                 <Reveal key={f.id} delay={i * 0.08}>
                   <div
-                    className="card-lift flex h-full flex-col rounded-[var(--radius-card)] bg-white border border-[#e7e5e4] p-8 shadow-sm hover:border-transparent"
+                    className="card-lift flex h-full flex-col rounded-[var(--radius-card)] bg-white border border-[#e7e5e4] p-6 shadow-sm hover:border-transparent sm:p-8"
                     data-testid={`finance-card-${f.id}`}
                   >
                     <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#d97706]/10 text-[#d97706]">

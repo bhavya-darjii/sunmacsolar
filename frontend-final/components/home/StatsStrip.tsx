@@ -69,7 +69,7 @@ function StatCell({
 
   return (
     <div
-      className="stats-cell flex flex-col items-center text-center px-2 sm:px-4 lg:px-5 xl:px-8 py-6 lg:py-0"
+      className="stats-cell flex flex-col items-center text-center px-1.5 sm:px-4 lg:px-5 xl:px-8 py-5 sm:py-6 lg:py-0"
       style={{
         animation: inView
           ? `stats-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) ${delay}s both`
@@ -111,7 +111,7 @@ export default function StatsStrip() {
     >
       <div className="container-final max-w-[96rem] px-4 sm:px-6 lg:px-8">
         {/* Section Heading */}
-        <div className="text-center max-w-4xl mx-auto mb-12 md:mb-16">
+        <div className="text-center max-w-4xl mx-auto mb-8 sm:mb-12 md:mb-16">
           <Reveal variant="rise">
             <h2 className="display-lead">
               Our impact.{" "}

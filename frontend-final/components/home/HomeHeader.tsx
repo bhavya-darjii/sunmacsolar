@@ -10,6 +10,7 @@ import { useRouter } from "next/router";
 
 
 import NavPillMenu from "@/components/site/NavPillMenu";
+import MobileNav from "@/components/site/MobileNav";
 
 
 
@@ -103,7 +104,7 @@ export default function HomeHeader({ heroInView = true }: HomeHeaderProps) {
 
           transition={{ duration: 0.6, delay: heroInView ? 0 : 0, ease: [0.22, 1, 0.36, 1] }}
 
-          className="flex min-w-0 max-w-[55%] items-center gap-3 md:max-w-none md:gap-4"
+          className="flex min-w-0 items-center gap-3 md:gap-4"
 
         >
 
@@ -129,13 +130,14 @@ export default function HomeHeader({ heroInView = true }: HomeHeaderProps) {
             </div>
           </Link>
 
-          <span className="hidden h-5 w-px shrink-0 bg-white/35 sm:block" aria-hidden />
+          {/* Date/time only where it fits untruncated: hidden on phones and beside the md pill nav */}
+          <span className="hidden h-5 w-px shrink-0 bg-white/35 sm:block md:hidden lg:block" aria-hidden />
 
           <time
 
             suppressHydrationWarning
 
-            className="truncate text-[11px] font-semibold tracking-[0.2em] text-white/90 uppercase sm:text-xs"
+            className="hidden truncate text-[11px] font-semibold tracking-[0.2em] text-white/90 uppercase sm:block sm:text-xs md:hidden lg:block"
 
           >
 
@@ -150,6 +152,20 @@ export default function HomeHeader({ heroInView = true }: HomeHeaderProps) {
         <div className="hidden shrink-0 md:block">
           <NavPillMenu pathname={pathname} variant="home" />
         </div>
+
+        <motion.div
+          initial={false}
+          animate={heroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -12 }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="shrink-0 md:hidden"
+        >
+          <MobileNav
+            pathname={pathname}
+            variant="home"
+            closeAt={768}
+            data-testid="home-mobile-menu-toggle"
+          />
+        </motion.div>
 
       </div>
 

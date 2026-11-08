@@ -10,7 +10,9 @@ export default function EnergyTransition() {
     <section className="container-final pb-20 md:pb-28">
       <Reveal variant="rise" once>
         <div className="relative overflow-hidden rounded-[var(--radius-card)]">
-          <div className="relative aspect-[16/7] min-h-[240px] md:aspect-[21/9] md:min-h-[320px]">
+          {/* w-full matters: with only aspect-ratio + min-height, the browser derives a minimum
+              width from the min-height (240px × 16/7 ≈ 549px), overflowing phones and cropping the text */}
+          <div className="relative aspect-[16/7] min-h-[280px] w-full sm:min-h-[260px] md:aspect-[21/9] md:min-h-[320px]">
             <Image
               src={BANNER_IMAGE}
               alt="Commercial solar panels on a warehouse rooftop"
@@ -20,8 +22,8 @@ export default function EnergyTransition() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#1c1917]/55 via-[#1c1917]/15 to-transparent" />
 
-            <div className="absolute inset-x-0 bottom-0 z-10 flex flex-col items-center gap-5 px-5 pb-8 md:gap-6 md:px-8 md:pb-12">
-              <p className="max-w-3xl text-center font-display text-xl font-medium leading-snug text-white md:text-3xl md:leading-snug lg:text-[2rem]">
+            <div className="absolute inset-x-0 bottom-0 z-10 flex flex-col items-center gap-5 px-5 pb-7 md:gap-6 md:px-8 md:pb-12">
+              <p className="max-w-3xl text-center font-display text-xl font-medium leading-snug text-white max-md:text-balance md:text-3xl md:leading-snug lg:text-[2rem]">
                 Talk to an engineer, not a salesperson, with realistic designs and quotes within 48
                 hours.
               </p>

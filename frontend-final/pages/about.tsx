@@ -66,7 +66,7 @@ export default function AboutPage() {
               </p>
             </Reveal>
             <Reveal delay={0.1} className="md:col-span-5">
-              <div className="card-lift surface-glass surface-glass--muted p-8">
+              <div className="card-lift surface-glass surface-glass--muted p-6 sm:p-8">
                 <p className="overline">Installation division</p>
                 <div className="mt-3 font-display text-2xl">{COMPANY.partner.name}</div>
                 <p className="mt-2 text-sm text-[#57534e]">{COMPANY.partner.role}</p>
@@ -92,7 +92,7 @@ export default function AboutPage() {
               {VALUES.map((v, i) => (
                 <Reveal key={v.title} delay={i * 0.05}>
                   <div
-                    className="card-lift surface-glass h-full p-8"
+                    className="card-lift surface-glass h-full p-6 sm:p-8"
                     data-testid={`value-${i}`}
                   >
                     <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#d97706]/10 text-[#d97706]">

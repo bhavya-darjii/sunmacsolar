@@ -117,9 +117,9 @@
   backdrop-filter: blur(8px);
 }
 
+/* No overflow clipping: the contact form's service dropdown must be able to extend past the panel */
 .featured-panel {
   position: relative;
-  overflow: hidden;
   border-radius: 1.5rem;
   border: 1px solid rgba(255, 255, 255, 0.1);
   background: #000000;

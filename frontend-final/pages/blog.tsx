@@ -65,7 +65,7 @@ export default function BlogPage() {
             <Reveal>
               <Link
                 href={`/blog/${featured.slug}`}
-                className="card-lift surface-glass group grid items-center gap-8 overflow-hidden md:grid-cols-12"
+                className="card-lift surface-glass group grid items-center overflow-hidden md:grid-cols-12 md:gap-8"
                 data-testid="blog-featured"
               >
                 <div className="relative aspect-[16/10] overflow-hidden md:col-span-7">
@@ -77,7 +77,7 @@ export default function BlogPage() {
                     sizes="(max-width: 768px) 100vw, 700px"
                   />
                 </div>
-                <div className="p-8 md:col-span-5 md:p-12">
+                <div className="p-6 sm:p-8 md:col-span-5 md:p-12">
                   <p className="overline">Featured</p>
                   <h2 className="mt-3 font-display text-2xl font-medium tracking-tight sm:text-3xl">
                     {featured.title}

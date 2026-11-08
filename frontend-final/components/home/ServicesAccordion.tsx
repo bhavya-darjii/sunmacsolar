@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import {
   ArrowUpRight,
@@ -9,7 +9,7 @@ import {
   Sun,
   type LucideIcon,
 } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import Reveal from "@/components/Reveal";
 import { cn } from "@/lib/utils";
 import { SERVICES } from "@/data/site";
@@ -59,6 +59,28 @@ const PANEL_META: Record<
 export default function ServicesAccordion() {
   const [active, setActive] = useState<ServiceId>("commercial");
   const [paused, setPaused] = useState(false);
+  const reduceMotion = useReducedMotion();
+  const stripRef = useRef<HTMLDivElement>(null);
+  const tabRefs = useRef(new Map<ServiceId, HTMLButtonElement>());
+  const skipFirstScroll = useRef(true);
+
+  // On phones the tab strip scrolls sideways: keep the active tab in view as it
+  // auto-rotates. Only the strip scrolls, never the page.
+  useEffect(() => {
+    if (skipFirstScroll.current) {
+      skipFirstScroll.current = false;
+      return;
+    }
+    const strip = stripRef.current;
+    const tab = tabRefs.current.get(active);
+    if (!strip || !tab || strip.scrollWidth <= strip.clientWidth + 1) return;
+    const stripRect = strip.getBoundingClientRect();
+    const tabRect = tab.getBoundingClientRect();
+    strip.scrollTo({
+      left: strip.scrollLeft + (tabRect.left - stripRect.left) - (stripRect.width - tabRect.width) / 2,
+      behavior: reduceMotion ? "auto" : "smooth",
+    });
+  }, [active, reduceMotion]);
 
   useEffect(() => {
     if (paused) return undefined;
@@ -91,13 +113,18 @@ export default function ServicesAccordion() {
         </h2>
       </Reveal>
 
-      <div className="-mx-4 flex justify-center overflow-x-auto overflow-y-visible px-4 md:mx-0 md:overflow-visible md:px-0">
+      <div
+        ref={stripRef}
+        className="services-tab-strip -mx-4 flex justify-center overflow-x-auto overflow-y-visible px-4 md:mx-0 md:overflow-visible md:px-0"
+      >
         <div
-          className="services-tab-strip flex w-max max-w-full gap-4 pb-2 md:gap-5"
+          className="flex w-max max-w-full gap-4 pb-2 md:gap-5"
           role="tablist"
           aria-label="Solar services"
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
+          // Touch has no mouseleave: once someone swipes or taps here, stop auto-advancing
+          onPointerDown={(e) => e.pointerType !== "mouse" && setPaused(true)}
         >
         {SERVICE_IDS.map((itemId) => {
           const item = SERVICES.find((s) => s.id === itemId);
@@ -110,6 +137,10 @@ export default function ServicesAccordion() {
           return (
             <button
               key={itemId}
+              ref={(node) => {
+                if (node) tabRefs.current.set(itemId, node);
+                else tabRefs.current.delete(itemId);
+              }}
               type="button"
               role="tab"
               id={`service-tab-${itemId}`}

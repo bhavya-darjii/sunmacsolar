@@ -30,12 +30,13 @@ function FooterLinkList({
   links: { label: string; href: string }[];
 }) {
   return (
-    <ul className="space-y-2">
+    <ul>
       {links.map((link) => (
         <li key={link.label}>
+          {/* Padding instead of list spacing: same 28px rhythm, but a taller tap target */}
           <Link
             href={link.href}
-            className="text-sm text-white/70 transition hover:text-white"
+            className="block w-fit py-1 text-sm text-white/70 transition hover:text-white"
             {...(link.href.startsWith("http")
               ? { target: "_blank", rel: "noreferrer" }
               : {})}
@@ -62,22 +63,23 @@ export default function SiteFooter() {
               <span className="block text-white/40">Built in Australia.</span>
             </p>
 
-            <div className="mx-auto w-full max-w-md text-center lg:max-w-lg">
+            <div className="w-full lg:mx-auto lg:max-w-lg lg:text-center">
               <p className="text-[11px] font-semibold tracking-[0.12em] text-white/45 uppercase">
                 Explore
               </p>
-              <div className="mt-4 grid grid-cols-2 gap-x-8 gap-y-2 text-left sm:gap-x-12">
+              <div className="mt-3 grid grid-cols-2 gap-x-8 gap-y-2 text-left sm:gap-x-12">
                 <FooterLinkList links={EXPLORE_COL_1} />
                 <FooterLinkList links={EXPLORE_COL_2} />
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-6 sm:gap-10 lg:justify-self-end lg:text-left">
+            {/* Phones: wrap instead of a fixed 2-col grid, the email address is wider than half of a 360–375px screen */}
+            <div className="flex flex-wrap gap-8 sm:grid sm:grid-cols-2 sm:gap-10 lg:justify-self-end lg:text-left">
               <div>
                 <p className="text-[11px] font-semibold tracking-[0.12em] text-white/45 uppercase">
                   Contact
                 </p>
-                <div className="mt-4">
+                <div className="mt-3">
                   <FooterLinkList links={CONTACT_LINKS} />
                 </div>
               </div>
@@ -85,7 +87,7 @@ export default function SiteFooter() {
                 <p className="text-[11px] font-semibold tracking-[0.12em] text-white/45 uppercase">
                   Company
                 </p>
-                <div className="mt-4">
+                <div className="mt-3">
                   <FooterLinkList links={COMPANY_LINKS} />
                 </div>
               </div>

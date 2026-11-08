@@ -62,7 +62,7 @@ export default function ProjectDetailPage() {
             />
           )}
           <div className="absolute inset-0 bg-gradient-to-t from-[#1c1917]/95 via-[#1c1917]/40 to-transparent" />
-          <div className="absolute right-0 bottom-0 left-0 container-final pb-12">
+          <div className="absolute right-0 bottom-0 left-0 container-final pb-10 md:pb-12">
             <Reveal>
               <Link
                 href="/projects"
@@ -72,7 +72,7 @@ export default function ProjectDetailPage() {
                 <ArrowLeft className="h-4 w-4" /> All projects
               </Link>
               <p className="overline mt-4 text-[#fbbf24]">{project.category}</p>
-              <h1 className="mt-3 max-w-4xl font-display text-4xl font-light leading-tight text-[#fdfbf7] sm:text-5xl lg:text-6xl">
+              <h1 className="mt-3 max-w-4xl font-display text-[2rem] font-light leading-tight text-[#fdfbf7] sm:text-5xl lg:text-6xl">
                 {project.title}
               </h1>
               <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-[#d6d3d1]">
@@ -87,9 +87,9 @@ export default function ProjectDetailPage() {
           </div>
         </section>
 
-        <section className="container-final grid gap-12 py-16 lg:grid-cols-12">
+        <section className="container-final grid gap-10 py-12 md:py-16 lg:grid-cols-12 lg:gap-12">
           <Reveal className="space-y-5 lg:col-span-7">
-            <p className="text-xl leading-relaxed text-[#57534e]">{project.summary}</p>
+            <p className="text-lg leading-relaxed text-[#57534e] md:text-xl">{project.summary}</p>
             {project.description && (
               <div className="leading-relaxed whitespace-pre-line text-[#1c1917]">
                 {project.description}
@@ -124,10 +124,10 @@ export default function ProjectDetailPage() {
 
         {related.length > 0 && (
           <section className="page-band">
-            <div className="page-band__inner container-final py-16">
+            <div className="page-band__inner container-final py-12 md:py-16">
               <p className="overline">More {project.category.toLowerCase()} projects</p>
-              <h3 className="mt-3 font-display text-3xl font-medium">You may also like</h3>
-              <div className="mt-10 grid gap-6 md:grid-cols-3">
+              <h3 className="mt-3 font-display text-2xl font-medium sm:text-3xl">You may also like</h3>
+              <div className="mt-8 grid gap-6 md:mt-10 md:grid-cols-3">
                 {related.map((p) => (
                   <Link
                     key={p.id}

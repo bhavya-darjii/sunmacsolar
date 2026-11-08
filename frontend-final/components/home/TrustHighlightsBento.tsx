@@ -237,7 +237,8 @@ function TrustDiagram({ id }: { id: TrustId }) {
 
 export default function TrustHighlightsBento() {
   return (
-    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
+    // Phones get a compact 2×2 bento instead of four tall stacked cards
+    <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4 lg:gap-5">
       {TRUST_ITEMS.map((item, index) => {
         const theme = themeForIndex(index);
 
@@ -245,15 +246,18 @@ export default function TrustHighlightsBento() {
           <article
             key={item.id}
             className={cn(
-              "card-lift flex min-h-[280px] flex-col justify-between rounded-[var(--radius-card)] p-6 md:min-h-[320px] md:p-8",
+              "card-lift flex min-h-[200px] flex-col justify-between rounded-[var(--radius-card)] p-4 sm:min-h-[280px] sm:p-6 md:min-h-[320px] md:p-8",
               theme.card
             )}
           >
-            <h4 className={`font-display text-lg font-semibold leading-snug md:text-xl ${theme.title}`}>
+            <h4
+              className={`font-display text-[0.9375rem] font-semibold leading-snug sm:text-lg md:text-xl ${theme.title}`}
+            >
               {item.title}
             </h4>
 
-            <div className="flex flex-1 items-center justify-center py-3 md:py-4">
+            {/* zoom (not transform) so the illustration's layout box shrinks with it */}
+            <div className="flex flex-1 items-center justify-center py-2 max-sm:[zoom:0.72] sm:py-3 md:py-4">
               <TrustDiagram id={item.id} />
             </div>
           </article>

@@ -360,6 +360,7 @@ export default function BrandLogos() {
                 key={`${brand.id}-${index}`}
                 className="brand-logo-item"
                 title={brand.name}
+                data-dup={index >= BRANDS.length ? "" : undefined}
               >
                 <SvgComponent />
               </div>

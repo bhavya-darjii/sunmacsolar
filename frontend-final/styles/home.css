@@ -143,14 +143,13 @@
 
 
 
-.hero-quote-cta:hover {
-
-  background-color: #d97706;
-
-  color: #ffffff;
-
-  border-color: #d97706;
-
+/* Hover effects only on devices that truly hover, so a tap on a phone doesn't leave them stuck on */
+@media (hover: hover) {
+  .hero-quote-cta:hover {
+    background-color: #d97706;
+    color: #ffffff;
+    border-color: #d97706;
+  }
 }
 
 
@@ -291,8 +290,13 @@
 
   margin-left: 1rem;
 
-  transform: translateX(1.25rem);
+}
 
+/* Optical nudge into the gutter only where the gutter is wide enough (on phones it pushed the flags off-screen) */
+@media (min-width: 768px) {
+  .footer-flags {
+    transform: translateX(1.25rem);
+  }
 }
 
 
@@ -355,16 +359,21 @@
 
 
 
-.card-lift:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12);
-  border-color: transparent;
+@media (hover: hover) {
+  .card-lift:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12);
+    border-color: transparent;
+  }
 }
 
 
 
+/* Applied to the element that actually scrolls (phones); a no-op once tabs fit */
 .services-tab-strip {
-  scroll-snap-type: x mandatory;
+  scroll-snap-type: x proximity;
+  scroll-padding-inline: 1rem;
+  overscroll-behavior-x: contain;
   scrollbar-width: none;
 }
 
@@ -438,10 +447,10 @@
 
 
 
-.growers-marquee-track:hover {
-
-  animation-play-state: paused;
-
+@media (hover: hover) {
+  .growers-marquee-track:hover {
+    animation-play-state: paused;
+  }
 }
 
 .growers-marquee-viewport:not(.is-in-view) .growers-marquee-track {
@@ -498,19 +507,56 @@
 
 }
 
+@media (prefers-reduced-motion: reduce) {
+  /* The second copy only exists to make the marquee loop seamlessly */
+  .growers-marquee-track > [aria-hidden="true"] {
+    display: none;
+  }
+}
+
+/* Phones with reduced motion: a swipeable row instead of a very tall wrapped column */
+@media (prefers-reduced-motion: reduce) and (max-width: 767px) {
+  .growers-marquee-viewport {
+    justify-content: flex-start;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 1.25rem;
+    scrollbar-width: none;
+  }
+
+  .growers-marquee-viewport::-webkit-scrollbar {
+    display: none;
+  }
+
+  .growers-marquee-track {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    width: max-content;
+    max-width: none;
+    margin-inline: 0;
+  }
+
+  .growers-marquee-track > a {
+    scroll-snap-align: start;
+  }
+}
+
 /* Meet Joey, DiscoverySection */
 .home-discovery-joey {
   position: relative;
   isolation: isolate;
-  min-height: 22rem;
+  /* Taller on phones so Joey stays visible above the text panel */
+  min-height: 31rem;
   background-color: #1c1917;
   content-visibility: auto;
-  contain-intrinsic-size: auto 28rem;
+  contain-intrinsic-size: auto 31rem;
 }
 
 @media (min-width: 768px) {
   .home-discovery-joey {
     min-height: 28rem;
+    contain-intrinsic-size: auto 28rem;
   }
 }
 
@@ -519,7 +565,14 @@
   position: absolute;
   inset: 0;
   z-index: 0;
-  background: url("/images/joey.png") 78% center / cover no-repeat;
+  /* Narrow screens crop the wide image hard, shift right to keep Joey in frame */
+  background: url("/images/joey.png") 86% center / cover no-repeat;
+}
+
+@media (min-width: 768px) {
+  .home-discovery-joey::before {
+    background-position: 78% center;
+  }
 }
 
 .home-discovery-joey__overlay {
@@ -535,14 +588,15 @@
   z-index: 2;
   display: flex;
   min-height: inherit;
-  align-items: center;
-}
-
-.home-discovery-joey__content {
-  margin-left: -0.75rem;
+  /* Phones: panel sits at the bottom, leaving Joey visible above it */
+  align-items: flex-end;
 }
 
 @media (min-width: 768px) {
+  .home-discovery-joey__inner {
+    align-items: center;
+  }
+
   .home-discovery-joey__content {
     margin-left: -1.25rem;
   }
@@ -612,17 +666,11 @@
   margin-bottom: 0.875rem;
 }
 
-/* Responsive grid: 1-col → 2-col → 4-col */
+/* Responsive grid: 2-col (phones + tablets) → 4-col */
 .stats-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   row-gap: 0;
-}
-
-@media (min-width: 540px) {
-  .stats-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
 }
 
 @media (min-width: 1024px) {
@@ -660,6 +708,14 @@
   white-space: nowrap;
 }
 
+/* Phones: two columns side by side, so scale digits to the narrower cells */
+@media (max-width: 539px) {
+  .stats-digit {
+    font-size: clamp(1.5rem, 7.4vw, 2.25rem);
+    height: clamp(1.5rem, 7.4vw, 2.25rem);
+  }
+}
+
 /* Amber suffix ( MW, +, M, t ) */
 .stats-suffix {
   color: #d97706;
@@ -687,6 +743,12 @@
   line-height: 1.5;
   width: 100%;
   text-align: center;
+}
+
+@media (max-width: 539px) {
+  .stats-label {
+    letter-spacing: 0.1em;
+  }
 }
 
 /* Rise-in entrance animation for each stat cell */
@@ -729,23 +791,27 @@
   margin-bottom: 0.75rem;
 }
 
+/* One column (width-capped on tablets) until three cards have room to breathe */
 .package-grid {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: minmax(0, 1fr);
   gap: 1.5rem;
-  margin-top: 3rem;
+  margin-top: 2.5rem;
+  max-width: 36rem;
+  margin-inline: auto;
 }
 
 @media (min-width: 768px) {
   .package-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
+    margin-top: 3rem;
   }
 }
 
 @media (min-width: 1024px) {
   .package-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 2rem;
+    max-width: none;
   }
 }
 
@@ -764,10 +830,18 @@
               border-color 0.35s ease;
 }
 
-.package-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12);
-  border-color: transparent;
+@media (hover: hover) {
+  .package-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12);
+    border-color: transparent;
+  }
+}
+
+@media (max-width: 380px) {
+  .package-card {
+    padding: 2rem 1.25rem;
+  }
 }
 
 .package-badge-slot {
@@ -912,9 +986,15 @@
 .brand-logos-section {
   background-color: #ffffff;
   padding-top: 2rem;
-  padding-bottom: 7rem;
+  padding-bottom: 4.5rem;
   border: none;
   overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .brand-logos-section {
+    padding-bottom: 7rem;
+  }
 }
 
 .brand-logos-overline {
@@ -950,14 +1030,17 @@
 .brand-logos-track {
   display: flex;
   align-items: center;
-  gap: 5rem;
+  /* Tighter on phones so more than two logos are on screen at once */
+  gap: 3rem;
   width: max-content;
   animation: brand-logos-scroll 36s linear infinite;
   will-change: transform;
 }
 
-.brand-logos-track:hover {
-  animation-play-state: paused;
+@media (min-width: 768px) {
+  .brand-logos-track {
+    gap: 5rem;
+  }
 }
 
 .brand-logo-item {
@@ -969,9 +1052,15 @@
   flex-shrink: 0;
 }
 
-.brand-logo-item:hover {
-  opacity: 1;
-  transform: scale(1.08);
+@media (hover: hover) {
+  .brand-logos-track:hover {
+    animation-play-state: paused;
+  }
+
+  .brand-logo-item:hover {
+    opacity: 1;
+    transform: scale(1.08);
+  }
 }
 
 @keyframes brand-logos-scroll {
@@ -990,6 +1079,11 @@
     width: 100%;
     justify-content: center;
     gap: 2rem 3rem;
+  }
+
+  /* Second copy only exists for the seamless loop */
+  .brand-logo-item[data-dup] {
+    display: none;
   }
 }
 
@@ -1060,10 +1154,12 @@
               border-color 0.35s ease;
 }
 
-.cert-badge-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12);
-  border-color: transparent;
+@media (hover: hover) {
+  .cert-badge-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12);
+    border-color: transparent;
+  }
 }
 
 .cert-badge-icon-wrap {
@@ -1079,9 +1175,11 @@
   transition: background-color 0.25s ease, border-color 0.25s ease;
 }
 
-.cert-badge-card:hover .cert-badge-icon-wrap {
-  background-color: #fffbeb;
-  border-color: #fde68a;
+@media (hover: hover) {
+  .cert-badge-card:hover .cert-badge-icon-wrap {
+    background-color: #fffbeb;
+    border-color: #fde68a;
+  }
 }
 
 .cert-badge-abbr {

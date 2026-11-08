@@ -235,11 +235,10 @@ export default function CalculatorPage() {
         />
 
         <section className="container-final pb-16 md:pb-20" data-testid="savings-calculator">
-          <div className="container-final">
             <Reveal>
-              <div className="card-lift surface-glass grid gap-8 overflow-hidden lg:grid-cols-12">
+              <div className="card-lift surface-glass grid overflow-hidden lg:grid-cols-12 lg:gap-8">
                 {/* Left: form */}
-                <div className="surface-glass--muted surface-glass--panel border-b border-white/40 p-8 md:p-10 lg:col-span-5 lg:border-b-0 lg:border-r">
+                <div className="surface-glass--muted surface-glass--panel border-b border-white/40 p-6 sm:p-8 md:p-10 lg:col-span-5 lg:border-b-0 lg:border-r">
                   <div className="inline-flex items-center gap-2 text-[#D97706] text-xs tracking-[0.2em] uppercase font-bold">
                     <Calculator className="w-4 h-4" /> Solar savings calculator
                   </div>
@@ -251,15 +250,17 @@ export default function CalculatorPage() {
                       <label className="text-xs tracking-wide uppercase text-[#57534E] font-semibold">Average monthly electricity bill (AUD)</label>
                       <div className="relative mt-2">
                         <span className="absolute left-4 top-1/2 -translate-y-1/2 text-[#57534E]">$</span>
+                        {/* pl-8! : .input-final's own padding otherwise wins and the $ sits on top of the digits */}
                         <input
                           type="number"
+                          inputMode="decimal"
                           min="50"
                           step="10"
                           value={monthly}
                           onChange={(e) => setMonthly(e.target.value)}
                           placeholder="350"
                           data-testid="savings-monthly-input"
-                          className="input-final pl-8 text-lg font-medium"
+                          className="input-final pl-8! text-lg font-medium"
                         />
                       </div>
                       <input
@@ -298,7 +299,7 @@ export default function CalculatorPage() {
                 </div>
 
                 {/* Right: results */}
-                <div className="lg:col-span-7 p-8 md:p-12 relative">
+                <div className="relative p-6 sm:p-8 md:p-12 lg:col-span-7">
                   <AnimatePresence mode="wait">
                     {result ? (
                       <motion.div
@@ -343,7 +344,6 @@ export default function CalculatorPage() {
                 </div>
               </div>
             </Reveal>
-          </div>
         </section>
 
         {/* Rebates Guide */}
@@ -363,7 +363,7 @@ export default function CalculatorPage() {
             <div className="mt-14 grid md:grid-cols-2 lg:grid-cols-3 gap-5">
               {REBATES.map((r, i) => (
                 <Reveal key={r.title} delay={i * 0.04}>
-                  <div className="card-lift surface-glass flex h-full flex-col p-7" data-testid={`rebate-${i}`}>
+                  <div className="card-lift surface-glass flex h-full flex-col p-6 sm:p-7" data-testid={`rebate-${i}`}>
                     <div className="w-11 h-11 rounded-xl bg-[#D97706]/10 text-[#D97706] flex items-center justify-center">
                       <r.icon className="w-5 h-5" />
                     </div>
@@ -400,7 +400,7 @@ export default function CalculatorPage() {
                   { n: "02", title: "We calculate every rebate you qualify for", body: "STC upfront, plus any state-specific programs stacked on top of the price we quote." },
                   { n: "03", title: "You pay the discounted price only", body: "We claim the rebates on your behalf and apply them directly to your invoice." },
                 ].map((s) => (
-                  <div key={s.n} className="bg-[#1C1917] text-[#FDFBF7] rounded-2xl p-8" data-testid={`claim-step-${s.n}`}>
+                  <div key={s.n} className="bg-[#1C1917] text-[#FDFBF7] rounded-2xl p-6 sm:p-8" data-testid={`claim-step-${s.n}`}>
                     <div className="font-display text-4xl text-[#FBBF24] font-light">{s.n}</div>
                     <div className="font-display text-lg font-medium mt-4">{s.title}</div>
                     <div className="text-sm text-[#D6D3D1] mt-2 leading-relaxed">{s.body}</div>
@@ -435,7 +435,7 @@ export default function CalculatorPage() {
                     { n: "02", title: "How it's paid", body: "No paperwork for you. As part of an accredited pathway, we calculate the PRCs your upgrade earns and apply the value as a point-of-sale discount on your quote." },
                     { n: "03", title: "Why it's generous", body: "PRCs are earned on 12 years of peak demand reduction, so efficient VRF and ducted systems from Mitsubishi Electric, Daikin, ActronAir and Midea can attract thousands off." },
                   ].map((s) => (
-                    <div key={s.n} className="bg-[#1C1917] text-[#FDFBF7] rounded-2xl p-7" data-testid={`pdrs-step-${s.n}`}>
+                    <div key={s.n} className="bg-[#1C1917] text-[#FDFBF7] rounded-2xl p-6 sm:p-7" data-testid={`pdrs-step-${s.n}`}>
                       <div className="flex items-start gap-4">
                         <div className="font-display text-2xl text-[#FBBF24] font-light">{s.n}</div>
                         <div>
@@ -459,7 +459,7 @@ export default function CalculatorPage() {
         {/* Final CTA */}
         <section className="section-pad">
           <div className="container-final">
-            <div className="card-lift flex flex-wrap items-center justify-between gap-6 rounded-[var(--radius-card)] bg-[#d97706] p-10 text-[#fdfbf7] shadow-xl shadow-[#d97706]/25 md:p-16">
+            <div className="card-lift flex flex-wrap items-center justify-between gap-6 rounded-[var(--radius-card)] bg-[#d97706] p-7 text-[#fdfbf7] shadow-xl shadow-[#d97706]/25 sm:p-10 md:p-16">
               <div>
                 <div className="overline text-[#1C1917]/70">Ready to save?</div>
                 <h2 className="display-lead mt-3 max-w-xl text-[#FDFBF7]">
@@ -471,7 +471,7 @@ export default function CalculatorPage() {
               <Link
                 href="/contact"
                 data-testid="savings-cta-final"
-                className="inline-flex items-center gap-2 rounded-full bg-[#1C1917] hover:bg-[#292524] text-[#FDFBF7] px-7 py-3.5 font-medium transition-colors"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#1C1917] hover:bg-[#292524] text-[#FDFBF7] px-7 py-3.5 font-medium transition-colors sm:w-auto"
               >
                 Book my free consultation <ArrowRight className="w-4 h-4" />
               </Link>
@@ -490,7 +490,7 @@ function PdrsEstimator() {
   const v = PDRS_VENUES[venue];
 
   return (
-    <div className="card-lift surface-glass h-full p-8 md:p-10" data-testid="pdrs-estimator">
+    <div className="card-lift surface-glass h-full p-6 sm:p-8 md:p-10" data-testid="pdrs-estimator">
       <div className="inline-flex items-center gap-2 text-[#D97706] text-xs tracking-[0.2em] uppercase font-bold">
         <Calculator className="w-4 h-4" /> PDRS incentive estimator
       </div>
@@ -518,6 +518,7 @@ function PdrsEstimator() {
         <div className="flex items-center gap-4 mt-2">
           <input
             type="number"
+            inputMode="numeric"
             min="30"
             max="500"
             step="10"
@@ -541,7 +542,7 @@ function PdrsEstimator() {
       </div>
 
       {est && (
-        <div className="surface-glass--inset mt-8 p-7" data-testid="pdrs-result">
+        <div className="surface-glass--inset mt-8 p-5 sm:p-7" data-testid="pdrs-result">
           <div className="overline text-[#166534]">Indicative PDRS incentive</div>
           <div className="font-display text-3xl md:text-4xl font-medium tracking-tight mt-2 text-[#166534]" data-testid="pdrs-result-range">
             {currency(est.low)} – {currency(est.high)}

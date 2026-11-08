@@ -2,15 +2,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { Menu, X } from "lucide-react";
 import NavPillMenu from "@/components/site/NavPillMenu";
-import { NAV } from "@/data/site";
+import MobileNav from "@/components/site/MobileNav";
 import { cn } from "@/lib/utils";
 
 export default function SiteHeader() {
   const router = useRouter();
   const pathname = router.asPath.split("?")[0];
-  const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   /** 0 = fully visible, 1 = hidden (driven by footer intersection) */
   const [footerHideT, setFooterHideT] = useState(0);
@@ -63,10 +61,6 @@ export default function SiteHeader() {
     };
   }, [pathname]);
 
-  useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
-
   return (
     <header
       data-testid="site-header"
@@ -116,49 +110,9 @@ export default function SiteHeader() {
           >
             Get a quote
           </Link>
-          <button
-            type="button"
-            className="rounded-full border border-[#e7e5e4] p-2 lg:hidden"
-            aria-label="Toggle menu"
-            onClick={() => setOpen((v) => !v)}
-            data-testid="mobile-menu-toggle"
-          >
-            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
+          <MobileNav pathname={pathname} variant="site" closeAt={1024} className="lg:hidden" />
         </div>
       </div>
-
-      {open && (
-        <div
-          className="border-t border-[#e7e5e4] bg-white lg:hidden"
-          data-testid="mobile-menu"
-        >
-          <div className="container-final flex flex-col gap-1 py-4">
-            {NAV.map((item) => {
-              const isActive =
-                pathname === item.href ||
-                (item.href !== "/" && pathname.startsWith(item.href));
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={cn(
-                    "rounded-2xl px-4 py-3 text-sm font-medium",
-                    isActive
-                      ? "bg-[#1c1917] text-[#fdfbf7]"
-                      : "text-[#1c1917] hover:bg-black/5"
-                  )}
-                >
-                  {item.label}
-                </Link>
-              );
-            })}
-            <Link href="/contact" className="btn-primary mt-2 text-center" data-testid="mobile-get-quote-btn">
-              Get a quote
-            </Link>
-          </div>
-        </div>
-      )}
     </header>
   );
 }

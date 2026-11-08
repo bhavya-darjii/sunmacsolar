@@ -1,4 +1,5 @@
 import type { AppProps } from "next/app";
+import Head from "next/head";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -31,6 +32,9 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Head>
       <div className="flex min-h-screen flex-col bg-white text-[#1c1917]">
         {!isHome && !isAdmin && <SiteHeader />}
         <main className="flex-1" data-testid="main-content">

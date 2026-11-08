@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from "react";
+import { Fragment, useEffect, useState, useCallback, type ReactNode } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import { LockKeyhole, LogOut, RefreshCw, Users, Landmark } from "lucide-react";
@@ -68,7 +68,8 @@ function StatusSelect({
       value={status}
       onChange={(e) => onChange(e.target.value)}
       data-testid={testId}
-      className={`rounded-full border px-3 py-1.5 text-xs font-medium capitalize cursor-pointer focus:outline-none ${STATUS_STYLES[status] || STATUS_STYLES.new}`}
+      // 16px on phones: iOS Safari zooms the page into any form control smaller than that
+      className={`shrink-0 rounded-full border px-3 py-1.5 text-base font-medium capitalize cursor-pointer focus:outline-none md:text-xs ${STATUS_STYLES[status] || STATUS_STYLES.new}`}
     >
       {STATUS_OPTIONS.map((s) => (
         <option key={s} value={s}>
@@ -116,7 +117,7 @@ function KeyGate({ onUnlock }: { onUnlock: (key: string) => void }) {
           onChange={(e) => setKey(e.target.value)}
           placeholder="Admin key"
           data-testid="admin-key-input"
-          className="mt-5 w-full rounded-xl border border-[#E7E5E4] bg-white px-4 py-3 text-sm focus:outline-none focus:border-[#D97706]"
+          className="mt-5 w-full rounded-xl border border-[#E7E5E4] bg-white px-4 py-3 text-base focus:outline-none focus:border-[#D97706]"
         />
         <button
           type="submit"
@@ -138,6 +139,47 @@ function KeyGate({ onUnlock }: { onUnlock: (key: string) => void }) {
   );
 }
 
+/** Phone layout: one stacked card per record instead of a wide, sideways-scrolling table. */
+function MobileRecord({
+  name,
+  createdAt,
+  status,
+  onStatusChange,
+  statusTestId,
+  fields,
+  testId,
+}: {
+  name: string;
+  createdAt: string;
+  status: string;
+  onStatusChange: (status: string) => void;
+  statusTestId: string;
+  fields: [label: string, value: ReactNode][];
+  testId: string;
+}) {
+  return (
+    <li className="py-4 first:pt-0 last:pb-0" data-testid={testId}>
+      <div className="flex items-start justify-between gap-3">
+        <div className="min-w-0">
+          <p className="truncate font-medium text-[#1C1917]">{name}</p>
+          <p className="mt-0.5 text-xs text-[#57534E]">{fmtDate(createdAt)}</p>
+        </div>
+        <StatusSelect value={status} onChange={onStatusChange} testId={statusTestId} />
+      </div>
+      <dl className="mt-3 grid grid-cols-[5.5rem_minmax(0,1fr)] gap-x-3 gap-y-1.5 text-sm">
+        {fields.map(([label, value]) => (
+          <Fragment key={label}>
+            <dt className="text-[#A8A29E]">{label}</dt>
+            <dd className="min-w-0 break-words text-[#1C1917]">{value}</dd>
+          </Fragment>
+        ))}
+      </dl>
+    </li>
+  );
+}
+
+const telHref = (phone: string) => `tel:${phone.replace(/[^\d+]/g, "")}`;
+
 function LeadsTable({
   rows,
   onStatusChange,
@@ -153,7 +195,38 @@ function LeadsTable({
     );
   }
   return (
-    <div className="overflow-x-auto" data-testid="admin-leads-table">
+    <>
+    <ul className="divide-y divide-[#E7E5E4] md:hidden" data-testid="admin-leads-cards">
+      {rows.map((l) => (
+        <MobileRecord
+          key={l.id}
+          name={l.name}
+          createdAt={l.created_at}
+          status={l.status}
+          onStatusChange={(s) => onStatusChange(l.id, s)}
+          statusTestId={`lead-status-mobile-${l.id}`}
+          testId={`admin-lead-card-${l.id}`}
+          fields={[
+            [
+              "Email",
+              <a key="email" href={`mailto:${l.email}`} className="break-all text-[#D97706]">
+                {l.email}
+              </a>,
+            ],
+            [
+              "Phone",
+              <a key="phone" href={telHref(l.phone)} className="text-[#D97706]">
+                {l.phone}
+              </a>,
+            ],
+            ["Location", l.location || "-"],
+            ["Service", <span key="service" className="capitalize">{l.service_type || "-"}</span>],
+            ["Message", <span key="message" className="text-[#57534E]">{l.message || "-"}</span>],
+          ]}
+        />
+      ))}
+    </ul>
+    <div className="hidden overflow-x-auto md:block" data-testid="admin-leads-table">
       <table className="w-full text-sm">
         <thead>
           <tr className="text-left text-xs uppercase tracking-wider text-[#A8A29E] border-b border-[#E7E5E4]">
@@ -197,6 +270,7 @@ function LeadsTable({
         </tbody>
       </table>
     </div>
+    </>
   );
 }
 
@@ -215,7 +289,39 @@ function PPATable({
     );
   }
   return (
-    <div className="overflow-x-auto" data-testid="admin-ppa-table">
+    <>
+    <ul className="divide-y divide-[#E7E5E4] md:hidden" data-testid="admin-ppa-cards">
+      {rows.map((p) => (
+        <MobileRecord
+          key={p.id}
+          name={p.name}
+          createdAt={p.created_at}
+          status={p.status}
+          onStatusChange={(s) => onStatusChange(p.id, s)}
+          statusTestId={`ppa-status-mobile-${p.id}`}
+          testId={`admin-ppa-card-${p.id}`}
+          fields={[
+            [
+              "Email",
+              <a key="email" href={`mailto:${p.email}`} className="break-all text-[#D97706]">
+                {p.email}
+              </a>,
+            ],
+            [
+              "Phone",
+              <a key="phone" href={telHref(p.phone)} className="text-[#D97706]">
+                {p.phone}
+              </a>,
+            ],
+            ["Land", p.land_location],
+            ["Acres", p.land_size_acres ?? "-"],
+            ["Grid", p.has_grid_connection ? "Yes" : "No"],
+            ["Notes", <span key="notes" className="text-[#57534E]">{p.notes || "-"}</span>],
+          ]}
+        />
+      ))}
+    </ul>
+    <div className="hidden overflow-x-auto md:block" data-testid="admin-ppa-table">
       <table className="w-full text-sm">
         <thead>
           <tr className="text-left text-xs uppercase tracking-wider text-[#A8A29E] border-b border-[#E7E5E4]">
@@ -261,6 +367,7 @@ function PPATable({
         </tbody>
       </table>
     </div>
+    </>
   );
 }
 
@@ -333,7 +440,7 @@ export default function AdminLeads() {
       </Head>
       <div className="min-h-screen bg-white" data-testid="admin-dashboard">
         <header className="border-b border-[#E7E5E4] bg-white">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex flex-wrap items-center justify-between gap-3">
             <div>
               <div className="text-[10px] uppercase tracking-[0.2em] text-[#D97706] font-medium">
                 SunMac Solar
@@ -360,8 +467,8 @@ export default function AdminLeads() {
           </div>
         </header>
 
-        <main className="max-w-6xl mx-auto px-4 sm:px-6 py-8">
-          <div className="flex gap-2 mb-6">
+        <main className="max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
+          <div className="flex flex-wrap gap-2 mb-6">
             <button
               onClick={() => setTab("leads")}
               data-testid="admin-tab-leads"
@@ -385,7 +492,7 @@ export default function AdminLeads() {
               <Landmark className="w-4 h-4" /> PPA inquiries ({ppa.length})
             </button>
           </div>
-          <div className="bg-white border border-[#E7E5E4] rounded-2xl p-6">
+          <div className="bg-white border border-[#E7E5E4] rounded-2xl p-4 sm:p-6">
             {tab === "leads" ? (
               <LeadsTable
                 rows={leads}

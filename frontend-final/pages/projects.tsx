@@ -74,11 +74,11 @@ export default function ProjectsPage() {
           description="From rooftop arrays in industrial parks to off-grid homesteads in the outback, every project is designed for the conditions and the people who use it. Below is a sample of recent work with capacity, location and how we approached each site, so you can see what a similar install might look like on your property."
         >
           <div
-            className="-mx-4 mt-10 flex justify-center overflow-x-auto px-4 md:mx-0 md:overflow-visible md:px-0"
+            className="services-tab-strip -mx-4 mt-8 flex justify-center overflow-x-auto px-4 sm:mt-10 md:mx-0 md:overflow-visible md:px-0"
             data-testid="projects-filters"
           >
             <div
-              className="services-tab-strip flex w-max max-w-full gap-5 pb-1 md:gap-6"
+              className="flex w-max max-w-full gap-3 pb-1 sm:gap-5 md:gap-6"
               role="tablist"
               aria-label="Filter projects by category"
             >
@@ -153,7 +153,7 @@ export default function ProjectsPage() {
                       <Volume2 className="h-3 w-3" /> Muted
                     </div>
                   </div>
-                  <div className="p-8 lg:col-span-5 lg:p-10 lg:pr-12">
+                  <div className="p-6 sm:p-8 lg:col-span-5 lg:p-10 lg:pr-12">
                     <p className="overline">{p.category} · Featured</p>
                     <h2 className="mt-3 font-display text-2xl font-medium tracking-tight sm:text-3xl">
                       {p.title}
@@ -221,7 +221,7 @@ export default function ProjectsPage() {
                       <p className="overline">{p.category}</p>
                       <h3 className="mt-2 font-display text-xl font-medium">{p.title}</h3>
                       <p className="mt-2 text-sm text-[#57534e]">{p.summary}</p>
-                      <div className="mt-4 flex items-center gap-4 text-xs text-[#57534e]">
+                      <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-[#57534e]">
                         <span className="inline-flex items-center gap-1">
                           <MapPin className="h-3.5 w-3.5" /> {p.location}
                         </span>

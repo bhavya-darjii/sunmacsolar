@@ -165,7 +165,7 @@ export default function PpaPage() {
           <div className="mt-10 grid gap-5 lg:grid-cols-3">
             {PPA_STEPS.map((s, i) => (
               <Reveal key={s.step} delay={i * 0.05}>
-                <div className="card-lift surface-glass h-full p-8">
+                <div className="card-lift surface-glass h-full p-6 sm:p-8">
                   <p className="font-display text-3xl font-light text-[#d97706]">{s.step}</p>
                   <h3 className="mt-4 font-display text-xl font-medium">{s.title}</h3>
                   <p className="mt-3 text-sm leading-relaxed text-[#57534e]">{s.body}</p>
@@ -213,7 +213,7 @@ export default function PpaPage() {
               {BENEFITS.map((b, i) => (
                 <Reveal key={b.title} delay={i * 0.05}>
                   <div
-                    className="card-lift surface-glass h-full p-8"
+                    className="card-lift surface-glass h-full p-6 sm:p-8"
                     data-testid={`ppa-benefit-${i}`}
                   >
                     <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#166534]/10 text-[#166534]">
@@ -261,7 +261,7 @@ export default function PpaPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
-                className="contact-featured-form-bg featured-panel p-8 md:p-12 lg:p-16"
+                className="contact-featured-form-bg featured-panel p-6 sm:p-8 md:p-12 lg:p-16"
               >
                 <form
                   onSubmit={onSubmit}
@@ -283,6 +283,7 @@ export default function PpaPage() {
                       <span className={featuredFormLabelClass}>Full name</span>
                       <input
                         required
+                        autoComplete="name"
                         value={form.name}
                         onChange={(e) => onChange("name", e.target.value)}
                         placeholder="Your name"
@@ -295,6 +296,7 @@ export default function PpaPage() {
                       <input
                         required
                         type="email"
+                        autoComplete="email"
                         value={form.email}
                         onChange={(e) => onChange("email", e.target.value)}
                         placeholder="you@company.com"
@@ -306,6 +308,8 @@ export default function PpaPage() {
                       <span className={featuredFormLabelClass}>Phone</span>
                       <input
                         required
+                        type="tel"
+                        autoComplete="tel"
                         value={form.phone}
                         onChange={(e) => onChange("phone", e.target.value)}
                         placeholder="Best number to reach you"
@@ -319,6 +323,7 @@ export default function PpaPage() {
                         value={form.land_size_acres}
                         onChange={(e) => onChange("land_size_acres", e.target.value)}
                         type="number"
+                        inputMode="decimal"
                         step="0.1"
                         placeholder="e.g. 40"
                         data-testid="ppa-acres"
@@ -394,19 +399,19 @@ export default function PpaPage() {
                       <button
                         type="submit"
                         disabled={submitting}
-                        className="group flex items-center gap-2 text-2xl font-bold text-[#ffffff] transition-opacity hover:opacity-80 disabled:opacity-50 sm:gap-3 sm:text-3xl md:text-4xl"
+                        className="group flex items-center gap-2 text-left text-xl font-bold text-[#ffffff] transition-opacity hover:opacity-80 disabled:opacity-50 sm:gap-3 sm:text-3xl md:text-4xl"
                         data-testid="ppa-submit"
                       >
                         {submitting ? (
                           <>
                             Sending…
-                            <Loader2 className="h-6 w-6 animate-spin sm:h-8 sm:w-8 md:h-9 md:w-9" />
+                            <Loader2 className="h-6 w-6 shrink-0 animate-spin sm:h-8 sm:w-8 md:h-9 md:w-9" />
                           </>
                         ) : (
                           <>
                             Request a site evaluation
                             <ArrowUpRight
-                              className="h-6 w-6 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1 sm:h-8 sm:w-8 md:h-9 md:w-9"
+                              className="h-6 w-6 shrink-0 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1 sm:h-8 sm:w-8 md:h-9 md:w-9"
                             />
                           </>
                         )}

@@ -120,7 +120,7 @@ export default function ContactOfficeHoursBento() {
 
             <a
               href={telHref}
-              className="font-display text-4xl font-semibold tracking-tight transition-colors hover:text-[#d97706] md:text-5xl"
+              className="font-display text-4xl font-semibold tracking-tight whitespace-nowrap transition-colors hover:text-[#d97706] md:text-5xl"
               data-testid="contact-phone-link"
             >
               {COMPANY.phone}
@@ -152,7 +152,7 @@ export default function ContactOfficeHoursBento() {
           </div>
 
           <div className="mt-auto">
-            <p className="font-display text-3xl font-semibold tracking-tight text-black md:text-4xl">
+            <p className="font-display text-3xl font-semibold tracking-tight text-balance text-black md:text-4xl">
               8:00 a.m. to 5:30 p.m.
             </p>
             <p className="mt-1 text-xs text-[#57534e]">Mon to Fri</p>

@@ -66,7 +66,7 @@ export default function BlogPostPage() {
         <section className="relative min-h-[400px] h-[50vh] overflow-hidden">
           <Image src={post.cover_image} alt={post.title} fill className="object-cover" priority sizes="100vw" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#1c1917]/90 via-[#1c1917]/40 to-transparent" />
-          <div className="absolute right-0 bottom-0 left-0 container-final pb-12">
+          <div className="absolute right-0 bottom-0 left-0 container-final pb-10 md:pb-12">
             <Reveal>
               <Link
                 href="/blog"
@@ -75,7 +75,7 @@ export default function BlogPostPage() {
               >
                 <ArrowLeft className="h-4 w-4" /> All articles
               </Link>
-              <h1 className="mt-4 max-w-4xl font-display text-4xl font-light leading-tight text-[#fdfbf7] sm:text-5xl lg:text-6xl">
+              <h1 className="mt-4 max-w-4xl font-display text-[2rem] font-light leading-tight text-[#fdfbf7] sm:text-5xl lg:text-6xl">
                 {post.title}
               </h1>
               <div className="mt-4 text-sm text-[#d6d3d1]">
@@ -90,14 +90,14 @@ export default function BlogPostPage() {
           </div>
         </section>
 
-        <article className="container-final max-w-3xl py-16">
+        <article className="container-final max-w-3xl py-10 md:py-16">
           <Reveal>
-            <div className="surface-glass p-8 md:p-10">
-              <p className="text-xl leading-relaxed text-[#57534e]">{post.excerpt}</p>
-              <div className="mt-10 space-y-6 leading-relaxed whitespace-pre-line text-[#1c1917]">
+            <div className="surface-glass p-6 sm:p-8 md:p-10">
+              <p className="text-lg leading-relaxed text-[#57534e] md:text-xl">{post.excerpt}</p>
+              <div className="mt-8 space-y-6 leading-relaxed whitespace-pre-line text-[#1c1917] md:mt-10">
                 {post.content}
               </div>
-              <div className="mt-12 flex flex-wrap gap-2 border-t border-white/50 pt-8">
+              <div className="mt-10 flex flex-wrap gap-2 border-t border-white/50 pt-6 md:mt-12 md:pt-8">
                 {(post.tags || []).map((t) => (
                   <span key={t} className="tag-glass">
                     #{t}

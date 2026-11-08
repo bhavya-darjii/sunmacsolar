@@ -72,7 +72,7 @@ export default function ContactFeaturedForm() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="contact-featured-form-bg featured-panel p-8 md:p-12 lg:p-16"
+          className="contact-featured-form-bg featured-panel p-6 sm:p-8 md:p-12 lg:p-16"
         >
           <form
             onSubmit={onSubmit}
@@ -94,6 +94,7 @@ export default function ContactFeaturedForm() {
                 <span className={labelClass}>Full name</span>
                 <input
                   required
+                  autoComplete="name"
                   value={form.name}
                   onChange={(e) => onChange("name", e.target.value)}
                   placeholder="Your name"
@@ -106,6 +107,7 @@ export default function ContactFeaturedForm() {
                 <input
                   required
                   type="email"
+                  autoComplete="email"
                   value={form.email}
                   onChange={(e) => onChange("email", e.target.value)}
                   placeholder="you@company.com"
@@ -117,6 +119,8 @@ export default function ContactFeaturedForm() {
                 <span className={labelClass}>Phone</span>
                 <input
                   required
+                  type="tel"
+                  autoComplete="tel"
                   value={form.phone}
                   onChange={(e) => onChange("phone", e.target.value)}
                   placeholder="Best number to reach you"

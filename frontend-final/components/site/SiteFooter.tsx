@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { useEffect, useRef } from "react";
 import Reveal from "@/components/Reveal";
 import FooterAustraliaFlags from "@/components/site/FooterAustraliaFlags";
 import { COMPANY, NAV } from "@/data/site";
@@ -50,8 +51,27 @@ function FooterLinkList({
 }
 
 export default function SiteFooter() {
+  const footerRef = useRef<HTMLElement>(null);
+
+  // Black page background (globals.css) while the footer is on screen, white otherwise, so the
+  // top of the page still bounces white.
+  useEffect(() => {
+    const footer = footerRef.current;
+    if (!footer) return;
+    const root = document.documentElement;
+    const observer = new IntersectionObserver(([entry]) => {
+      root.classList.toggle("footer-in-view", entry.isIntersecting);
+    });
+    observer.observe(footer);
+    return () => {
+      observer.disconnect();
+      root.classList.remove("footer-in-view");
+    };
+  }, []);
+
   return (
     <footer
+      ref={footerRef}
       data-testid="site-footer"
       className="flex min-h-dvh flex-col bg-black text-[#fdfbf7]"
     >

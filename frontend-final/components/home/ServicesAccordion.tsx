@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import {
   ArrowUpRight,
@@ -9,7 +9,7 @@ import {
   Sun,
   type LucideIcon,
 } from "lucide-react";
-import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Reveal from "@/components/Reveal";
 import { cn } from "@/lib/utils";
 import { SERVICES } from "@/data/site";
@@ -59,28 +59,6 @@ const PANEL_META: Record<
 export default function ServicesAccordion() {
   const [active, setActive] = useState<ServiceId>("commercial");
   const [paused, setPaused] = useState(false);
-  const reduceMotion = useReducedMotion();
-  const stripRef = useRef<HTMLDivElement>(null);
-  const tabRefs = useRef(new Map<ServiceId, HTMLButtonElement>());
-  const skipFirstScroll = useRef(true);
-
-  // On phones the tab strip scrolls sideways: keep the active tab in view as it
-  // auto-rotates. Only the strip scrolls, never the page.
-  useEffect(() => {
-    if (skipFirstScroll.current) {
-      skipFirstScroll.current = false;
-      return;
-    }
-    const strip = stripRef.current;
-    const tab = tabRefs.current.get(active);
-    if (!strip || !tab || strip.scrollWidth <= strip.clientWidth + 1) return;
-    const stripRect = strip.getBoundingClientRect();
-    const tabRect = tab.getBoundingClientRect();
-    strip.scrollTo({
-      left: strip.scrollLeft + (tabRect.left - stripRect.left) - (stripRect.width - tabRect.width) / 2,
-      behavior: reduceMotion ? "auto" : "smooth",
-    });
-  }, [active, reduceMotion]);
 
   useEffect(() => {
     if (paused) return undefined;
@@ -113,19 +91,16 @@ export default function ServicesAccordion() {
         </h2>
       </Reveal>
 
+      {/* Phones: five equal columns that always fit on screen (two rows below 360px) */}
       <div
-        ref={stripRef}
-        className="services-tab-strip -mx-4 flex justify-center overflow-x-auto overflow-y-visible px-4 md:mx-0 md:overflow-visible md:px-0"
+        className="grid grid-cols-5 gap-2.5 pb-2 max-[359px]:flex max-[359px]:flex-wrap max-[359px]:justify-center max-[359px]:gap-x-4 max-[359px]:gap-y-3 sm:flex sm:justify-center sm:gap-4 md:gap-5"
+        role="tablist"
+        aria-label="Solar services"
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
+        // Touch has no mouseleave: once someone taps here, stop auto-advancing
+        onPointerDown={(e) => e.pointerType !== "mouse" && setPaused(true)}
       >
-        <div
-          className="flex w-max max-w-full gap-4 pb-2 md:gap-5"
-          role="tablist"
-          aria-label="Solar services"
-          onMouseEnter={() => setPaused(true)}
-          onMouseLeave={() => setPaused(false)}
-          // Touch has no mouseleave: once someone swipes or taps here, stop auto-advancing
-          onPointerDown={(e) => e.pointerType !== "mouse" && setPaused(true)}
-        >
         {SERVICE_IDS.map((itemId) => {
           const item = SERVICES.find((s) => s.id === itemId);
           if (!item) return null;
@@ -137,10 +112,6 @@ export default function ServicesAccordion() {
           return (
             <button
               key={itemId}
-              ref={(node) => {
-                if (node) tabRefs.current.set(itemId, node);
-                else tabRefs.current.delete(itemId);
-              }}
               type="button"
               role="tab"
               id={`service-tab-${itemId}`}
@@ -148,27 +119,26 @@ export default function ServicesAccordion() {
               aria-controls="service-panel"
               onClick={() => setActive(itemId)}
               className={cn(
-                "group flex shrink-0 snap-start flex-col items-center transition-opacity",
+                "group flex min-w-0 shrink-0 flex-col items-center transition-opacity max-[359px]:w-[72px]",
                 isActive ? "opacity-100" : "opacity-55 hover:opacity-85"
               )}
             >
               <div
                 className={cn(
-                  "flex h-[88px] w-[88px] items-center justify-center rounded-[var(--radius-card)] bg-[#f5f5f0] shadow-sm ring-1 transition md:h-[100px] md:w-[100px]",
+                  "flex aspect-square w-full max-w-[88px] items-center justify-center rounded-[30%] bg-[#f5f5f0] shadow-sm ring-1 transition max-[359px]:w-16 sm:w-[88px] sm:rounded-[var(--radius-card)] md:w-[100px] md:max-w-none",
                   isActive
                     ? "ring-[#d97706] ring-2"
                     : "ring-[#e7e5e4]/80 group-hover:ring-[#d6d3d1]"
                 )}
               >
-                <TabIcon className="h-7 w-7 text-[#1c1917]" strokeWidth={1.5} />
+                <TabIcon className="h-6 w-6 text-[#1c1917] sm:h-7 sm:w-7" strokeWidth={1.5} />
               </div>
-              <p className="mt-2.5 max-w-[100px] text-center text-xs font-semibold leading-snug text-[#1c1917] md:text-sm">
+              <p className="mt-2 text-center text-[11px] font-semibold leading-snug whitespace-nowrap text-[#1c1917] max-[374px]:text-[10.5px] sm:mt-2.5 sm:text-xs md:text-sm">
                 {itemMeta.badge}
               </p>
             </button>
           );
         })}
-        </div>
       </div>
 
       <div

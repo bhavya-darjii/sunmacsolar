@@ -73,12 +73,10 @@ export default function ProjectsPage() {
           title="Systems engineered and delivered across Australia."
           description="From rooftop arrays in industrial parks to off-grid homesteads in the outback, every project is designed for the conditions and the people who use it. Below is a sample of recent work with capacity, location and how we approached each site, so you can see what a similar install might look like on your property."
         >
-          <div
-            className="services-tab-strip -mx-4 mt-8 flex justify-center overflow-x-auto px-4 sm:mt-10 md:mx-0 md:overflow-visible md:px-0"
-            data-testid="projects-filters"
-          >
+          <div className="mt-8 sm:mt-10" data-testid="projects-filters">
+            {/* Phones: five equal columns that always fit on screen (two rows below 360px) */}
             <div
-              className="flex w-max max-w-full gap-3 pb-1 sm:gap-5 md:gap-6"
+              className="mx-auto grid max-w-[22rem] grid-cols-5 gap-2 pb-1 max-[359px]:flex max-[359px]:flex-wrap max-[359px]:justify-center max-[359px]:gap-x-4 max-[359px]:gap-y-3 sm:flex sm:max-w-none sm:justify-center sm:gap-5 md:gap-6"
               role="tablist"
               aria-label="Filter projects by category"
             >
@@ -93,13 +91,13 @@ export default function ProjectsPage() {
                     onClick={() => setActive(id)}
                     data-testid={`filter-${id.toLowerCase().replace(/[^a-z]/g, "")}`}
                     className={cn(
-                      "group flex shrink-0 snap-start flex-col items-center transition-opacity",
+                      "group flex min-w-0 shrink-0 flex-col items-center transition-opacity max-[359px]:w-[72px]",
                       isActive ? "opacity-100" : "opacity-55 hover:opacity-85"
                     )}
                   >
                     <div
                       className={cn(
-                        "flex h-14 w-14 items-center justify-center rounded-2xl bg-white shadow-sm ring-1 transition md:h-16 md:w-16",
+                        "flex aspect-square w-full max-w-14 items-center justify-center rounded-[28%] bg-white shadow-sm ring-1 transition max-[359px]:w-14 sm:w-14 sm:rounded-2xl md:w-16 md:max-w-none",
                         isActive
                           ? "ring-[#d97706] ring-2"
                           : "ring-[#e7e5e4]/80 group-hover:ring-[#d6d3d1]"
@@ -107,7 +105,7 @@ export default function ProjectsPage() {
                     >
                       <Icon className="h-5 w-5 text-[#1c1917] md:h-[22px] md:w-[22px]" strokeWidth={1.5} />
                     </div>
-                    <p className="mt-1.5 max-w-[4.5rem] text-center text-[10px] font-semibold leading-tight text-[#1c1917] md:max-w-[5rem] md:text-[11px]">
+                    <p className="mt-1.5 text-center text-[10px] font-semibold leading-tight whitespace-nowrap text-[#1c1917] md:text-[11px]">
                       {label}
                     </p>
                   </button>

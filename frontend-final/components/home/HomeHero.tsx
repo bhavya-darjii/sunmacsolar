@@ -8,8 +8,8 @@ import {
 } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import HomeHeader from "./HomeHeader";
-import { heroPanelLinePercent } from "@/lib/heroPanelLine";
 import { useHysteresisInView } from "@/hooks/use-hysteresis-in-view";
+import { useDateTimeLabel } from "@/hooks/use-date-time-label";
 
 const HERO_IMAGE = "/hero-section.png";
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -22,6 +22,7 @@ export default function HomeHero() {
     rootMargin: "0px 0px -8% 0px",
   });
   const show = reduceMotion || heroInView;
+  const dateTime = useDateTimeLabel();
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -38,32 +39,16 @@ export default function HomeHero() {
     return 1 - t;
   });
 
-  const [panelLinePct, setPanelLinePct] = useState(72);
-
   // One-shot latch: once revealed, the button never hides again
   const [btnRevealed, setBtnRevealed] = useState(false);
   useEffect(() => {
     if (show && !btnRevealed) setBtnRevealed(true);
   }, [show, btnRevealed]);
 
-  useEffect(() => {
-    const el = sectionRef.current;
-    if (!el) return;
-
-    const update = () => {
-      setPanelLinePct(heroPanelLinePercent(el.clientWidth, el.clientHeight));
-    };
-
-    update();
-    const observer = new ResizeObserver(update);
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
   return (
     <section
       ref={sectionRef}
-      className="relative h-[100dvh] w-full min-h-[600px] bg-[#1c1917]"
+      className="home-hero relative h-[100dvh] w-full min-h-[600px] bg-[#1c1917] max-md:portrait:h-[min(100svh,140vw)] max-md:portrait:min-h-[26rem]"
     >
       <div className="hero-background-shell absolute inset-0 overflow-hidden">
         <div className="hero-background-motion absolute inset-0">
@@ -83,28 +68,27 @@ export default function HomeHero() {
         </div>
       </div>
 
-      <HomeHeader heroInView={show} />
+      <HomeHeader heroInView={show} dateTime={dateTime} />
 
-      <div
-        className="pointer-events-none absolute inset-x-0 z-[5] px-5 md:px-8"
-        style={{ top: `${panelLinePct}%` }}
-      >
-        <div className="hero-sunmac-anchor w-full">
-          <motion.div
-            className="w-full"
-            style={{ opacity: sunMacScrollOpacity }}
-          >
+      {/* "SunMac" stands on the panels' top edge; home.css works out where that edge lands */}
+      <div className="hero-stage pointer-events-none absolute inset-0 z-[5]">
+        <div className="hero-word-anchor px-5 md:px-8">
+          <motion.div style={{ opacity: sunMacScrollOpacity }}>
             <motion.div
               initial={false}
               animate={show ? { opacity: 1, y: 0 } : { opacity: 0, y: 32 }}
               transition={{ duration: 0.9, delay: show ? 0.15 : 0, ease }}
             >
-              <motion.h1
-                style={{ y: sunMacScrollY }}
-                className="hero-word w-full text-center text-white"
-              >
-                SunMac
-              </motion.h1>
+              <motion.div style={{ y: sunMacScrollY }}>
+                {/* Phones have no room for the date in the header, so it sits above the word */}
+                <time
+                  suppressHydrationWarning
+                  className="mb-1.5 block text-center text-xs font-semibold tracking-[0.2em] text-white/90 uppercase sm:hidden"
+                >
+                  {dateTime ?? " "}
+                </time>
+                <h1 className="hero-word w-full text-center text-white">SunMac</h1>
+              </motion.div>
             </motion.div>
           </motion.div>
         </div>

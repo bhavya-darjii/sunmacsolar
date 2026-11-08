@@ -40,6 +40,12 @@
     @apply font-sans;
   }
 
+  /* Safari shows the root background past the end of the page (the bounce, and behind its
+     toolbar). SiteFooter sets this while the black footer is on screen, so that strip is black. */
+  html.footer-in-view {
+    background-color: #000;
+  }
+
   body {
     margin: 0;
     font-family: "Manrope", "Outfit", sans-serif;

@@ -5,7 +5,7 @@ export default function DiscoverySection() {
   return (
     <section className="home-discovery-joey" data-testid="home-discovery-joey">
       <div className="home-discovery-joey__overlay" aria-hidden />
-      <div className="container-final home-discovery-joey__inner pt-16 pb-6 md:py-28">
+      <div className="container-final home-discovery-joey__inner pt-6 md:py-28">
         <Reveal variant="rise">
           <div className="home-discovery-joey__content max-w-4xl">
             <div className="glass-surface-light home-discovery-joey__panel w-fit max-w-full text-left">
@@ -24,6 +24,8 @@ export default function DiscoverySection() {
             </div>
           </div>
         </Reveal>
+        {/* Phones: the card sits over the sky and Joey stands below it, head to boots */}
+        <div className="home-discovery-joey__window md:hidden" aria-hidden />
       </div>
     </section>
   );

@@ -1,19 +1,45 @@
-.hero-cover-image {
-
-  object-fit: cover;
-
-  object-position: center 90%;
-
+/*
+ * Hero: "SunMac" stands on the solar panels' top edge at every screen size, worked out in CSS so
+ * it's in place from the first paint. hero-section.png is 1491 × 1055 and the panels' top edge is
+ * its row 729. The photo is drawn object-fit: cover at 90% down, then zoomed by --hero-zoom from
+ * the bottom. The word's baseline sits 0.107em above the bottom of its box (Outfit at
+ * line-height 0.95). If the photo, its object position or the word's font change, update these.
+ */
+.home-hero {
+  --hero-zoom: 1;
+  --hero-word-size: clamp(4.5rem, 21vw, 14.75rem);
 }
 
+/* Phones: a shorter hero (HomeHero.tsx) with the photo zoomed in from the bottom, so the panels
+   fill the lower half instead of a screenful of empty sky */
+@media (max-width: 767px) and (orientation: portrait) {
+  .home-hero {
+    --hero-zoom: 1.6;
+  }
+}
 
+.hero-cover-image {
+  object-fit: cover;
+  object-position: center 90%;
+  transform: scale(var(--hero-zoom));
+  transform-origin: 50% 100%;
+}
 
-/* SunMac baseline: top set from JS (heroPanelLine); -100% places bottom on panel edge */
+.hero-stage {
+  position: absolute;
+  inset: 0;
+  container-type: size;
+}
 
-.hero-sunmac-anchor {
-
-  transform: translateY(calc(-100% + var(--hero-text-nudge, 41px)));
-
+.hero-word-anchor {
+  position: absolute;
+  inset-inline: 0;
+  /* The photo's drawn height (cover), and the panels' edge from the top before the zoom */
+  --photo-h: max(100cqh, 100cqw * 1055 / 1491);
+  --edge-y: calc(90cqh + (729 / 1055 - 0.9) * var(--photo-h));
+  /* Older browsers without container query units */
+  bottom: 31%;
+  bottom: calc(var(--hero-zoom) * (100cqh - var(--edge-y)) - 0.107 * var(--hero-word-size));
 }
 
 
@@ -22,7 +48,7 @@
 
   font-family: "Outfit", "Manrope", sans-serif;
 
-  font-size: clamp(4.5rem, 21vw, 14.75rem);
+  font-size: var(--hero-word-size, clamp(4.5rem, 21vw, 14.75rem));
 
   line-height: 0.95;
 
@@ -369,20 +395,6 @@
 
 
 
-/* Applied to the element that actually scrolls (phones); a no-op once tabs fit */
-.services-tab-strip {
-  scroll-snap-type: x proximity;
-  scroll-padding-inline: 1rem;
-  overscroll-behavior-x: contain;
-  scrollbar-width: none;
-}
-
-.services-tab-strip::-webkit-scrollbar {
-  display: none;
-}
-
-
-
 .segment-bar {
 
   transform: translateZ(0);
@@ -546,11 +558,11 @@
 .home-discovery-joey {
   position: relative;
   isolation: isolate;
-  /* Taller on phones so Joey stays visible above the text panel */
-  min-height: 31rem;
   background-color: #1c1917;
   content-visibility: auto;
-  contain-intrinsic-size: auto 31rem;
+  contain-intrinsic-size: auto 39rem;
+  /* Phones: the height of the space below the card that Joey stands in */
+  --joey-window: min(100vw, 34rem);
 }
 
 @media (min-width: 768px) {
@@ -565,13 +577,21 @@
   position: absolute;
   inset: 0;
   z-index: 0;
-  /* Narrow screens crop the wide image hard, shift right to keep Joey in frame */
-  background: url("/images/joey.png") 86% center / cover no-repeat;
+  /*
+   * Phones: the card sits over the sky and Joey stands, whole, in the window below it. The photo
+   * (1794 × 804) is drawn 1.5× the window's height from the bottom, so his ear tips, a third of
+   * the way down it, meet the window's top, and his middle (73% across) is centred. Above the
+   * photo, the sky carries on in the colours of its top edge.
+   */
+  background:
+    url("/images/joey.png") calc(50% - 0.77 * var(--joey-window)) 100% / auto
+      calc(1.5 * var(--joey-window)) no-repeat,
+    linear-gradient(90deg, rgb(53 140 226), rgb(77 159 239));
 }
 
 @media (min-width: 768px) {
   .home-discovery-joey::before {
-    background-position: 78% center;
+    background: url("/images/joey.png") 78% center / cover no-repeat;
   }
 }
 
@@ -587,13 +607,18 @@
   position: relative;
   z-index: 2;
   display: flex;
+  flex-direction: column;
   min-height: inherit;
-  /* Phones: panel sits at the bottom, leaving Joey visible above it */
-  align-items: flex-end;
+}
+
+.home-discovery-joey__window {
+  height: var(--joey-window);
+  margin-top: 1rem;
 }
 
 @media (min-width: 768px) {
   .home-discovery-joey__inner {
+    flex-direction: row;
     align-items: center;
   }
 

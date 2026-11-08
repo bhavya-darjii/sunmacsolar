@@ -1,92 +1,22 @@
-
-
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-
-import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-
-
 
 import NavPillMenu from "@/components/site/NavPillMenu";
 import MobileNav from "@/components/site/MobileNav";
 
-
-
-const DAYS = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
-
-const MONTHS = [
-
-  "JAN",
-
-  "FEB",
-
-  "MAR",
-
-  "APR",
-
-  "MAY",
-
-  "JUN",
-
-  "JUL",
-
-  "AUG",
-
-  "SEP",
-
-  "OCT",
-
-  "NOV",
-
-  "DEC",
-
-];
-
-
-
-function formatHeaderDateTime(date: Date) {
-  const day = DAYS[date.getDay()];
-  const month = MONTHS[date.getMonth()];
-  const dom = date.getDate();
-  const time = new Intl.DateTimeFormat(undefined, {
-    hour: "numeric",
-    minute: "2-digit",
-    hour12: true,
-  }).format(date);
-  return `${day} ${month} ${dom} • ${time}`;
-}
-
-
-
 type HomeHeaderProps = {
   /** Drives entrance animation; replays when the hero scrolls back into view. */
   heroInView?: boolean;
+  /** "SAT NOV 8 • 5:41 PM", from the hero (which also shows it above "SunMac" on phones). */
+  dateTime?: string | null;
 };
 
-export default function HomeHeader({ heroInView = true }: HomeHeaderProps) {
+export default function HomeHeader({ heroInView = true, dateTime = null }: HomeHeaderProps) {
 
   const router = useRouter();
   const pathname = router.asPath.split("?")[0];
-
-  const [dateTime, setDateTime] = useState<string | null>(null);
-
-
-
-  useEffect(() => {
-
-    const tick = () => setDateTime(formatHeaderDateTime(new Date()));
-
-    tick();
-
-    const id = window.setInterval(tick, 30_000);
-
-    return () => window.clearInterval(id);
-
-  }, []);
-
-
 
   return (
 
@@ -130,7 +60,7 @@ export default function HomeHeader({ heroInView = true }: HomeHeaderProps) {
             </div>
           </Link>
 
-          {/* Date/time only where it fits untruncated: hidden on phones and beside the md pill nav */}
+          {/* Date/time only where it fits untruncated: phones show it above "SunMac" instead, and it's hidden beside the md pill nav */}
           <span className="hidden h-5 w-px shrink-0 bg-white/35 sm:block md:hidden lg:block" aria-hidden />
 
           <time
@@ -141,7 +71,7 @@ export default function HomeHeader({ heroInView = true }: HomeHeaderProps) {
 
           >
 
-            {dateTime ?? "\u00a0"}
+            {dateTime ?? " "}
 
           </time>
 
@@ -174,5 +104,3 @@ export default function HomeHeader({ heroInView = true }: HomeHeaderProps) {
   );
 
 }
-
-

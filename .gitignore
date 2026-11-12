@@ -3,6 +3,8 @@
 # IDE and editors
 .idea/
 .vscode/
+.claude/
+.cursor/
 
 # Dependencies
 node_modules/
@@ -51,6 +53,7 @@ __pycache__/
 *pyc*
 venv/
 .venv/
+.ruff_cache/
 
 # Development tools
 chainlit.md

@@ -168,6 +168,12 @@ Installation partner: [RB Trades Services](https://rbts.au/)
 
 ---
 
+## Project History & Scaffolding Archive
+
+For reference notes on legacy files, the original PRD, and git recovery commands for archived scaffolding, see [`DELETED_FILES_REFERENCE.md`](./DELETED_FILES_REFERENCE.md).
+
+---
+
 ## License
 
 This is a proprietary project. All rights reserved.

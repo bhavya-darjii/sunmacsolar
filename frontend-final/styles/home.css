@@ -252,6 +252,14 @@
 
   --footer-sunmac-line-height: 0.8;
 
+  /* Explicit weight so the system-font fallback (before Outfit loads) also renders
+     heavy — prevents the thin→thick FOUT snap when the web font swaps in. */
+  font-weight: 800;
+
+  /* Stop the browser from synthesising a fake bold on the fallback, which would
+     also cause a thickness jump when the real font arrives. */
+  font-synthesis: none;
+
 
 
   width: 100%;

@@ -29,7 +29,7 @@ const PROJECT_FILTERS: { id: string; label: string; icon: LucideIcon }[] = [
 ];
 
 function projectHref(p: Project) {
-  return `/projects/${p.slug || p.id}`;
+  return `/projects/${p.slug}`;
 }
 
 const revealEase = [0.22, 1, 0.36, 1] as const;
@@ -127,8 +127,9 @@ export default function ProjectsPage() {
               <section className="container-final space-y-10 pb-12">
                 {featured.map((p) => (
                   <motion.div key={p.id} variants={resultsItem}>
-                    <div
-                      className="card-lift surface-glass grid overflow-hidden lg:grid-cols-12 lg:gap-10"
+                    <Link
+                      href={projectHref(p)}
+                      className="card-lift surface-glass group grid overflow-hidden lg:grid-cols-12 lg:gap-10"
                       data-testid={`project-card-${p.id}`}
                     >
                   <div className="relative bg-black lg:col-span-7">
@@ -181,11 +182,11 @@ export default function ProjectsPage() {
                       </dl>
                     )}
 
-                    <Link href={projectHref(p)} data-testid={`project-details-${p.id}`} className="btn-dark mt-8">
+                    <span className="btn-dark mt-8 inline-flex items-center gap-2 group-hover:bg-[#292524]" data-testid={`project-details-${p.id}`}>
                       View more details <ArrowRight className="h-4 w-4" />
-                    </Link>
+                    </span>
                   </div>
-                    </div>
+                    </Link>
                   </motion.div>
                 ))}
               </section>

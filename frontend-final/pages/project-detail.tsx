@@ -64,13 +64,6 @@ export default function ProjectDetailPage() {
           <div className="absolute inset-0 bg-gradient-to-t from-[#1c1917]/95 via-[#1c1917]/40 to-transparent" />
           <div className="absolute right-0 bottom-0 left-0 container-final pb-10 md:pb-12">
             <Reveal>
-              <Link
-                href="/projects"
-                className="inline-flex items-center gap-1.5 text-sm text-[#fdfbf7]/90 hover:text-[#fbbf24]"
-                data-testid="project-detail-back"
-              >
-                <ArrowLeft className="h-4 w-4" /> All projects
-              </Link>
               <p className="overline mt-4 text-[#fbbf24]">{project.category}</p>
               <h1 className="mt-3 max-w-4xl font-display text-[2rem] font-light leading-tight text-[#fdfbf7] sm:text-5xl lg:text-6xl">
                 {project.title}
@@ -131,7 +124,7 @@ export default function ProjectDetailPage() {
                 {related.map((p) => (
                   <Link
                     key={p.id}
-                    href={`/projects/${p.slug || p.id}`}
+                    href={`/projects/${p.slug}`}
                     className="card-lift surface-glass group overflow-hidden"
                     data-testid={`related-project-${p.id}`}
                   >

@@ -97,7 +97,7 @@ export type Project = {
   category: string;
   image: string;
   summary: string;
-  slug?: string;
+  slug: string;
   video?: string;
   poster?: string;
   description?: string;
@@ -133,6 +133,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 1,
+    slug: "camellia-industrial-park-rooftop",
     title: "Camellia Industrial Park Rooftop",
     location: "Camellia, NSW",
     capacity: "480 kW",
@@ -143,6 +144,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 2,
+    slug: "riverina-centre-pivot-solar-irrigation",
     title: "Riverina Centre-Pivot Solar Irrigation",
     location: "Riverina, NSW",
     capacity: "90 kW + 100 kWh",
@@ -153,6 +155,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 3,
+    slug: "outback-station-off-grid-homestead",
     title: "Outback Station Off-Grid Homestead",
     location: "Western QLD",
     capacity: "22 kW + 60 kWh",
@@ -163,6 +166,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 4,
+    slug: "hunter-valley-battery-retrofit",
     title: "Hunter Valley Battery Retrofit",
     location: "Hunter Valley, NSW",
     capacity: "15 kWh",
@@ -173,6 +177,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 5,
+    slug: "commercial-motel-rooftop-solar",
     title: "Commercial Motel Rooftop Solar",
     location: "Southern Highlands, NSW",
     capacity: "55 kW",
@@ -184,6 +189,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 6,
+    slug: "bush-retreat-hotel-solar-installation",
     title: "Bush Retreat Hotel Solar Installation",
     location: "Blue Mountains, NSW",
     capacity: "78 kW",

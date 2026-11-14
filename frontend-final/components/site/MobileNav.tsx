@@ -11,6 +11,8 @@ type MobileNavProps = {
   pathname: string;
   /** "home" sits on the dark hero photo; "site" sits on the white sticky header. */
   variant: "home" | "site";
+  /** Frosted-glass trigger with a white icon, for a "site" header floating over a photo. */
+  glass?: boolean;
   /** Viewport width (px) at which the desktop pill nav takes over and this menu closes. */
   closeAt: number;
   className?: string;
@@ -42,6 +44,7 @@ function useIsClient() {
 export default function MobileNav({
   pathname,
   variant,
+  glass = false,
   closeAt,
   className,
   "data-testid": testId = "mobile-menu-toggle",
@@ -235,7 +238,7 @@ export default function MobileNav({
         data-testid={testId}
         className={cn(
           "flex h-11 w-11 shrink-0 items-center justify-center rounded-full transition-colors",
-          isHome
+          isHome || glass
             ? "glass-surface nav-pill-shadow text-white"
             : "border border-[#e7e5e4] bg-white text-[#1c1917] hover:border-[#d6d3d1]",
           className

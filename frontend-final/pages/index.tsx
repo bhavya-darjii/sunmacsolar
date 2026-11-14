@@ -1,6 +1,7 @@
 import Head from "next/head";
 import HomeHero from "@/components/home/HomeHero";
 import MissionSection from "@/components/home/MissionSection";
+import ResidentialSection from "@/components/home/ResidentialSection";
 import DiscoverySection from "@/components/home/DiscoverySection";
 import StatsStrip from "@/components/home/StatsStrip";
 import ServicesAccordion from "@/components/home/ServicesAccordion";
@@ -25,6 +26,7 @@ export default function HomePage() {
         <HomeHero />
         <MissionSection />
         <BrandLogos />
+        <ResidentialSection />
         <DiscoverySection />
         <StatsStrip />
         <ServicesAccordion />

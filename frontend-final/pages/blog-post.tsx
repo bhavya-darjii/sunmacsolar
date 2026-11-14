@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { api } from "@/lib/api";
+import { localImage } from "@/lib/local-images";
 import Reveal from "@/components/Reveal";
 import PageCanvas from "@/components/site/PageCanvas";
 
@@ -64,7 +65,7 @@ export default function BlogPostPage() {
       </Head>
       <PageCanvas data-testid="blog-post-page">
         <section className="relative min-h-[400px] h-[50vh] overflow-hidden">
-          <Image src={post.cover_image} alt={post.title} fill className="object-cover" priority sizes="100vw" />
+          <Image src={localImage(post.cover_image)} alt={post.title} fill className="object-cover" priority sizes="100vw" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#1c1917]/90 via-[#1c1917]/40 to-transparent" />
           <div className="absolute right-0 bottom-0 left-0 container-final pb-10 md:pb-12">
             <Reveal>

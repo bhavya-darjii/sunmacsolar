@@ -11,7 +11,7 @@ import HomeHeader from "./HomeHeader";
 import { useHysteresisInView } from "@/hooks/use-hysteresis-in-view";
 import { useDateTimeLabel } from "@/hooks/use-date-time-label";
 
-const HERO_IMAGE = "/hero-section.png";
+const HERO_IMAGE = "/hero-section.webp";
 const ease = [0.22, 1, 0.36, 1] as const;
 
 export default function HomeHero() {

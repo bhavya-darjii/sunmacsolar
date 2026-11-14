@@ -1,19 +1,101 @@
+import { useEffect, useRef } from "react";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, MapPin, Zap, ArrowRight } from "lucide-react";
 import Reveal from "@/components/Reveal";
-import { PROJECTS } from "@/data/site";
+import { PROJECTS, type Project } from "@/data/site";
 import PageCanvas from "@/components/site/PageCanvas";
+
+/*
+ * The header floats over this photo (SiteHeader's `overlay`, switched on in _app.tsx), so the
+ * photo starts at the very top of the page, behind the status bar on phones.
+ * Laptops and up: the full height of the screen, like the home page hero. Smaller screens: 60%.
+ * `project-hero` is what globals.css looks for to turn the page background black up here.
+ */
+const HERO_FRAME =
+  "project-hero relative h-[calc(60svh_+_env(safe-area-inset-top))] min-h-[460px] overflow-hidden bg-black lg:h-dvh lg:min-h-[600px]";
+
+function ProjectHero({ project }: { project: Project }) {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  // Same as the home hero: while the photo is at the top of the screen, the page background
+  // (behind Safari's status bar and in the overscroll bounce) is black like the photo's frame.
+  // Once the photo has scrolled away it goes back to white.
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const root = document.documentElement;
+    const observer = new IntersectionObserver(
+      ([entry]) => root.classList.toggle("hero-scrolled", !entry.isIntersecting),
+      { rootMargin: "0px 0px -99% 0px" }
+    );
+    observer.observe(el);
+    return () => {
+      observer.disconnect();
+      root.classList.remove("hero-scrolled");
+    };
+  }, []);
+
+  return (
+    <section ref={sectionRef} className={HERO_FRAME} data-testid="project-detail-hero">
+      {project.video ? (
+        <video
+          src={project.video}
+          poster={project.poster || project.image}
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 h-full w-full object-cover"
+          data-testid="project-detail-video"
+        />
+      ) : (
+        <Image
+          src={project.image}
+          alt={project.title}
+          fill
+          className="object-cover"
+          priority
+          sizes="100vw"
+        />
+      )}
+      <div className="absolute inset-0 bg-gradient-to-t from-[#1c1917]/95 via-[#1c1917]/40 to-transparent" />
+      {/* Keeps the white logo and menu readable over bright skies */}
+      <div
+        className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black/55 to-transparent"
+        aria-hidden
+      />
+      <div className="absolute right-0 bottom-0 left-0 container-final pb-10 md:pb-12">
+        <Reveal>
+          <p className="overline mt-4 text-[#fbbf24]">{project.category}</p>
+          <h1 className="mt-3 max-w-4xl font-display text-[2rem] font-light leading-tight text-[#fdfbf7] sm:text-5xl lg:text-6xl">
+            {project.title}
+          </h1>
+          <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-[#d6d3d1]">
+            <span className="inline-flex items-center gap-1.5">
+              <MapPin className="h-4 w-4" /> {project.location}
+            </span>
+            <span className="inline-flex items-center gap-1.5">
+              <Zap className="h-4 w-4" /> {project.capacity}
+            </span>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
 
 export default function ProjectDetailPage() {
   const router = useRouter();
   const slug = (router.query.slug as string) || (router.query.id as string);
   const project = PROJECTS.find((p) => (p.slug && p.slug === slug) || String(p.id) === slug);
 
+  // Before the router knows which project this is: an empty frame the size of the photo, so the
+  // floating header has something dark behind it and nothing jumps when the photo arrives.
   if (!router.isReady) {
-    return <div className="container-final py-32 text-[#57534e]">Loading project…</div>;
+    return <div className={HERO_FRAME} aria-busy="true" data-testid="project-detail-loading" />;
   }
 
   if (!project) {
@@ -39,46 +121,7 @@ export default function ProjectDetailPage() {
         <meta name="description" content={project.summary} />
       </Head>
       <PageCanvas data-testid="project-detail-page">
-        <section className="relative min-h-[460px] h-[60vh] overflow-hidden bg-black">
-          {project.video ? (
-            <video
-              src={project.video}
-              poster={project.poster || project.image}
-              autoPlay
-              muted
-              loop
-              playsInline
-              className="absolute inset-0 h-full w-full object-cover"
-              data-testid="project-detail-video"
-            />
-          ) : (
-            <Image
-              src={project.image}
-              alt={project.title}
-              fill
-              className="object-cover"
-              priority
-              sizes="100vw"
-            />
-          )}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#1c1917]/95 via-[#1c1917]/40 to-transparent" />
-          <div className="absolute right-0 bottom-0 left-0 container-final pb-10 md:pb-12">
-            <Reveal>
-              <p className="overline mt-4 text-[#fbbf24]">{project.category}</p>
-              <h1 className="mt-3 max-w-4xl font-display text-[2rem] font-light leading-tight text-[#fdfbf7] sm:text-5xl lg:text-6xl">
-                {project.title}
-              </h1>
-              <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-[#d6d3d1]">
-                <span className="inline-flex items-center gap-1.5">
-                  <MapPin className="h-4 w-4" /> {project.location}
-                </span>
-                <span className="inline-flex items-center gap-1.5">
-                  <Zap className="h-4 w-4" /> {project.capacity}
-                </span>
-              </div>
-            </Reveal>
-          </div>
-        </section>
+        <ProjectHero key={project.id} project={project} />
 
         <section className="container-final grid gap-10 py-12 md:py-16 lg:grid-cols-12 lg:gap-12">
           <Reveal className="space-y-5 lg:col-span-7">

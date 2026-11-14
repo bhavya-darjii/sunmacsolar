@@ -7,6 +7,7 @@ import Reveal from "@/components/Reveal";
 import PageIntro from "@/components/site/PageIntro";
 import PageCanvas from "@/components/site/PageCanvas";
 import { api } from "@/lib/api";
+import { localImage } from "@/lib/local-images";
 
 interface BlogPostItem {
   id: string | number;
@@ -70,7 +71,7 @@ export default function BlogPage() {
               >
                 <div className="relative aspect-[16/10] overflow-hidden md:col-span-7">
                   <Image
-                    src={featured.cover_image}
+                    src={localImage(featured.cover_image)}
                     alt={featured.title}
                     fill
                     className="object-cover transition duration-700 group-hover:scale-105"
@@ -103,7 +104,7 @@ export default function BlogPage() {
                 >
                   <div className="relative aspect-[4/3] overflow-hidden">
                     <Image
-                      src={p.cover_image}
+                      src={localImage(p.cover_image)}
                       alt={p.title}
                       fill
                       className="object-cover transition duration-700 group-hover:scale-105"

@@ -113,8 +113,8 @@ export const PROJECTS: Project[] = [
     capacity: "86 kW + 100 kWh",
     category: "Commercial",
     video: "/projects/commercial-86kw-rooftop.mp4",
-    poster: "/projects/commercial-86kw-rooftop-poster.jpg",
-    image: "/projects/commercial-86kw-rooftop-poster.jpg",
+    poster: "/projects/commercial-86kw-rooftop-poster.webp",
+    image: "/projects/commercial-86kw-rooftop-poster.webp",
     summary:
       "Hybrid rooftop solar-plus-storage system designed for 24/7 self-consumption and demand-response participation.",
     description:
@@ -138,9 +138,19 @@ export const PROJECTS: Project[] = [
     location: "Camellia, NSW",
     capacity: "480 kW",
     category: "Commercial",
-    image:
-      "https://images.unsplash.com/photo-1724041875334-0a6397111c7e?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1OTN8MHwxfHNlYXJjaHwxfHxjb21tZXJjaWFsJTIwc29sYXIlMjBwYW5lbHMlMjByb29mfGVufDB8fHx8MTc4MTU3NTk0NXww&ixlib=rb-4.1.0&q=85",
+    image: "/images/photos/commercial-rooftop-solar.webp",
     summary: "Rooftop array offsetting 72% of the site's annual grid consumption.",
+    description:
+      "This 480kW rooftop array covers the main warehouse roofs of an industrial estate in Camellia, a few minutes from our own office. The estate's tenants draw most of their power during business hours, so the brief was simple: generate as much as possible while the site is working and keep export to a minimum. Eight hundred Longi Hi-MO X6 600W modules are laid out across the east and west roof faces, which flattens the generation curve and holds output into the late afternoon.\n\nFour Solis 110kW three-phase string inverters feed the main switchboard through a dedicated solar distribution board, with a grid protection relay and export limiting set to the network's connection conditions. Installation was staged roof by roof so tenants kept trading throughout, and the system is monitored remotely by our team. It is forecast to offset around 72% of the site's annual grid consumption.",
+    specs: [
+      { label: "Solar panels", value: "Longi Hi-MO X6 600W (×800)" },
+      { label: "Inverters", value: "4× Solis S6 110kW three-phase" },
+      { label: "System size", value: "480 kW solar · 440 kW inverter" },
+      { label: "Mounting", value: "Rail-mounted on metal roofing, east and west faces" },
+      { label: "Grid connection", value: "Export limited, with grid protection relay" },
+      { label: "Annual generation (est.)", value: "~690 MWh / year" },
+      { label: "Completed", value: "2024" },
+    ],
   },
   {
     id: 2,
@@ -149,9 +159,19 @@ export const PROJECTS: Project[] = [
     location: "Riverina, NSW",
     capacity: "90 kW + 100 kWh",
     category: "Irrigation",
-    image:
-      "https://images.unsplash.com/photo-1717702576954-c07131c54169?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjY2NzZ8MHwxfHNlYXJjaHwyfHxmYXJtZXIlMjBmaWVsZCUyMHN1bnNldHxlbnwwfHx8fDE3ODE1NzU5NDV8MA&ixlib=rb-4.1.0&q=85",
+    image: "/images/photos/farm-field-sunset.webp",
     summary: "Replaced diesel-driven pivot pumping with hybrid solar + battery package.",
+    description:
+      "This Riverina irrigator was running a centre-pivot bore pump on diesel through every watering season, with the fuel deliveries and generator servicing that come with it. We replaced the generator with a 90kW ground-mounted array and a 100kWh battery, sized so the pump runs from solar through the day and the battery carries the early-morning and evening shifts.\n\nOne hundred and fifty Jinko Tiger Neo 600W modules sit on a fixed-tilt ground mount beside the pump shed and feed two GoodWe 50kW hybrid inverters. The pump runs through a variable frequency drive for soft starts and flow control, which keeps its peak load within what the inverters and battery can deliver. The original diesel generator stays on site as standby for long overcast spells, and the grower checks pump status and battery charge from a phone.",
+    specs: [
+      { label: "Solar panels", value: "Jinko Tiger Neo 600W (×150)" },
+      { label: "Inverters", value: "2× GoodWe ET 50kW Hybrid" },
+      { label: "Battery", value: "GoodWe 100 kWh LFP" },
+      { label: "Pump", value: "55 kW centre-pivot bore pump on variable frequency drive" },
+      { label: "Mounting", value: "Fixed-tilt ground mount, north facing" },
+      { label: "Annual generation (est.)", value: "~150 MWh / year" },
+      { label: "Completed", value: "2025" },
+    ],
   },
   {
     id: 3,
@@ -160,9 +180,19 @@ export const PROJECTS: Project[] = [
     location: "Western QLD",
     capacity: "22 kW + 60 kWh",
     category: "Off-Grid",
-    image:
-      "https://images.unsplash.com/flagged/photo-1566838616631-f2618f74a6a2?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NTZ8MHwxfHNlYXJjaHwxfHxvZmYlMjBncmlkJTIwc29sYXIlMjBob3VzZXxlbnwwfHx8fDE3ODE1NzU5NDV8MA&ixlib=rb-4.1.0&q=85",
+    image: "/images/photos/off-grid-solar-house.webp",
     summary: "Fully autonomous homestead with backup generator integration.",
+    description:
+      "This cattle station homestead in Western Queensland sits well beyond the reach of the grid and had run on a diesel generator for decades. The new stand-alone power system supplies the homestead, workers' quarters, cold room and workshop from solar and batteries, with the generator kept only as an automatic backup.\n\nFifty Trina Vertex S+ 440W modules on a ground-mount frame charge a 60kWh lithium iron phosphate battery bank through two Victron MPPT charge controllers. Three Victron MultiPlus-II inverter-chargers supply three-phase power to the station and start the existing generator automatically if the battery falls below a set level during a long run of cloudy days. The battery bank is sized for roughly two days of typical use without sun, and the equipment is housed in an insulated, ventilated enclosure built for outback summers.",
+    specs: [
+      { label: "Solar panels", value: "Trina Vertex S+ 440W (×50)" },
+      { label: "Inverter-chargers", value: "3× Victron MultiPlus-II 48/5000 (15 kVA, three-phase)" },
+      { label: "Charge controllers", value: "2× Victron SmartSolar MPPT RS 450/200" },
+      { label: "Battery", value: "60 kWh LFP bank, 48 V" },
+      { label: "Backup", value: "Auto-start of the existing diesel generator" },
+      { label: "Autonomy (est.)", value: "~2 days of typical use without sun" },
+      { label: "Completed", value: "2025" },
+    ],
   },
   {
     id: 4,
@@ -171,9 +201,19 @@ export const PROJECTS: Project[] = [
     location: "Hunter Valley, NSW",
     capacity: "15 kWh",
     category: "Residential",
-    image:
-      "https://images.unsplash.com/photo-1780445392417-68b9dccc45f2?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjY2NzZ8MHwxfHNlYXJjaHwxfHxzb2xhciUyMGJhdHRlcnklMjBzeXN0ZW18ZW58MHx8fHwxNzgxNTc1OTQ1fDA&ixlib=rb-4.1.0&q=85",
+    image: "/images/photos/home-battery-system.webp",
     summary: "Battery retrofit to an existing rooftop solar array for evening self-consumption.",
+    description:
+      "The owners of this Hunter Valley home already had a 6.6kW rooftop array, but most of what it generated at midday was exported for a few cents while they bought power back at peak rates every evening. Rather than replace a system that was working well, we added a 15kWh battery alongside it.\n\nThe Sigenergy SigenStor battery is AC-coupled, so the existing panels and inverter stayed exactly as they were. Surplus solar now charges the battery through the day and the household runs on it from late afternoon into the night. A backup gateway keeps the fridge, lights and internet running if the grid goes down. The battery was installed and commissioned in a single day, and the discount under the federal Cheaper Home Batteries Program was applied to the quote up front.",
+    specs: [
+      { label: "Battery", value: "Sigenergy SigenStor 15 kWh LFP" },
+      { label: "Battery inverter", value: "Sigenergy 5 kW single-phase, AC-coupled" },
+      { label: "Existing solar", value: "6.6 kW rooftop array (retained)" },
+      { label: "Backup", value: "Essential circuits through a backup gateway" },
+      { label: "Monitoring", value: "Phone app with live solar, battery and grid flows" },
+      { label: "Installation", value: "1 day on site" },
+      { label: "Completed", value: "2025" },
+    ],
   },
   {
     id: 5,
@@ -182,10 +222,20 @@ export const PROJECTS: Project[] = [
     location: "Southern Highlands, NSW",
     capacity: "55 kW",
     category: "Commercial",
-    image:
-      "https://customer-assets.emergentagent.com/job_ecomac-energy-site/artifacts/uevle0ih_IMG_0269.jpeg",
+    image: "/images/photos/motel-rooftop-solar.webp",
     summary:
       "Multi-roof rooftop array spread across guest accommodation wings, offsetting daytime HVAC and pool-heating loads.",
+    description:
+      "A motel's biggest loads line up neatly with the sun: air conditioning in guest rooms, pool heating, laundry and the kitchen all peak through the day. This 55kW system in the Southern Highlands was designed to cover those loads directly, with very little export.\n\nThe roof space is split across several accommodation wings facing different directions, so the 116 Jinko Tiger Neo 475W modules are wired as separate strings for each roof face and connected to two Solis 25kW three-phase inverters. Each roof face runs on its own tracker input, so a shaded or west-facing wing never drags down the others. Work was scheduled wing by wing around bookings so no rooms were taken out of service, and cable runs were kept out of sight of guest areas.",
+    specs: [
+      { label: "Solar panels", value: "Jinko Tiger Neo 475W (×116)" },
+      { label: "Inverters", value: "2× Solis S6 25kW three-phase" },
+      { label: "System size", value: "55 kW solar · 50 kW inverter" },
+      { label: "Roof", value: "Metal roofing across several accommodation wings" },
+      { label: "Loads offset", value: "Guest-room air conditioning, pool heating, laundry" },
+      { label: "Annual generation (est.)", value: "~75 MWh / year" },
+      { label: "Completed", value: "2024" },
+    ],
   },
   {
     id: 6,
@@ -194,10 +244,20 @@ export const PROJECTS: Project[] = [
     location: "Blue Mountains, NSW",
     capacity: "78 kW",
     category: "Commercial",
-    image:
-      "https://customer-assets.emergentagent.com/job_ecomac-energy-site/artifacts/88ao50rc_Gemini_Generated_Image_mnasyomnasyomnas%20%282%29%20%281%29.png",
+    image: "/images/photos/bush-retreat-hotel-solar.webp",
     summary:
       "Tile-roof multi-section installation across a heritage hotel and conference venue nestled in bushland.",
+    description:
+      "This heritage hotel and conference venue in the Blue Mountains wanted lower power bills without changing how the building looks from its grounds. The 78kW system is spread over the roof sections of the accommodation and conference wings that face away from the main approach.\n\nThe roofs are tiled, so every mounting point is a tile bracket fixed to the rafter with the tile refitted over it, which keeps the roof weathertight. The 156 Trina Vertex S+ 500W modules feed three Solis 25kW three-phase inverters in the plant area. Because the site is surrounded by bushland, cabling runs in metal conduit and the array layout leaves clear access to gutters and roof edges for maintenance. Installation was staged around conference bookings.",
+    specs: [
+      { label: "Solar panels", value: "Trina Vertex S+ 500W (×156)" },
+      { label: "Inverters", value: "3× Solis S6 25kW three-phase" },
+      { label: "System size", value: "78 kW solar · 75 kW inverter" },
+      { label: "Roof", value: "Tiled, six roof sections, rafter-fixed tile brackets" },
+      { label: "Site", value: "Bushland setting, cabling in metal conduit" },
+      { label: "Annual generation (est.)", value: "~105 MWh / year" },
+      { label: "Completed", value: "2025" },
+    ],
   },
 ];
 
@@ -214,8 +274,7 @@ export const PRODUCTS = [
       "Low-temperature coefficient (-0.30%/°C)",
       "IEC 61215 / 61730 certified",
     ],
-    image:
-      "https://images.unsplash.com/photo-1724041875334-0a6397111c7e?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1OTN8MHwxfHNlYXJjaHwxfHxjb21tZXJjaWFsJTIwc29sYXIlMjBwYW5lbHMlMjByb29mfGVufDB8fHx8MTc4MTU3NTk0NXww&ixlib=rb-4.1.0&q=85",
+    image: "/images/photos/commercial-rooftop-solar.webp",
     brands: [
       { name: "Jinko Tiger Neo", spec: "475W – 605W · N-type TOPCon" },
       { name: "Trina Vertex S+", spec: "440W – 500W · 30yr warranty" },
@@ -232,8 +291,7 @@ export const PRODUCTS = [
       "10-year product warranty",
       "Cloud monitoring & app control",
     ],
-    image:
-      "https://images.unsplash.com/photo-1780445392417-68b9dccc45f2?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjY2NzZ8MHwxfHNlYXJjaHwxfHxzb2xhciUyMGJhdHRlcnklMjBzeXN0ZW18ZW58MHx8fHwxNzgxNTc1OTQ1fDA&ixlib=rb-4.1.0&q=85",
+    image: "/images/photos/home-battery-system.webp",
     brands: [
       { name: "Fox ESS", spec: "ECS / EP-Series · 5.8 – 24 kWh" },
       { name: "GoodWe Lynx", spec: "Home U / Home F · 5.4 – 32 kWh" },
@@ -251,8 +309,7 @@ export const PRODUCTS = [
       "Cloud monitoring",
       "Up to 98.4% efficiency",
     ],
-    image:
-      "https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?auto=format&fit=crop&w=1600&q=80",
+    image: "/images/photos/solar-inverters.webp",
     brands: [
       { name: "Fox ESS Hybrid", spec: "H1 / H3 · 3 – 12 kW single/three-phase" },
       { name: "GoodWe ET / EH", spec: "5 – 50 kW hybrid · battery-ready" },
@@ -266,16 +323,14 @@ export const PRODUCTS = [
     title: "Irrigation Kits",
     desc: "Pre-engineered solar pumping packages for bores and centre-pivots.",
     points: ["Grundfos & Lorentz pumps", "VFD-controlled", "Tank-fill automation"],
-    image:
-      "https://images.unsplash.com/photo-1717702576954-c07131c54169?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjY2NzZ8MHwxfHNlYXJjaHwyfHxmYXJtZXIlMjBmaWVsZCUyMHN1bnNldHxlbnwwfHx8fDE3ODE1NzU5NDV8MA&ixlib=rb-4.1.0&q=85",
+    image: "/images/photos/farm-field-sunset.webp",
   },
   {
     id: "offgrid",
     title: "Off-Grid Systems",
     desc: "Stand-alone power systems designed for remote properties.",
     points: ["Selectronic SP PRO", "Victron MultiPlus II", "Generator integration"],
-    image:
-      "https://images.unsplash.com/flagged/photo-1566838616631-f2618f74a6a2?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NTZ8MHwxfHNlYXJjaHwxfHxvZmYlMjBncmlkJTIwc29sYXIlMjBob3VzZXxlbnwwfHx8fDE3ODE1NzU5NDV8MA&ixlib=rb-4.1.0&q=85",
+    image: "/images/photos/off-grid-solar-house.webp",
   },
   {
     id: "heatpump",
@@ -287,7 +342,7 @@ export const PRODUCTS = [
       "Smart timer for solar self-use",
       "STC rebate eligible",
     ],
-    image: "/products/sanden-heatpump.jpg",
+    image: "/products/sanden-heatpump.webp",
     brands: [
       {
         name: "Sanden Eco Plus",
@@ -314,8 +369,7 @@ export const PRODUCTS = [
     ],
     scheme:
       "NSW PDRS Eligible, as an Accredited pathway under the NSW Peak Demand Reduction Scheme (part of the Net Zero plan), eligible high-efficiency HVAC upgrades attract government incentives that significantly reduce your upfront cost.",
-    image:
-      "https://images.unsplash.com/photo-1774290331891-5d759056c68d?auto=format&fit=crop&w=1600&q=80",
+    image: "/images/photos/commercial-hvac.webp",
     brands: [
       {
         name: "Mitsubishi Electric",

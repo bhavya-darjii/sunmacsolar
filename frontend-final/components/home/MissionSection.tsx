@@ -11,29 +11,15 @@ type WhoWeAreAvatar = {
   className?: string;
 };
 
-const unsplashFace = (id: string, alt: string): WhoWeAreAvatar => ({
-  src: `https://images.unsplash.com/${id}?auto=format&fit=crop&w=256&h=256&q=90&crop=faces`,
-  alt,
-});
-
 const WHO_WE_ARE_AVATARS: WhoWeAreAvatar[] = [
   {
-    src: "/images/joey-avatar.png",
+    src: "/images/joey-avatar.webp",
     alt: `${MASCOT.name}, SunMac mascot`,
     className: "object-cover",
   },
-  unsplashFace(
-    "photo-1560250097-0b93528c311a",
-    "SunMac installation specialist"
-  ),
-  unsplashFace(
-    "photo-1573496359142-b8d87734a5a2",
-    "SunMac project engineer"
-  ),
-  unsplashFace(
-    "photo-1519085360753-af0119f7cbe7",
-    "SunMac field technician"
-  ),
+  { src: "/images/team/installation-specialist.webp", alt: "SunMac installation specialist" },
+  { src: "/images/team/project-engineer.webp", alt: "SunMac project engineer" },
+  { src: "/images/team/field-technician.webp", alt: "SunMac field technician" },
 ];
 
 export default function MissionSection() {

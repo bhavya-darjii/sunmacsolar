@@ -1,6 +1,6 @@
 /*
  * Hero: "SunMac" stands on the solar panels' top edge at every screen size, worked out in CSS so
- * it's in place from the first paint. hero-section.png is 1491 × 1055 and the panels' top edge is
+ * it's in place from the first paint. hero-section.webp is 1491 × 1055 and the panels' top edge is
  * its row 729. The photo is drawn object-fit: cover at 90% down, then zoomed by --hero-zoom from
  * the bottom. The word's baseline sits 0.107em above the bottom of its box (Outfit at
  * line-height 0.95). If the photo, its object position or the word's font change, update these.
@@ -89,6 +89,29 @@
 
   backdrop-filter: blur(32px);
 
+}
+
+/* Project pages: "Get a quote" while the header floats over the photo is solid white with dark
+   text; the dark button comes back with the white header bar. Hover matches the home hero's
+   white "Request a free quote" button. */
+.header-quote-light {
+  background: #ffffff;
+  color: #1c1917;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+}
+
+@media (hover: hover) {
+  .header-quote-light:hover {
+    background: #d97706;
+    color: #ffffff;
+  }
+}
+
+/* Project pages: the menu pill and the phone menu button over the photo are see-through, without
+   the home page's blur (SiteHeader.tsx) */
+.glass-surface.glass-surface--clear {
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
 }
 
 
@@ -292,6 +315,40 @@
 
 }
 
+/*
+ * Footer frame. At the end of the page the footer has to cover the whole screen, or the white
+ * section above it shows as a strip along the top. On iPhone Safari the page is also drawn
+ * behind the status bar, and that zone is not part of any viewport unit, so the footer is one
+ * large viewport tall plus the top safe area. Touch devices get a further 3rem of black as a
+ * margin for error. The same amounts are added as top padding, so the links stay clear of the
+ * status bar when the footer fills the screen.
+ */
+.site-footer {
+  --footer-bleed: 0px;
+  min-height: 100vh;
+  min-height: calc(100lvh + env(safe-area-inset-top, 0px) + var(--footer-bleed));
+  padding-top: calc(env(safe-area-inset-top, 0px) + var(--footer-bleed));
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .site-footer {
+    --footer-bleed: 3rem;
+  }
+}
+
+/* Footer "SunMac" fades in by colour, never by opacity or transform (SiteFooter.tsx says why) */
+.footer-word--compact {
+  transition: color 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.08s;
+}
+
+/* Reduce motion: simply there. Unlayered, so this beats the text-black utility */
+@media (prefers-reduced-motion: reduce) {
+  .footer-word--compact {
+    color: #ffffff;
+    transition: none;
+  }
+}
+
 
 
 /* Bottom bar flag icons, height locked; scale --footer-flag-h without growing the footer row */
@@ -437,121 +494,44 @@
 
 
 
-.growers-marquee-viewport {
-
+/*
+ * Project gallery (GrowersGallery): a row the visitor can scroll sideways themselves, by swipe,
+ * trackpad, shift + wheel or mouse drag. GrowersGallery.tsx adds the slow drift and the loop.
+ */
+.growers-scroller {
   width: 100%;
-
   max-width: 100%;
-
-  overflow: hidden;
-
+  overflow-x: auto;
+  overflow-y: hidden;
+  /* Room for the cards' 1px ring, which overflow-y would otherwise clip */
+  padding-block: 2px;
+  /* A sideways swipe that reaches the edge must not turn into the browser's back gesture */
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  cursor: grab;
 }
 
-
-
-.growers-marquee-track {
-
-  animation: growers-marquee 52s linear infinite;
-
-  will-change: transform;
-
+.growers-scroller::-webkit-scrollbar {
+  display: none;
 }
 
-
-
-@media (hover: hover) {
-  .growers-marquee-track:hover {
-    animation-play-state: paused;
-  }
+.growers-scroller.is-dragging {
+  cursor: grabbing;
 }
 
-.growers-marquee-viewport:not(.is-in-view) .growers-marquee-track {
-  animation-play-state: paused;
+/* While dragging with the mouse, cards neither react to hover nor open */
+.growers-scroller.is-dragging a {
+  pointer-events: none;
 }
 
-
-
-@keyframes growers-marquee {
-
-  from {
-
-    transform: translate3d(0, 0, 0);
-
-  }
-
-  to {
-
-    transform: translate3d(-50%, 0, 0);
-
-  }
-
+.growers-track {
+  -webkit-user-select: none;
+  user-select: none;
 }
 
-
-
-@media (prefers-reduced-motion: reduce) {
-
-  .growers-marquee-viewport {
-
-    display: flex;
-
-    justify-content: center;
-
-  }
-
-  .growers-marquee-track {
-
-    animation: none;
-
-    flex-wrap: wrap;
-
-    justify-content: center;
-
-    width: 100%;
-
-    max-width: 72rem;
-
-    margin-inline: auto;
-
-    padding-inline: 1.25rem;
-
-  }
-
-}
-
-@media (prefers-reduced-motion: reduce) {
-  /* The second copy only exists to make the marquee loop seamlessly */
-  .growers-marquee-track > [aria-hidden="true"] {
-    display: none;
-  }
-}
-
-/* Phones with reduced motion: a swipeable row instead of a very tall wrapped column */
-@media (prefers-reduced-motion: reduce) and (max-width: 767px) {
-  .growers-marquee-viewport {
-    justify-content: flex-start;
-    overflow-x: auto;
-    overscroll-behavior-x: contain;
-    scroll-snap-type: x mandatory;
-    scroll-padding-inline: 1.25rem;
-    scrollbar-width: none;
-  }
-
-  .growers-marquee-viewport::-webkit-scrollbar {
-    display: none;
-  }
-
-  .growers-marquee-track {
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    width: max-content;
-    max-width: none;
-    margin-inline: 0;
-  }
-
-  .growers-marquee-track > a {
-    scroll-snap-align: start;
-  }
+.growers-track img {
+  -webkit-user-drag: none;
 }
 
 /* Meet Joey, DiscoverySection */
@@ -584,14 +564,14 @@
    * photo, the sky carries on in the colours of its top edge.
    */
   background:
-    url("/images/joey.png") calc(50% - 0.77 * var(--joey-window)) 100% / auto
+    url("/images/joey.webp") calc(50% - 0.77 * var(--joey-window)) 100% / auto
       calc(1.5 * var(--joey-window)) no-repeat,
     linear-gradient(90deg, rgb(53 140 226), rgb(77 159 239));
 }
 
 @media (min-width: 768px) {
   .home-discovery-joey::before {
-    background: url("/images/joey.png") 78% center / cover no-repeat;
+    background: url("/images/joey.webp") 78% center / cover no-repeat;
   }
 }
 

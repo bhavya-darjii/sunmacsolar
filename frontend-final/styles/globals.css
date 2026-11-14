@@ -62,6 +62,12 @@
     }
   }
 
+  /* Project pages open on a photo in a black frame (project-detail.tsx toggles .hero-scrolled) */
+  html:has(.project-hero):not(.hero-scrolled),
+  html:has(.project-hero):not(.hero-scrolled) body {
+    background-color: #000;
+  }
+
   /* Black past the end of the page, and no bounce there at all, so a fast flick never flashes */
   html.footer-in-view,
   html.footer-in-view body {

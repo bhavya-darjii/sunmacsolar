@@ -3,6 +3,8 @@ import { useEffect, useRef } from "react";
 import Reveal from "@/components/Reveal";
 import FooterAustraliaFlags from "@/components/site/FooterAustraliaFlags";
 import { COMPANY, NAV } from "@/data/site";
+import { useHysteresisInView } from "@/hooks/use-hysteresis-in-view";
+import { cn } from "@/lib/utils";
 
 const EXPLORE_LINKS = NAV.filter((n) => n.href !== "/").map((n) => ({
   label: n.label,
@@ -52,9 +54,12 @@ function FooterLinkList({
 
 export default function SiteFooter() {
   const footerRef = useRef<HTMLElement>(null);
+  const wordRef = useRef<HTMLDivElement>(null);
+  // With Reduce motion on, home.css keeps the word white and skips the fade
+  const wordShown = useHysteresisInView(wordRef, { amount: 0.12 });
 
   // While the footer is on screen (globals.css): black page background and no bounce past the
-  // end of the page. Set a whole screen before the end, so a fast flick never catches it white.
+  // end of the page.
   useEffect(() => {
     const footer = footerRef.current;
     if (!footer) return;
@@ -73,7 +78,9 @@ export default function SiteFooter() {
     <footer
       ref={footerRef}
       data-testid="site-footer"
-      className="flex min-h-dvh flex-col bg-black text-[#fdfbf7]"
+      // Height and top padding come from .site-footer (home.css): taller than the screen on
+      // phones, so nothing white is left above it at the end of the page.
+      className="site-footer flex flex-col bg-black text-[#fdfbf7]"
     >
       <div className="container-final shrink-0 pt-6 md:pt-8">
         <Reveal>
@@ -116,15 +123,24 @@ export default function SiteFooter() {
         </Reveal>
       </div>
 
-      <div className="footer-sunmac-wrap w-full min-h-0 flex-1 overflow-hidden px-0">
-        <Reveal delay={0.08} className="flex w-full items-center justify-center">
-          <p
-            className="footer-word footer-word--compact text-center text-white"
-            aria-hidden
-          >
-            SunMac
-          </p>
-        </Reveal>
+      {/*
+        The word fades in by colour, from black (invisible on the black footer) to white. A colour
+        change is repainted in place, so the word is always drawn like the rest of the page. Do not
+        animate its opacity or transform, cover it with an animated element, or position this
+        wrapper: each of those puts the word on a separate layer while the footer's other entrance
+        animation runs, and Windows draws text on such a layer with lighter smoothing, so the word
+        visibly thickens a moment later.
+      */}
+      <div ref={wordRef} className="footer-sunmac-wrap w-full min-h-0 flex-1 overflow-hidden px-0">
+        <p
+          className={cn(
+            "footer-word footer-word--compact text-center",
+            wordShown ? "text-white" : "text-black"
+          )}
+          aria-hidden
+        >
+          SunMac
+        </p>
       </div>
 
       <div className="shrink-0 pb-[env(safe-area-inset-bottom)]">

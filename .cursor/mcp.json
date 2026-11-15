@@ -6,7 +6,7 @@
         "shadcn@latest",
         "mcp",
         "-c",
-        "frontend-final"
+        "frontend"
       ]
     }
   }

@@ -130,8 +130,8 @@ uvicorn server:app --reload
 - **Animated UI** — Framer Motion page transitions, scroll-triggered reveals, count-up stats
 - **Video showcases** — featured project cards with autoplay video walkthroughs
 - **SEO-friendly slugs** — all project URLs use descriptive slugs (`/projects/commercial-86kw-rooftop`)
-- **Lead capture** — contact and PPA forms submit to FastAPI → MongoDB with email notifications via Resend
-- **Admin dashboard** — internal `/admin/leads` page to manage quote requests and PPA enquiries
+- **Lead capture** — the quote form, the Joey chat and the PPA form post to `/api/enquiry` (`pages/api/enquiry.ts`), which signs each enquiry and sends it to Surge, SunMac's lead dashboard, where it lands on the Leads screen within seconds. Needs `SURGE_ENQUIRY_URL` and `SURGE_ENQUIRY_SECRET` (server-only) on Vercel; see `frontend-final/.env.example`. The FastAPI backend below was never deployed, so the forms used to fail.
+- **Admin dashboard** — internal `/admin/leads` page for the old FastAPI backend's quote requests and PPA enquiries (superseded by Surge's Leads screen)
 - **Static export** — all pages are statically generated at build time for fast load times
 
 ---

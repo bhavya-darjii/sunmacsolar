@@ -2,10 +2,11 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowUpRight, Loader2 } from "lucide-react";
 import { toast } from "sonner";
-import { api } from "@/lib/api";
+import { newSubmissionId, sendEnquiry } from "@/lib/enquiry";
 import { CONTACT_SERVICE_PILLS } from "@/data/contact";
 import GlideSelect from "@/components/ui/GlideSelect";
 import ContactOfficeHoursBento from "@/components/contact/ContactOfficeHoursBento";
+import SpamTrap from "@/components/forms/SpamTrap";
 import {
   featuredFormFieldClass as fieldClass,
   featuredFormLabelClass as labelClass,
@@ -33,6 +34,9 @@ export default function ContactFeaturedForm() {
   });
   const [submitting, setSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+  // One id per filled-in form: trying again after an error sends the same enquiry, not a second.
+  const [submissionId, setSubmissionId] = useState(newSubmissionId);
+  const [trap, setTrap] = useState("");
 
   const onChange = (key: keyof typeof form, value: string) =>
     setForm((prev) => ({ ...prev, [key]: value }));
@@ -43,7 +47,8 @@ export default function ContactFeaturedForm() {
 
     setSubmitting(true);
     try {
-      await api.post("/leads", form);
+      await sendEnquiry("quote", submissionId, form, trap);
+      setSubmissionId(newSubmissionId());
       setSubmitStatus("success");
       toast.success("Thanks. We'll be in touch within 48 hours.");
       setForm({
@@ -76,9 +81,10 @@ export default function ContactFeaturedForm() {
         >
           <form
             onSubmit={onSubmit}
-            className="contact-featured-form space-y-8 sm:space-y-10"
+            className="contact-featured-form relative space-y-8 sm:space-y-10"
             data-testid="contact-form"
           >
+            <SpamTrap value={trap} onChange={setTrap} />
             <div className="space-y-3">
               <p className="text-xl font-bold uppercase tracking-wide text-[#ffffff] sm:text-2xl md:text-3xl">
                 Request a quote

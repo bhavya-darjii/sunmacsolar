@@ -2,13 +2,17 @@ import { useState } from "react";
 import { X, Send, MessageCircle } from "lucide-react";
 import { toast } from "sonner";
 import { MASCOT } from "@/data/site";
-import { api } from "@/lib/api";
+import SpamTrap from "@/components/forms/SpamTrap";
+import { newSubmissionId, sendEnquiry } from "@/lib/enquiry";
 
 export default function JoeyChat() {
   const [open, setOpen] = useState(false);
   const [step, setStep] = useState<"intro" | "form" | "done">("intro");
   const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
   const [submitting, setSubmitting] = useState(false);
+  // One id per message: trying again after an error sends the same one, not a second.
+  const [submissionId, setSubmissionId] = useState(newSubmissionId);
+  const [trap, setTrap] = useState("");
 
   const onChange = (k: keyof typeof form, v: string) =>
     setForm((f) => ({ ...f, [k]: v }));
@@ -17,10 +21,8 @@ export default function JoeyChat() {
     e.preventDefault();
     setSubmitting(true);
     try {
-      await api.post("/leads", {
-        ...form,
-        service_type: "joey-chat",
-      });
+      await sendEnquiry("chat", submissionId, form, trap);
+      setSubmissionId(newSubmissionId());
       setStep("done");
       toast.success("Joey hopped your message over to our team!");
     } catch {
@@ -109,7 +111,8 @@ export default function JoeyChat() {
             )}
 
             {step === "form" && (
-              <form onSubmit={submit} className="space-y-3" data-testid="joey-chat-form">
+              <form onSubmit={submit} className="relative space-y-3" data-testid="joey-chat-form">
+                <SpamTrap value={trap} onChange={setTrap} />
                 <input
                   required
                   value={form.name}

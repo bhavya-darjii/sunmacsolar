@@ -22,7 +22,8 @@ import {
   featuredFormLabelClass,
   featuredFormMessageFieldClass,
 } from "@/components/forms/featuredFormStyles";
-import { api } from "@/lib/api";
+import SpamTrap from "@/components/forms/SpamTrap";
+import { newSubmissionId, sendEnquiry } from "@/lib/enquiry";
 
 interface Benefit {
   icon: LucideIcon;
@@ -101,6 +102,9 @@ export default function PpaPage() {
   });
   const [submitting, setSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+  // One id per filled-in form: trying again after an error sends the same enquiry, not a second.
+  const [submissionId, setSubmissionId] = useState(newSubmissionId);
+  const [trap, setTrap] = useState("");
 
   const onChange = (k: string, v: string | boolean) => setForm((f) => ({ ...f, [k]: v }));
 
@@ -110,10 +114,16 @@ export default function PpaPage() {
 
     setSubmitting(true);
     try {
-      await api.post("/ppa-inquiries", {
-        ...form,
-        land_size_acres: form.land_size_acres ? parseFloat(form.land_size_acres) : null,
-      });
+      await sendEnquiry(
+        "ppa",
+        submissionId,
+        {
+          ...form,
+          land_size_acres: form.land_size_acres ? parseFloat(form.land_size_acres) : null,
+        },
+        trap,
+      );
+      setSubmissionId(newSubmissionId());
       setSubmitStatus("success");
       toast.success("Inquiry sent. Our PPA team will be in touch within 2 business days.");
       setForm({
@@ -265,9 +275,10 @@ export default function PpaPage() {
               >
                 <form
                   onSubmit={onSubmit}
-                  className="contact-featured-form space-y-8 sm:space-y-10"
+                  className="contact-featured-form relative space-y-8 sm:space-y-10"
                   data-testid="ppa-form"
                 >
+                  <SpamTrap value={trap} onChange={setTrap} />
                   <div className="space-y-3">
                     <p className="text-xl font-bold uppercase tracking-wide text-[#ffffff] sm:text-2xl md:text-3xl">
                       Free site evaluation

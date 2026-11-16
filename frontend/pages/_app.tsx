@@ -18,6 +18,8 @@ export default function App({ Component, pageProps }: AppProps) {
   const isHome = router.pathname === "/";
   const isAdmin =
     router.pathname.startsWith("/admin") || router.pathname === "/admin-leads";
+  // The unsubscribe page in every email is a page of its own: no header, no footer.
+  const isBare = router.pathname === "/unsubscribe";
 
   // Project pages open on a full-bleed photo, so the header floats over it (see SiteHeader).
   // Until the router is ready the page shows a dark placeholder the size of that photo, so the
@@ -48,11 +50,11 @@ export default function App({ Component, pageProps }: AppProps) {
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
       </Head>
       <div className="flex min-h-screen flex-col bg-white text-[#1c1917]">
-        {!isHome && !isAdmin && <SiteHeader overlay={overlayHeader} />}
+        {!isHome && !isAdmin && !isBare && <SiteHeader overlay={overlayHeader} />}
         <main className="flex-1" data-testid="main-content">
           <Component {...pageProps} />
         </main>
-        {!isHome && !isAdmin && <SiteFooter />}
+        {!isHome && !isAdmin && !isBare && <SiteFooter />}
       </div>
       <Toaster position="top-right" richColors />
     </QueryClientProvider>

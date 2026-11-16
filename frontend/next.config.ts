@@ -27,6 +27,9 @@ const nextConfig: NextConfig = {
       { source: "/projects/:slug", destination: "/project-detail?slug=:slug" },
       { source: "/blog/:slug", destination: "/blog-post?slug=:slug" },
       { source: "/admin/leads", destination: "/admin-leads" },
+      // A mail app's one-click unsubscribe posts here (List-Unsubscribe); the page is
+      // pages/unsubscribe.tsx.
+      { source: "/unsubscribe/one-click", destination: "/api/unsubscribe/one-click" },
     ];
   },
   images: {

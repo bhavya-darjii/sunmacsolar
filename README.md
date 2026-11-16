@@ -49,6 +49,8 @@ The site is a fully responsive, statically-exported **Next.js 16** application w
 | `/about` | Company story, team & partner info |
 | `/contact` | Quote request form with office hours |
 | `/admin/leads` | Internal admin dashboard for managing leads & PPA enquiries |
+| `/unsubscribe` | The unsubscribe page behind the link in every SunMac email: one button, no site header or footer |
+| `/unsubscribe/one-click` | Where a mail app's own unsubscribe button posts (RFC 8058); served by `pages/api/unsubscribe/one-click.ts` |
 
 ---
 
@@ -148,6 +150,19 @@ uvicorn server:app --reload
 | `SENDER_EMAIL` | From address for email notifications |
 | `LEAD_RECIPIENT_EMAIL` | Where lead notifications are sent |
 | `ADMIN_ACCESS_KEY` | Access key for the admin leads dashboard |
+
+### Frontend (Vercel project settings; server-only, never `NEXT_PUBLIC_`)
+
+| Variable | Description |
+|---|---|
+| `SURGE_ENQUIRY_URL`, `SURGE_ENQUIRY_SECRET` | Where the quote form, Joey chat and PPA form send enquiries (SunMac's lead system), and the secret each is signed with |
+| `SURGE_UNSUBSCRIBE_URL`, `SURGE_UNSUBSCRIBE_SECRET` | Where the unsubscribe page and the one-click address hand the token from an email's link (`lib/surge.ts`), and the secret that request is signed with. Not the enquiries' secret |
+
+The unsubscribe links in SunMac's emails open this site, so nothing a recipient sees names the
+internal system. The token in a link is the proof: only SunMac's system can make or check one, and
+this site decides nothing. Opening the link changes nothing (mail scanners open links); only the
+button does. The two secrets are each set to the same value in both projects, and never printed or
+committed.
 
 ---
 

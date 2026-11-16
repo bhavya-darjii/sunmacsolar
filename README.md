@@ -164,6 +164,14 @@ this site decides nothing. Opening the link changes nothing (mail scanners open 
 button does. The two secrets are each set to the same value in both projects, and never printed or
 committed.
 
+SunMac's emails load two pictures from this site, in `frontend/public/email/`:
+`sunmac-banner.jpg` (the home page's hero, the big SunMac standing on the panels, cut to
+1200 x 360 and shown at 600 x 180) and `sunmac-sun.png` (the sun logo at 80 x 80, shown at
+20 x 20). Keep their names and addresses: emails already sent point at them. If the hero changes,
+remake the banner the same way: `hero-section.webp` drawn cover at 68% down, with "SunMac" in
+Outfit 600 (letter-spacing -0.03em) standing on the panels' top edge, saved as a JPG of about
+50 KB.
+
 ---
 
 ## Deployment

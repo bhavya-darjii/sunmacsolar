@@ -22,6 +22,20 @@ const nextConfig: NextConfig = {
       { source: "/projects/6", destination: "/projects/bush-retreat-hotel-solar-installation", permanent: true },
     ];
   },
+  async headers() {
+    return [
+      // The pictures SunMac's emails load (public/email/). Gmail fetches every email picture
+      // through its own image proxy; a day's caching lets the proxy and mail apps keep a copy
+      // instead of asking again each time an email opens. Same names, so a new picture shows
+      // within a day.
+      {
+        source: "/email/:file*",
+        headers: [
+          { key: "Cache-Control", value: "public, max-age=86400, stale-while-revalidate=604800" },
+        ],
+      },
+    ];
+  },
   async rewrites() {
     return [
       { source: "/projects/:slug", destination: "/project-detail?slug=:slug" },

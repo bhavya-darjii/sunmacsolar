@@ -166,11 +166,13 @@ committed.
 
 SunMac's emails load two pictures from this site, in `frontend/public/email/`:
 `sunmac-banner.jpg` (the home page's hero, the big SunMac standing on the panels, cut to
-1200 x 360 and shown at 600 x 180) and `sunmac-sun.png` (the sun logo at 80 x 80, shown at
-20 x 20). Keep their names and addresses: emails already sent point at them. If the hero changes,
-remake the banner the same way: `hero-section.webp` drawn cover at 68% down, with "SunMac" in
-Outfit 600 (letter-spacing -0.03em) standing on the panels' top edge, saved as a JPG of about
-50 KB.
+1200 x 450 and shown at 600 x 225) and `sunmac-sun.png` (the sun logo at 80 x 80, shown at
+20 x 20). Keep their names and addresses: emails already sent point at them. They're cached for a
+day (`next.config.ts`), so Gmail's image proxy keeps a copy. If the hero changes, remake the
+banner the same way: `hero-section.webp` drawn cover at 74.8% down, "SunMac" in Outfit 600 at
+250 px (letter-spacing -0.03em) standing on the panels' top edge 64% down, under a light overlay
+(black at 20%, and a gradient from 26% at the top through clear to 42% at the bottom), saved as a
+JPG of about 60 KB.
 
 ---
 
